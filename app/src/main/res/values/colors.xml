@@ -6,4 +6,7 @@
     <color name="yellow">#FFD802</color>
     <color name="pink">#F78A8F</color>
     <color name="back_color">#F3F7FA</color>
+    <color name="yellow_iconBackground">#F9E77E</color>
+    <color name="pink_iconBackground">#F5D6DA</color>
+    <color name="blue_iconBackground">#7AA1C3</color>
 </resources>
