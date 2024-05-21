@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
@@ -37,15 +38,15 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        findViewById<Button>(R.id.btnPractice).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
             startActivity(Intent(this, IndustrySelectionActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnHelp).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.btnHelp).setOnClickListener {
             startActivity(Intent(this, HelpActivity::class.java))
         }
 
-        findViewById<Button>(R.id.btnSurvey).setOnClickListener {
+        findViewById<RelativeLayout>(R.id.btnSurvey).setOnClickListener {
             startActivity(Intent(this, SurveyActivity::class.java))
         }
     }
