@@ -1,36 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back_color"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="키오스크 배움이"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"/>
+
+        <ImageView
+            android:id="@+id/toolbar_logo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_logo1"
+            android:padding="8dp"/>
+    </androidx.appcompat.widget.Toolbar>
 
 
-    <Button
-        android:id="@+id/btnPractice"
+    <ImageView
+        android:id="@+id/centerLogo"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_logo2"/>
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="연습하기" />
+        android:layout_below="@id/centerLogo"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-    <Button
-        android:id="@+id/btnHelp"
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/btnPractice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/btnPractice_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/icon_yellow_background"
+                    android:contentDescription="@null"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_touch"/>
+
+                <TextView
+                    android:id="@+id/btnPractice_text"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/btnPractice_icon"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textAlignment="center"
+                    android:background="@drawable/text_yellow_background"
+                    android:text="연습하기"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnHelp"
+                android:layout_margin="10dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/btnHelp_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/icon_pink_background"
+                    android:contentDescription="@null"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_light"/>
+
+                <TextView
+                    android:id="@+id/btnHelp_text"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/btnHelp_icon"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textAlignment="center"
+                    android:background="@drawable/text_pink_background"
+                    android:text="도움말"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/btnSurvey"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/btnSurvey_icon"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/icon_blue_background"
+                android:contentDescription="@null"
+                android:padding="16dp"
+                android:src="@drawable/ic_checklist"/>
+
+            <TextView
+                android:id="@+id/btnSurvey_text"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/btnSurvey_icon"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textAlignment="center"
+                android:background="@drawable/text_blue_background"
+                android:text="개선점 설문"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="도움말" />
+        android:layout_below="@id/buttons"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textOn="음성지원 서비스를 이용하지 않으시겠습니까?"
+        android:textOff="음성지원 서비스를 이용하시겠습니까?"/>
 
-    <Button
-        android:id="@+id/btnSurvey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="개선점 설문" />
-
-</LinearLayout>
+</RelativeLayout>
