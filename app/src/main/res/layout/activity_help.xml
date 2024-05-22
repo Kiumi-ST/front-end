@@ -1,9 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HelpActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/back_color"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+
+    <Button
+        android:id="@+id/btnEngPractice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/pink"
+        android:layout_gravity="end"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:textSize="15dp"
+        android:text="영어표현익히기" />
+
+<!--질문-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/question_round">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="질문: 결제 과정에서 오류가 발생하면\n어떻게 해결해야 하나요?"
+                android:textSize="18dp"
+                android:textColor="@color/black" />
+
+            <ImageView
+                android:id="@+id/toggleAnswerButton1"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/plus_button" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/answerDivider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/answerTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="오류 과정에서 오류가 발생하는 이유를 파악하는 것이 중요합니다. 로그를 확인하고, 디버깅을 통해 오류의 원인을 찾아내세요."
+            android:textSize="16sp"
+            android:textColor="#212121"
+            android:layout_marginTop="16dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+<!--질문2-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/question_round">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="질문: 모르는 영어는 어떻게 대처해야\n하나요?"
+                android:textSize="18dp"
+                android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/toggleAnswerButton2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/plus_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--질문3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/question_round">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="질문: 키오스크 사용하기 무서워요."
+                android:textSize="18dp"
+                android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/toggleAnswerButton3"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/plus_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--질문4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/question_round">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="질문: 결제 전에 내가 원하는 걸 잘\n선택했는지 확인하고 싶어요."
+                android:textSize="18dp"
+                android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/toggleAnswerButton4"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/plus_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--질문5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/question_round">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="질문: 키오스크로 주문하고 난 후 \n음식은 언제 나오나요?"
+                android:textSize="18dp"
+                android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/toggleAnswerButton5"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/plus_button" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
