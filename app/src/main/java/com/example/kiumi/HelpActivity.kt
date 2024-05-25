@@ -1,9 +1,13 @@
 package com.example.kiumi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
@@ -112,6 +116,11 @@ class HelpActivity : AppCompatActivity() {
                 if (isAnswerVisible) R.drawable.plus_button
                 else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
             )
+        }
+
+        //영어연습 버튼 연결
+        findViewById<Button>(R.id.btnEngPractice).setOnClickListener {
+            startActivity(Intent(this, EnglishPracticeActivity::class.java))
         }
 
     }
