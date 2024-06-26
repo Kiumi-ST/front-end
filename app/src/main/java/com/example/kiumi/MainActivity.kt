@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
-            startActivity(Intent(this, IndustrySelectionActivity::class.java))
+            startActivity(Intent(this, PracticeSelectionActivity::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnHelp).setOnClickListener {

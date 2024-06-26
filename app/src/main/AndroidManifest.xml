@@ -16,11 +16,23 @@
             android:name=".EnglishPracticeActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualPracticeActivity"
+            android:exported="false"
+            android:parentActivityName=".PracticeSelectionActivity" />
+        <activity
+            android:name=".ProposalActivity"
+            android:exported="false"
+            android:parentActivityName=".PracticeSelectionActivity" />
+        <activity
+            android:name=".TutorialActivity"
+            android:exported="false"
+            android:parentActivityName=".PracticeSelectionActivity" />
+        <activity
             android:name=".SurveyActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".IndustrySelectionActivity"
+            android:name=".PracticeSelectionActivity"
             android:exported="false"
             android:parentActivityName=".MainActivity" />
         <activity
