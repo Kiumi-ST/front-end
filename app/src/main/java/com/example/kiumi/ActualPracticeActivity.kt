@@ -1,4 +1,11 @@
 package com.example.kiumi
 
-class ActualPracticeActivity {
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class ActualPracticeActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_actual_practice)
+    }
 }
