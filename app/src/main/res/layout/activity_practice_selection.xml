@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_color"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <ImageView
+        android:id="@+id/centerLogo"
+        android:layout_width="120dp"
+        android:layout_height="160dp"
+        android:layout_below="@id/toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/centerLogo"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/btnTutorial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/btnTutorial_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/icon_yellow_background"
+                    android:contentDescription="@null"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_tutorial"/>
+
+                <TextView
+                    android:id="@+id/btnTutorial_text"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/btnTutorial_icon"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textAlignment="center"
+                    android:background="@drawable/text_yellow_background"
+                    android:text="순서 지침"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnActualPractice"
+                android:layout_margin="10dp"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:id="@+id/btnActualPractice_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/icon_yellow_background"
+                    android:contentDescription="@null"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_actualpractice"/>
+
+                <TextView
+                    android:id="@+id/btnActualPractice_text"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@id/btnActualPractice_icon"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:textAlignment="center"
+                    android:background="@drawable/text_yellow_background"
+                    android:text="실전 연습"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/btnProposal"
+            android:layout_margin="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/btnProposal_icon"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/icon_yellow_background"
+                android:contentDescription="@null"
+                android:padding="16dp"
+                android:src="@drawable/ic_upgrade"/>
+
+            <TextView
+                android:id="@+id/btnProposal_text"
+                android:layout_width="140dp"
+                android:layout_height="40dp"
+                android:layout_below="@id/btnProposal_icon"
+                android:layout_gravity="center_horizontal|bottom"
+                android:textAlignment="center"
+                android:background="@drawable/text_yellow_background"
+                android:text="개선안 연습하기"
+                android:textSize="20sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
