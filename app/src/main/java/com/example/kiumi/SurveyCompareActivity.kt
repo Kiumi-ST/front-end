@@ -6,14 +6,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
-import com.example.kiumi.databinding.ActivityHelpBinding
 import com.example.kiumi.databinding.ActivitySurveyBinding
+import com.example.kiumi.databinding.ActivitySurveyCompareBinding
 
-class SurveyActivity : AppCompatActivity() {
-    lateinit var binding: ActivitySurveyBinding
+class SurveyCompareActivity : AppCompatActivity() {
+    lateinit var binding: ActivitySurveyCompareBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySurveyBinding.inflate(layoutInflater)
+        binding = ActivitySurveyCompareBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //툴바
@@ -27,12 +27,11 @@ class SurveyActivity : AppCompatActivity() {
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
         val titleView = toolbarView?.findViewById<TextView>(R.id.toolbar_title)
 
-        titleView?.text = "개선점 설문조사"
+        titleView?.text = "설문조사"
 
         homeIcon?.setOnClickListener {
             // 홈 아이콘 클릭 시 동작 구현
         }
-
-
     }
+
 }

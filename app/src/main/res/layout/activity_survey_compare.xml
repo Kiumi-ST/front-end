@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -26,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <!-- 1 -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="키오스크 만족도를 평가해 주세요."
+                        android:text="기존안과 개선안 중 어느것이\n더 편리한가요?"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
@@ -59,16 +59,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="@style/Widget.AppCompat.RatingBar.Indicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:isIndicator="false"
-                        android:numStars="5"
-                        android:stepSize="1" />
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RadioButton
+                            android:id="@+id/check1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="기존안" />
+
+                        <RadioButton
+                            android:id="@+id/check2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="개선안" />
+                    </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
@@ -90,7 +98,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="키오스크 이용이 편리하신가요?"
+                        android:text="키오스크의 기존안과 비교하여\n개선안의 만족도는 어떤가요?"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
@@ -112,166 +120,28 @@
                         android:layout_height="match_parent">
 
                         <RadioButton
-                            android:id="@+id/comfortable1"
+                            android:id="@+id/comf1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="매우 불편하다" />
+                            android:text="매우 편리하다" />
 
                         <RadioButton
-                            android:id="@+id/comfortable2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="다소 불편하다" />
-
-                        <RadioButton
-                            android:id="@+id/comfortable3"
+                            android:id="@+id/comf2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="어느정도 편리하다" />
 
                         <RadioButton
-                            android:id="@+id/comfortable4"
+                            android:id="@+id/comf3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="매우 편리하다" />
-                    </RadioGroup>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- 3 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="키오스크 이용 시 불편한 점은\n무엇인가요?"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:id="@+id/toggleAnswerButton3"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/sound_icon" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
-
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                            android:text="차이가 없다" />
 
                         <RadioButton
-                            android:id="@+id/uncom1"
+                            android:id="@+id/comf4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="추가 요청이 어렵다" />
-
-                        <RadioButton
-                            android:id="@+id/uncom2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="할인 / 포인트 적립이 어렵다" />
-
-                        <RadioButton
-                            android:id="@+id/uncom3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="분할 결제가 어렵다" />
-
-                        <RadioButton
-                            android:id="@+id/uncom4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="상품권 사용이 어렵다" />
-
-                        <RadioButton
-                            android:id="@+id/uncom5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="원하는 상품을 찾기 어렵다" />
-                    </RadioGroup>
-                </LinearLayout>
-            </LinearLayout>
-
-            <!-- 4 -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                android:padding="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="향후 실제로 이용하실 생각이\n있으신가요?"
-                        android:textColor="@color/black"
-                        android:textSize="20dp" />
-
-                    <ImageView
-                        android:id="@+id/toggleAnswerButton4"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/sound_icon" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
-
-                    <RadioGroup
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <RadioButton
-                            android:id="@+id/use1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="전혀 없다" />
-
-                        <RadioButton
-                            android:id="@+id/use2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="별로 없다" />
-
-                        <RadioButton
-                            android:id="@+id/use3"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="약간 있다" />
-
-                        <RadioButton
-                            android:id="@+id/use4"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="매우 있다" />
+                            android:text="다소 불편하다" />
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
@@ -295,12 +165,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="개선점을 자유롭게 입력해주세요."
+                        android:text="의견을 자유롭게 입력해주세요."
                         android:textColor="@color/black"
                         android:textSize="20dp" />
 
                     <ImageView
-                        android:id="@+id/toggleAnswerButton5"
+                        android:id="@+id/toggleAnswerButton3"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/sound_icon" />
