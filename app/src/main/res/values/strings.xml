@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">kiumi</string>
+    <string name="instructions_text"><![CDATA[<b>카드를 화살표 방향으로</b> 투입구에 넣어주세요<br/>결제 오류 시, <b>카드를 긁어주세요</b>]]></string>
 </resources>

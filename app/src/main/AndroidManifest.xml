@@ -13,9 +13,24 @@
         android:theme="@style/Theme.Kiumi"
         tools:targetApi="31">
         <activity
+            android:name=".ActualPracticeThankYou"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePickup"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePayment"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePaymentSelection"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeQRSuccess"
+            android:exported="false" />
+        <activity
             android:name=".SurveyCompareActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".EnglishPracticeActivity"
             android:exported="false" />
