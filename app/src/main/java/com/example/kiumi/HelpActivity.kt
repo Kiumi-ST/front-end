@@ -1,127 +1,117 @@
 package com.example.kiumi
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.kiumi.databinding.ActivityHelpBinding
-import com.example.kiumi.databinding.ActivityMainBinding
+import java.util.*
 
-class HelpActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHelpBinding
+class HelpActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+    private lateinit var binding: ActivityHelpBinding
+    private lateinit var tts: TextToSpeech
+    private var isTTSActive: Boolean = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHelpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //툴바
+        tts = TextToSpeech(this, this)
+
+        val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+        isTTSActive = sharedPref.getBoolean("isTTSActive", false)
+
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         supportActionBar?.setCustomView(R.layout.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
         val titleView = toolbarView?.findViewById<TextView>(R.id.toolbar_title)
-
         titleView?.text = "도움말"
 
         homeIcon?.setOnClickListener {
             // 홈 아이콘 클릭 시 동작 구현
         }
 
-        val toggleButton1 = findViewById<ImageView>(R.id.toggleAnswerButton1)
-        toggleButton1.setOnClickListener {
-            val answerDivider = findViewById<View>(R.id.answerDivider1)
-            val answerTextView = findViewById<TextView>(R.id.answerTextView1)
-            val isAnswerVisible = answerTextView.visibility == View.VISIBLE
+        setupToggleButtons()
 
-            answerDivider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-            answerTextView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-
-            val toggleButton = findViewById<ImageView>(R.id.toggleAnswerButton1)
-            toggleButton.setImageResource(
-                if (isAnswerVisible) R.drawable.plus_button
-                else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
-            )
-        }
-
-        val toggleButton2 = findViewById<ImageView>(R.id.toggleAnswerButton2)
-        toggleButton2.setOnClickListener {
-            val answerDivider = findViewById<View>(R.id.answerDivider2)
-            val answerTextView = findViewById<TextView>(R.id.answerTextView2)
-            val isAnswerVisible = answerTextView.visibility == View.VISIBLE
-
-            answerDivider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-            answerTextView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-
-            val toggleButton = findViewById<ImageView>(R.id.toggleAnswerButton2)
-            toggleButton.setImageResource(
-                if (isAnswerVisible) R.drawable.plus_button
-                else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
-            )
-        }
-
-        val toggleButton3 = findViewById<ImageView>(R.id.toggleAnswerButton3)
-        toggleButton3.setOnClickListener {
-            val answerDivider = findViewById<View>(R.id.answerDivider3)
-            val answerTextView = findViewById<TextView>(R.id.answerTextView3)
-            val isAnswerVisible = answerTextView.visibility == View.VISIBLE
-
-            answerDivider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-            answerTextView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-
-            val toggleButton = findViewById<ImageView>(R.id.toggleAnswerButton3)
-            toggleButton.setImageResource(
-                if (isAnswerVisible) R.drawable.plus_button
-                else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
-            )
-        }
-
-        val toggleButton4 = findViewById<ImageView>(R.id.toggleAnswerButton4)
-        toggleButton4.setOnClickListener {
-            val answerDivider = findViewById<View>(R.id.answerDivider4)
-            val answerTextView = findViewById<TextView>(R.id.answerTextView4)
-            val isAnswerVisible = answerTextView.visibility == View.VISIBLE
-
-            answerDivider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-            answerTextView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-
-            val toggleButton = findViewById<ImageView>(R.id.toggleAnswerButton4)
-            toggleButton.setImageResource(
-                if (isAnswerVisible) R.drawable.plus_button
-                else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
-            )
-        }
-
-        val toggleButton5 = findViewById<ImageView>(R.id.toggleAnswerButton5)
-        toggleButton5.setOnClickListener {
-            val answerDivider = findViewById<View>(R.id.answerDivider5)
-            val answerTextView = findViewById<TextView>(R.id.answerTextView5)
-            val isAnswerVisible = answerTextView.visibility == View.VISIBLE
-
-            answerDivider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-            answerTextView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
-
-            val toggleButton = findViewById<ImageView>(R.id.toggleAnswerButton5)
-            toggleButton.setImageResource(
-                if (isAnswerVisible) R.drawable.plus_button
-                else R.drawable.minus_button // minus_button 리소스를 준비해야 합니다.
-            )
-        }
-
-        //영어연습 버튼 연결
         findViewById<Button>(R.id.btnEngPractice).setOnClickListener {
             startActivity(Intent(this, EnglishPracticeActivity::class.java))
         }
+    }
 
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.KOREAN)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // 언어가 지원되지 않음
+            }
+        }
+    }
+
+    private fun setupToggleButtons() {
+        setupToggleButton(R.id.toggleAnswerButton1, R.id.answerDivider1, R.id.answerTextView1)
+        setupToggleButton(R.id.toggleAnswerButton2, R.id.answerDivider2, R.id.answerTextView2)
+        setupToggleButton(R.id.toggleAnswerButton3, R.id.answerDivider3, R.id.answerTextView3)
+        setupToggleButton(R.id.toggleAnswerButton4, R.id.answerDivider4, R.id.answerTextView4)
+        setupToggleButton(R.id.toggleAnswerButton5, R.id.answerDivider5, R.id.answerTextView5)
+    }
+
+    private fun setupToggleButton(toggleButtonId: Int, dividerId: Int, textViewId: Int) {
+        val toggleButton = findViewById<ImageView>(toggleButtonId)
+        val divider = findViewById<View>(dividerId)
+        val textView = findViewById<TextView>(textViewId)
+
+        toggleButton.setOnClickListener {
+            val isAnswerVisible = textView.visibility == View.VISIBLE
+            divider.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
+            textView.visibility = if (isAnswerVisible) View.GONE else View.VISIBLE
+            toggleButton.setImageResource(
+                if (isAnswerVisible) R.drawable.plus_button else R.drawable.minus_button
+            )
+            if (!isAnswerVisible && isTTSActive) {
+                speakTextWithDelay(textView.text.toString(), 500)
+            } else {
+                stopTTS()
+            }
+        }
+    }
+
+    private fun speakTextWithDelay(text: String, delayMillis: Long) {
+        Handler(Looper.getMainLooper()).postDelayed({
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        }, delayMillis)
+    }
+
+    private fun stopTTS() {
+        if (tts.isSpeaking) {
+            tts.stop()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopTTS()
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }
