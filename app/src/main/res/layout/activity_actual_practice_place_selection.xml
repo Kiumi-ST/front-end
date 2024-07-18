@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".ActualPracticePlaceSelectionActivity">
+
+    <!-- 상단 로고 -->
+    <ImageView
+        android:id="@+id/logo_image"
+        android:layout_margin="30dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_mcdonalds_logo" />
+
+    <!-- 안내 문구 -->
+    <TextView
+        android:id="@+id/instruction_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:text="식사 방법을\n선택해 주세요"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:paddingTop="16dp"
+        android:paddingBottom="20dp" />
+
+    <!-- 매장 식사 / 테이크 아웃 선택 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="50dp">
+
+
+        <LinearLayout
+            android:id="@+id/button_dine_in"
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/button_background"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="매장에서 식사"
+                android:textColor="#000" />
+
+            <ImageView
+                android:id="@+id/dine_in_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_dinein"
+                android:layout_gravity="center"
+                android:paddingTop="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/button_take_out"
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/button_background"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginRight="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="테이크 아웃"
+                android:textColor="#000" />
+
+            <ImageView
+                android:id="@+id/take_out_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_takeout"
+                android:layout_gravity="center"
+                android:paddingTop="8dp"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:paddingBottom="20dp">
+
+        <ImageView
+            android:id="@+id/language_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_language" />
+
+        <TextView
+            android:id="@+id/language_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="언어"
+            android:textSize="12sp"
+            android:textColor="#000"
+            android:paddingStart="8dp" />
+    </LinearLayout>
+
+    <!-- 영어 / 한국어 선택 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="16dp">
+
+        <!--영어 버튼 비활성화-->
+        <Button
+            android:id="@+id/button_english"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/button_background"
+            android:enabled="false"
+            android:text="English"
+            android:textColor="#000" />
+
+        <Button
+            android:id="@+id/button_korean"
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:background="@drawable/button_background_selected"
+            android:text="한국어"
+            android:textColor="#000" />
+    </LinearLayout>
+
+    <!-- 하단 버튼 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="bottom">
+
+        <!-- 처음으로, 도움 기능, 안내 문구 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/buttonHome"
+                    android:layout_width="120dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/button_background"
+                    android:text="처음으로"
+                    android:textColor="#000000"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutHelp"
+                    android:layout_width="120dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/button_background"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_help"
+                        android:contentDescription="@null"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="도움 기능"
+                        android:textColor="#000000"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center_vertical" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/bottom_instruction_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는 다를 수 있습니다. 요청 시 추가 영양정보를 제공합니다."
+                android:textSize="10sp"
+                android:textColor="#000"
+                android:paddingTop="16dp" />
+        </LinearLayout>
+
+        <!-- 포인트 적립 -->
+        <LinearLayout
+            android:id="@+id/button_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/yellow"
+            android:padding="16dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_qr" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="포인트를 적립하세요"
+                android:textSize="12sp"
+                android:textColor="#000"
+                android:paddingTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제 전 선택 필수"
+                android:textSize="12sp"
+                android:textColor="#000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_downarrow"
+                android:paddingTop="8dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

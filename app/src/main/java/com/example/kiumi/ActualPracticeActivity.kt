@@ -21,6 +21,11 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         // 주문하기 버튼 클릭 시
         findViewById<Button>(R.id.button_order).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeActivity,
+                ActualPracticePlaceSelectionActivity::class.java
+            )
+            startActivity(intent)
         }
 
         // 언어 버튼 클릭 시
