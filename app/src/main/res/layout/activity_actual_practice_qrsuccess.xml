@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_check_circle" />
+
+    <TextView
+        android:id="@+id/textViewSuccess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="성공"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="맥도날드 멤버십 카드를 스캔하였습니다!\n지금 주문하시면 포인트를 적립할 수 있습니다!\n주문하려면 확인을 누르세요."
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:gravity="center" />
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="240dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/rect_button_background"
+        android:text="확인"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+</LinearLayout>

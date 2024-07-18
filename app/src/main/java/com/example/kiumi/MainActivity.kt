@@ -7,9 +7,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.example.kiumi.databinding.ActivityMainBinding
+import com.example.kiumi.ActualPracticeQRSuccess
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -48,6 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<RelativeLayout>(R.id.btnSurvey).setOnClickListener {
             startActivity(Intent(this, SurveyActivity::class.java))
+        }
+
+        // 여기에 추가된 코드
+        findViewById<ToggleButton>(R.id.toggleButton).setOnClickListener {
+            startActivity(Intent(this, ActualPracticeQRSuccess::class.java))
         }
     }
 }
