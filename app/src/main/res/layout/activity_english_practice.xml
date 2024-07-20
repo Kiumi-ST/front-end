@@ -31,6 +31,7 @@
                 android:text="단어를 클릭해 뜻을 확인하세요"
                 android:textSize="18sp"
                 android:fontFamily="@font/jamsil_regul"
+                android:textColor="@color/black"
                 android:layout_marginTop="32dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="17dp"
@@ -63,12 +64,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="솔드아웃" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="sold out"
                         android:gravity="center" />
 
@@ -96,12 +99,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="테이크 아웃" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="take out"
                         android:gravity="center" />
 
@@ -139,12 +144,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="웨이팅" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="waiting"
                         android:gravity="center" />
 
@@ -172,12 +179,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="베스트" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="best"
                         android:gravity="center" />
 
@@ -215,6 +224,7 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="크레딧 카드" />
 
                     <TextView
@@ -222,6 +232,7 @@
                         android:layout_height="28dp"
                         android:textSize="15sp"
                         android:text="credit card"
+                        android:textColor="@color/black"
                         android:gravity="center" />
 
                 </LinearLayout>
@@ -248,12 +259,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="오더" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="order"
                         android:gravity="center" />
 
@@ -291,12 +304,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="핫" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="hot"
                         android:gravity="center" />
 
@@ -324,12 +339,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="아이스" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="ice"
                         android:gravity="center" />
 
@@ -367,12 +384,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="스몰" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="small"
                         android:gravity="center" />
 
@@ -401,12 +420,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="미디엄" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="medium"
                         android:gravity="center" />
 
@@ -444,12 +465,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="라지" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="large"
                         android:gravity="center" />
 
@@ -477,12 +500,14 @@
                         android:background="@color/pink"
                         android:gravity="center"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="드링크" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="28dp"
                         android:textSize="15sp"
+                        android:textColor="@color/black"
                         android:text="drink"
                         android:gravity="center" />
 
