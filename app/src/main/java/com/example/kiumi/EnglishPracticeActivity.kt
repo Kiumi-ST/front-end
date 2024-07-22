@@ -1,30 +1,43 @@
 package com.example.kiumi
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.kiumi.databinding.ActivityEnglishPracticeBinding
+import java.util.*
 
-class EnglishPracticeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityEnglishPracticeBinding
+class EnglishPracticeActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
+    private lateinit var binding: ActivityEnglishPracticeBinding
+    private lateinit var tts: TextToSpeech
+    private var isTTSActive: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEnglishPracticeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //툴바
+        // Retrieve isTTSActive value from SharedPreferences
+        val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+        isTTSActive = sharedPref.getBoolean("isTTSActive", false)
+
+        // Initialize TextToSpeech
+        tts = TextToSpeech(this, this)
+
+        // Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         supportActionBar?.setCustomView(R.layout.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
@@ -33,7 +46,6 @@ class EnglishPracticeActivity : AppCompatActivity() {
         titleView?.text = "도움말"
 
         homeIcon?.setOnClickListener {
-            // 홈 아이콘 클릭 시 동작 구현
             startActivity(Intent(this, MainActivity::class.java))
         }
 
@@ -53,13 +65,10 @@ class EnglishPracticeActivity : AppCompatActivity() {
         )
 
         val clickListener = View.OnClickListener { view ->
-            // 다이얼로그 빌더 생성
             val dialogBuilder = AlertDialog.Builder(this)
-            // 다이얼로그 레이아웃 설정
             val dialogView = layoutInflater.inflate(R.layout.popup_expression_detail, null)
             dialogBuilder.setView(dialogView)
 
-            // 다이얼로그 표시
             val dialog = dialogBuilder.create()
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()
@@ -71,7 +80,6 @@ class EnglishPracticeActivity : AppCompatActivity() {
             val meaning = dialogView.findViewById<TextView>(R.id.engExPopUpMeaning)
             val description = dialogView.findViewById<TextView>(R.id.engExPopUpDescription)
 
-            // view의 id에 따라 알맞게 내용을 변경
             when (view.id) {
                 R.id.takeout -> {
                     image.setImageResource(R.drawable.eng_ex_takeout)
@@ -175,17 +183,53 @@ class EnglishPracticeActivity : AppCompatActivity() {
                 }
             }
 
+            if (isTTSActive) {
+                // Read the meaning and description with delays and skipping "뜻:"
+                tts.playSilentUtterance(500, TextToSpeech.QUEUE_FLUSH, null) // 0.3-second delay before meaning
+                val meaningText = meaning.text.toString().removePrefix("뜻: ")
+                tts.speak(meaningText, TextToSpeech.QUEUE_ADD, null, null)
+                tts.playSilentUtterance(1000, TextToSpeech.QUEUE_ADD, null) // 1-second delay before description
+                tts.speak(description.text.toString(), TextToSpeech.QUEUE_ADD, null, null)
+            }
 
-            // 확인 버튼 클릭 이벤트 처리
+            dialog.setOnDismissListener {
+                tts.stop()
+            }
+
             xButton.setOnClickListener {
-                dialog.dismiss() // 다이얼로그 닫기
+                dialog.dismiss()
             }
         }
 
-        // 단어 클릭 시 팝업창 열리는 이벤트 처리
-        for (ex in expressions){
+        for (ex in expressions) {
             ex.setOnClickListener(clickListener)
         }
+    }
 
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.KOREAN)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Handle the error
+            }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }

@@ -1,24 +1,19 @@
 package com.example.kiumi
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.RatingBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
-import com.example.kiumi.databinding.ActivityHelpBinding
 import com.example.kiumi.databinding.ActivitySurveyBinding
 import kotlinx.coroutines.launch
+import java.util.*
 
-class SurveyActivity : AppCompatActivity() {
+class SurveyActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     lateinit var binding: ActivitySurveyBinding
     private lateinit var ratingBar: RatingBar
     private lateinit var radioGroupQ2: RadioGroup
@@ -26,18 +21,27 @@ class SurveyActivity : AppCompatActivity() {
     private lateinit var radioGroupQ4: RadioGroup
     private lateinit var editTextQ5: EditText
     private lateinit var btnFinish: Button
+    private lateinit var tts: TextToSpeech
+    private var isTTSActive: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySurveyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //툴바
+        // Retrieve isTTSActive value from SharedPreferences
+        val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+        isTTSActive = sharedPref.getBoolean("isTTSActive", false)
+
+        // Initialize TextToSpeech
+        tts = TextToSpeech(this, this)
+
+        // Toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         supportActionBar?.setCustomView(R.layout.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 뒤로가기 버튼 활성화
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
@@ -58,6 +62,27 @@ class SurveyActivity : AppCompatActivity() {
 
         btnFinish.setOnClickListener {
             submitSurvey()
+        }
+
+        setupTTSButtons()
+    }
+
+    private fun setupTTSButtons() {
+        val toggleButtons = mapOf(
+            R.id.toggleAnswerButton1 to R.id.toggleAnswerButton1_text,
+            R.id.toggleAnswerButton2 to R.id.toggleAnswerButton2_text,
+            R.id.toggleAnswerButton3 to R.id.toggleAnswerButton3_text,
+            R.id.toggleAnswerButton4 to R.id.toggleAnswerButton4_text,
+            R.id.toggleAnswerButton5 to R.id.toggleAnswerButton5_text
+        )
+
+        for ((buttonId, textId) in toggleButtons) {
+            findViewById<ImageView>(buttonId).setOnClickListener {
+                if (isTTSActive) {
+                    val text = findViewById<TextView>(textId).text.toString()
+                    tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+                }
+            }
         }
     }
 
@@ -88,5 +113,33 @@ class SurveyActivity : AppCompatActivity() {
                 Log.d("mobile","오류 발생: ${e.message}")
             }
         }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.KOREAN)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                // Handle the error
+            }
+        }
+    }
+
+    private fun stopTTS() {
+        if (tts.isSpeaking) {
+            tts.stop()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        stopTTS()
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }
