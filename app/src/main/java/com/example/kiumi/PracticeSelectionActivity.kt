@@ -8,6 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
+import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
 
 class PracticeSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +37,7 @@ class PracticeSelectionActivity : AppCompatActivity() {
         }
 
         findViewById<RelativeLayout>(R.id.btnActualPractice).setOnClickListener {
-            startActivity(Intent(this, ActualPracticeActivity::class.java))
+            startActivity(Intent(this, ActualPracticeMainActivity::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnProposal).setOnClickListener {
