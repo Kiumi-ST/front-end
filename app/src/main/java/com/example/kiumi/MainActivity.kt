@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -11,10 +12,15 @@ import android.widget.ToggleButton
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
 import com.example.kiumi.databinding.ActivityMainBinding
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private var isTTSActive: Boolean = false
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +29,8 @@ class MainActivity : AppCompatActivity() {
 
         val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
         isTTSActive = sharedPref.getBoolean("isTTSActive", false)
+
+        firebaseAnalytics = Firebase.analytics
 
         // Initialize toggle button state
         val toggleButton = findViewById<ToggleButton>(R.id.toggleButton)
@@ -50,6 +58,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
+            firebaseAnalytics.logEvent("button_click_practice"){
+                param(FirebaseAnalytics.Param.CONTENT, "practice")
+            }
             startActivity(Intent(this, PracticeSelectionActivity::class.java))
         }
 
@@ -70,6 +81,8 @@ class MainActivity : AppCompatActivity() {
                 apply()
             }
         }
+
+        Log.d(MainActivity::class.simpleName,"패키지명: $packageName");
     }
 
     override fun onRestart() {
