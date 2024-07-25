@@ -8,13 +8,21 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 
 class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private var quantity = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_place_selection)
 
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
         val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
         val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
         val quantityText: TextView = findViewById(R.id.quantity)
@@ -29,10 +37,16 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         // 매장 식사 버튼 클릭 시
         findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
+            firebaseAnalytics.logEvent("select_dining_option"){
+                param(FirebaseAnalytics.Param.CONTENT, "dine_in")
+            }
         }
 
         // 포장 버튼 클릭 시
         findViewById<LinearLayout>(R.id.button_take_out).setOnClickListener {
+            firebaseAnalytics.logEvent("select_dining_option"){
+                param(FirebaseAnalytics.Param.CONTENT, "take_out")
+            }
         }
 
         // 처음으로 버튼 클릭 시

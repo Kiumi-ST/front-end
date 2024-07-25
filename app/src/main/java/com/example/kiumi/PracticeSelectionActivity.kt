@@ -8,11 +8,20 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 
 class PracticeSelectionActivity : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_practice_selection)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
 
         //툴바
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
@@ -32,14 +41,25 @@ class PracticeSelectionActivity : AppCompatActivity() {
         }
 
         findViewById<RelativeLayout>(R.id.btnTutorial).setOnClickListener {
+            firebaseAnalytics.logEvent("select_practice_option"){
+                param(FirebaseAnalytics.Param.CONTENT, "tutorial")
+            }
             startActivity(Intent(this, TutorialActivity::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnActualPractice).setOnClickListener {
+            firebaseAnalytics.logEvent("select_practice_option"){
+//                param("tts_checked", isTTSActive.toString())
+                param(FirebaseAnalytics.Param.CONTENT, "actual_practice")
+            }
             startActivity(Intent(this, ActualPracticeActivity::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnProposal).setOnClickListener {
+            firebaseAnalytics.logEvent("select_practice_option"){
+//                param("tts_checked", isTTSActive.toString())
+                param(FirebaseAnalytics.Param.CONTENT, "proposal")
+            }
             startActivity(Intent(this, ProposalFirstActivity::class.java))
         }
     }
