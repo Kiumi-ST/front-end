@@ -38,6 +38,10 @@
             android:name=".EnglishPracticeActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualPracticeSetSelectionActivity"
+            android:exported="false"
+            android:parentActivityName=".ActualPracticeActivity" />
+        <activity
             android:name=".ActualPracticePlaceSelectionActivity"
             android:exported="false"
             android:parentActivityName=".ActualPracticeActivity" />
