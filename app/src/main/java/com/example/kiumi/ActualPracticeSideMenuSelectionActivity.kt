@@ -6,18 +6,18 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
-class ActualPracticeSetSelectionActivity : AppCompatActivity() {
+class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_set_selection)
+        setContentView(R.layout.activity_actual_practice_side_menu_selection)
 
         findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
-            val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java)
+            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
             startActivity(intent)
         }
 
         findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
-            val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java)
+            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
             startActivity(intent)
         }
 

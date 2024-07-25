@@ -67,7 +67,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
             val intent = Intent(
                 this@ActualPracticePlaceSelectionActivity,
-                ActualPracticeQRSuccess::class.java
+                ActualPracticeSetSelectionActivity::class.java
             )
             startActivity(intent)
             popupBurgerSelectionContainer.visibility = View.GONE
