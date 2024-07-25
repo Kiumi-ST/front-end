@@ -8,4 +8,7 @@ import retrofit2.http.POST
 interface ApiService {
     @POST("survey")
     suspend fun submitSurvey(@Body surveyData: SurveyData): Response<SurveyResponse>
+
+    @POST("/votingresult")
+    suspend fun submitVotingResult(@Body surveyData: VotingRequest): Response<VotingResponse>
 }

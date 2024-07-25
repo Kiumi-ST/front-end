@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_bar_card"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    android:layout_alignParentBottom="true"
+    app:cardElevation="10dp"
+    app:cardBackgroundColor="@color/white"
+    android:padding="8dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- 왼쪽 섹션 -->
+        <LinearLayout
+            android:id="@+id/left_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:layout_weight="2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/shopping_basket_icon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/shopping_basket_icon"
+                        android:contentDescription="Shopping Basket Icon"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView
+                        android:id="@+id/notification_badge"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:background="@drawable/badge_background"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp"
+                        android:gravity="center"
+                        android:layout_gravity="end|top"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"/>
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₩0"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/order_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:gravity="center"
+                    android:text="주문 내역"
+                    android:background="@drawable/button_background_gray"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="3dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/gotohome"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="1"
+                    android:text="처음으로"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_background_gray"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp" />
+
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="1"
+                    android:text="도움 기능"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/help_icon"
+                    android:background="@drawable/button_background_gray"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는\n다를 수 있습니다. 요청시 추가 영양정보를 제공해 드립니다."
+                android:textSize="8dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+        <!-- 포인트 적립 -->
+        <LinearLayout
+            android:id="@+id/button_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/yellow"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_qr" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="포인트를 적립하세요"
+                android:textSize="10dp"
+                android:textColor="#000"
+                android:paddingTop="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결제 전 선택 필수"
+                android:textSize="12dp"
+                android:textColor="#000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_downarrow"
+                android:paddingTop="5dp" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

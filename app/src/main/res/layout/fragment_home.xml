@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/left_menu_card"
+        android:layout_marginStart="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="맥도날드와 함께\n하루종일 든든한 하루"
+            android:textSize="22dp"
+            android:fontFamily="@font/jamsil_bold"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/header"
+        android:layout_toEndOf="@id/left_menu_card"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/menu_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="메뉴 알아보기"
+            android:fontFamily="@font/jamsil_bold"
+            android:textColor="@color/black"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:id="@+id/burger_set"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="버거 &amp; 세트"
+                android:textSize="15dp"
+                android:fontFamily="@font/jamsil_bold"
+                android:background="@drawable/button_background_gray"
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/burger_icon"
+                android:padding="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:id="@+id/drinks"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:fontFamily="@font/jamsil_bold"
+                android:text="음료"
+                android:background="@drawable/button_background_gray"
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/drink_button_icon"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/spicy_chicken_burger"
+                android:contentDescription="Spicy Chicken Burger"
+                android:layout_marginBottom="10dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sriracha_burger"
+                android:contentDescription="Sriracha Burger"
+                android:layout_marginBottom="10dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
