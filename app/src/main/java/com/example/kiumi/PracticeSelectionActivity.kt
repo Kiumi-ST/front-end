@@ -60,7 +60,7 @@ class PracticeSelectionActivity : AppCompatActivity() {
 //                param("tts_checked", isTTSActive.toString())
                 param(FirebaseAnalytics.Param.CONTENT, "proposal")
             }
-            startActivity(Intent(this, ProposalActivity::class.java))
+            startActivity(Intent(this, ProposalFirstActivity::class.java))
         }
     }
 }
