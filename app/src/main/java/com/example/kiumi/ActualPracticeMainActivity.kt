@@ -1,11 +1,14 @@
 package com.example.kiumi
 
+import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
 import com.example.kiumi.databinding.ActivitySurveyBinding
 
@@ -19,7 +22,10 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     private lateinit var burgerText: TextView
     private lateinit var sideText: TextView
     private lateinit var drinkText: TextView
-    private var selectedIndicator: View? = null
+    private lateinit var homeIndicator: View
+    private lateinit var burgerIndicator: View
+    private lateinit var sideIndicator: View
+    private lateinit var drinkIndicator: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,27 +42,38 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         sideText = findViewById(R.id.side_text)
         drinkText = findViewById(R.id.drink_text)
 
-        setMenuClickListener(home, homeText)
-        setMenuClickListener(burger, burgerText)
-        setMenuClickListener(side, sideText)
-        setMenuClickListener(drink, drinkText)
+        homeIndicator = findViewById(R.id.home_indicator)
+        burgerIndicator = findViewById(R.id.burger_indicator)
+        sideIndicator = findViewById(R.id.side_indicator)
+        drinkIndicator = findViewById(R.id.drink_indicator)
+
+        setMenuClickListener(home, homeText, homeIndicator, HomeFragment())
+        setMenuClickListener(burger, burgerText, burgerIndicator, BurgerFragment())
+        setMenuClickListener(side, sideText, sideIndicator, SideFragment())
+        setMenuClickListener(drink, drinkText, drinkIndicator, DrinkFragment())
 
         // Default selection
-        selectMenu(home, homeText)
-    }
+        selectMenu(home, homeText, homeIndicator)
+        replaceFragment(HomeFragment())
 
-    private fun setMenuClickListener(menu: LinearLayout, menuText: TextView) {
-        menu.setOnClickListener {
-            selectMenu(menu, menuText)
-            // Update the right content based on the selection
-            updateContent(menu.id)
+        // QR 코드 버튼 초기화
+        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeQRSuccess::class.java)
+            startActivity(intent)
         }
     }
 
-    private fun selectMenu(selectedMenu: LinearLayout, selectedText: TextView) {
+    private fun setMenuClickListener(menu: LinearLayout, menuText: TextView, menuIndicator: View, fragment: Fragment) {
+        menu.setOnClickListener {
+            selectMenu(menu, menuText, menuIndicator)
+            replaceFragment(fragment)
+        }
+    }
+
+    private fun selectMenu(selectedMenu: LinearLayout, selectedText: TextView, selectedIndicator: View) {
         resetMenuStyles()
         selectedText.setTypeface(selectedText.typeface, Typeface.BOLD)
-        selectedMenu.addView(createSelectedIndicator())
+        selectedIndicator.visibility = View.VISIBLE
     }
 
     private fun resetMenuStyles() {
@@ -65,30 +82,15 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         sideText.setTypeface(Typeface.DEFAULT)
         drinkText.setTypeface(Typeface.DEFAULT)
 
-        removeSelectedIndicator(home)
-        removeSelectedIndicator(burger)
-        removeSelectedIndicator(side)
-        removeSelectedIndicator(drink)
+        homeIndicator.visibility = View.GONE
+        burgerIndicator.visibility = View.GONE
+        sideIndicator.visibility = View.GONE
+        drinkIndicator.visibility = View.GONE
     }
 
-    private fun removeSelectedIndicator(menu: LinearLayout) {
-        if (menu.childCount > 2) {
-            menu.removeViewAt(menu.childCount - 1)
-        }
-    }
-
-    private fun createSelectedIndicator(): View {
-        if (selectedIndicator == null) {
-            selectedIndicator = View(this)
-            selectedIndicator!!.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, 5)
-            selectedIndicator!!.setBackgroundResource(R.drawable.selected_menu_item)
-        }
-        return selectedIndicator as View
-    }
-
-    private fun updateContent(selectedMenuId: Int) {
-        // Update the right content based on the selected menu
-        // You can add your logic here to update the content
+    fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.menu_section, fragment)
+            .commit()
     }
 }

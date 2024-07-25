@@ -47,6 +47,10 @@
                 android:contentDescription="Home Icon"
                 android:layout_marginEnd="8dp"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:id="@+id/home_text"
                 android:layout_width="wrap_content"
@@ -54,6 +58,14 @@
                 android:gravity="center"
                 android:text="홈"
                 android:textColor="@color/black"/>
+
+            <View
+                android:id="@+id/home_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/yellow"
+                android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -75,6 +87,10 @@
                 android:contentDescription="Burger Icon"
                 android:layout_marginEnd="8dp"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:id="@+id/burger_text"
                 android:layout_width="wrap_content"
@@ -82,6 +98,13 @@
                 android:gravity="center"
                 android:text="버거"
                 android:textColor="@color/black"/>
+                <View
+                    android:id="@+id/burger_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/yellow"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -103,6 +126,10 @@
                 android:contentDescription="Side Icon"
                 android:layout_marginEnd="8dp"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:id="@+id/side_text"
                 android:layout_width="wrap_content"
@@ -110,6 +137,13 @@
                 android:gravity="center"
                 android:text="사이드"
                 android:textColor="@color/black"/>
+                <View
+                    android:id="@+id/side_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/yellow"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -131,6 +165,10 @@
                 android:contentDescription="Drink Icon"
                 android:layout_marginEnd="8dp"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
             <TextView
                 android:id="@+id/drink_text"
                 android:layout_width="wrap_content"
@@ -138,6 +176,13 @@
                 android:gravity="center"
                 android:text="음료"
                 android:textColor="@color/black"/>
+                <View
+                    android:id="@+id/drink_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:background="@color/yellow"
+                    android:visibility="gone" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

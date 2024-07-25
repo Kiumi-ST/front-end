@@ -21,6 +21,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         // 매장 식사 버튼 클릭 시
         findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
+            startActivity(Intent(this, ActualPracticeMainActivity::class.java))
         }
 
         // 포장 버튼 클릭 시

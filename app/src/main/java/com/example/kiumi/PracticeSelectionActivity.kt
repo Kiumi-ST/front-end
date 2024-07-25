@@ -37,7 +37,7 @@ class PracticeSelectionActivity : AppCompatActivity() {
         }
 
         findViewById<RelativeLayout>(R.id.btnActualPractice).setOnClickListener {
-            startActivity(Intent(this, ActualPracticeMainActivity::class.java))
+            startActivity(Intent(this, ActualPracticeActivity::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnProposal).setOnClickListener {
