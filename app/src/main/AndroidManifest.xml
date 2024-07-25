@@ -22,6 +22,18 @@
             android:name=".ActualPracticeMainActivity"
             android:exported="false" />
         <activity
+            android:name=".ProposalPlaceSelection"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalFirstActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InprovementFirstActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ImprovementActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeThankYou"
             android:exported="false" />
         <activity
