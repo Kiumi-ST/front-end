@@ -8,6 +8,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.widget.Toolbar
+import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics

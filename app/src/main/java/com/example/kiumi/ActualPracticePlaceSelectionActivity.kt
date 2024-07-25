@@ -40,6 +40,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
             firebaseAnalytics.logEvent("select_dining_option"){
                 param(FirebaseAnalytics.Param.CONTENT, "dine_in")
             }
+            startActivity(Intent(this, ActualPracticeMainActivity::class.java))
         }
 
         // 포장 버튼 클릭 시

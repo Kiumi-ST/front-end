@@ -12,3 +12,14 @@ data class SurveyResponse(
     val isSuccess: Boolean,
     val msg: String
 )
+
+data class VotingRequest(
+    val question1: String,
+    val question2: String,
+    val question3: String
+)
+
+data class VotingResponse(
+    val isSuccess: Boolean,
+    val msg: String
+)
