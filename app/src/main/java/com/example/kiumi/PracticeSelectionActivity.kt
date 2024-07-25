@@ -40,7 +40,7 @@ class PracticeSelectionActivity : AppCompatActivity() {
         }
 
         findViewById<RelativeLayout>(R.id.btnProposal).setOnClickListener {
-            startActivity(Intent(this, ProposalActivity::class.java))
+            startActivity(Intent(this, ProposalFirstActivity::class.java))
         }
     }
 }
