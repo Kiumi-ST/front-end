@@ -5,11 +5,21 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class ProposalActivity : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_proposal)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             val intent = Intent(
@@ -35,6 +45,23 @@ class ProposalActivity : AppCompatActivity() {
         // 도움 버튼 클릭 시
         findViewById<Button>(R.id.button_help).setOnClickListener {
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "개선안_대기")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
     }
 
 }

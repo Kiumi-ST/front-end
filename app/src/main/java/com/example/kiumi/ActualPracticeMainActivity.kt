@@ -11,6 +11,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
 import com.example.kiumi.databinding.ActivitySurveyBinding
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class ActualPracticeMainActivity : AppCompatActivity() {
     lateinit var binding: ActivityActualPracticeMainBinding
@@ -26,11 +29,17 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     private lateinit var burgerIndicator: View
     private lateinit var sideIndicator: View
     private lateinit var drinkIndicator: View
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityActualPracticeMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
 
         home = findViewById(R.id.home)
         burger = findViewById(R.id.burger)
@@ -93,4 +102,22 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             .replace(R.id.menu_section, fragment)
             .commit()
     }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "실전 연습_메인")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
 }
