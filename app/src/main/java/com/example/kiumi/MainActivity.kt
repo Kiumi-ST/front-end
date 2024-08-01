@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<ImageView>(R.id.centerLogo).setOnClickListener {
-            startActivity(Intent(this, ActualPracticeQRSuccess::class.java))
+            startActivity(Intent(this, ProposalQRSuccess::class.java))
         }
 
         findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
