@@ -70,6 +70,11 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeQRSuccess::class.java)
             startActivity(intent)
         }
+
+        // 주문 내역 버튼 클릭 시 팝업 호출
+        findViewById<TextView>(R.id.order_history).setOnClickListener {
+            OrderSummaryDialogFragment().show(supportFragmentManager, "OrderSummaryDialog")
+        }
     }
 
     private fun setMenuClickListener(menu: LinearLayout, menuText: TextView, menuIndicator: View, fragment: Fragment) {
