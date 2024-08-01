@@ -7,11 +7,21 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiumi.R
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class ActualPracticePaymentSelection : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_payment_selection)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
 
         // 카드 결제에 클릭 리스너 추가
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
@@ -61,4 +71,22 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
             Toast.makeText(this, "도움 기능으로 이동", Toast.LENGTH_SHORT).show()
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "실전 연습_결제 방법")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
 }

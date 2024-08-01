@@ -15,6 +15,8 @@ import com.google.firebase.analytics.logEvent
 
 class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
 
     private var quantity = 1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,4 +108,22 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "실전 연습_장소")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
 }
