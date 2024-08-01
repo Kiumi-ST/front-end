@@ -11,6 +11,16 @@ class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_drink_selection)
 
+        findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
+            val intent = Intent(this, ActualPracticeBurgerSetOrderActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
+            val intent = Intent(this, ActualPracticeBurgerSetOrderActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
             startActivity(intent)
