@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
@@ -92,5 +93,120 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.menu_section, fragment)
             .commit()
+    }
+
+    fun showBurgerSelectionPopup(menuItem: MenuItem) {
+        val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
+        val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
+
+        var quantity = 1
+        val quantityText: TextView = findViewById(R.id.quantity)
+
+
+        popupBurgerSelectionContainer.visibility = View.VISIBLE
+        popupSingBurgerContainer.bringToFront()
+
+        // 세트-단품 팝업
+        findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeSetSelectionActivity::class.java
+            )
+            startActivity(intent)
+            popupBurgerSelectionContainer.visibility = View.GONE
+        }
+
+        findViewById<LinearLayout>(R.id.button_single).setOnClickListener {
+            popupSingBurgerContainer.visibility = View.VISIBLE
+            popupSingBurgerContainer.bringToFront()
+            popupBurgerSelectionContainer.visibility = View.GONE
+        }
+
+        findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            popupBurgerSelectionContainer.visibility = View.GONE
+        }
+
+        // 단품 팝업
+        // 수량 변경 버튼
+        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
+            if (quantity > 1) {
+                quantity--
+                quantityText.text = quantity.toString()
+            }
+        }
+        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
+            quantity++
+            quantityText.text = quantity.toString()
+        }
+
+        // 단품 장바구니 추가
+        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeMainActivity::class.java
+            )
+            startActivity(intent)
+            popupSingBurgerContainer.visibility = View.GONE
+        }
+    }
+
+    fun showDrinkSelectionPopup(menuItem: MenuItem) {
+        val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
+        var quantity = 1
+        val quantityText: TextView = findViewById(R.id.quantity)
+
+        popupSingleBurger.visibility = View.VISIBLE
+        popupSingleBurger.bringToFront()
+
+        // 수량 변경 버튼
+        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
+            if (quantity > 1) {
+                quantity--
+                quantityText.text = quantity.toString()
+            }
+        }
+        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
+            quantity++
+            quantityText.text = quantity.toString()
+        }
+
+        // 단품 장바구니 추가
+        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeMainActivity::class.java
+            )
+            startActivity(intent)
+        }
+    }
+
+    fun showSideSelectionPopup(menuItem: MenuItem) {
+        val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
+        var quantity = 1
+        val quantityText: TextView = findViewById(R.id.quantity)
+
+        popupSingleBurger.visibility = View.VISIBLE
+        popupSingleBurger.bringToFront()
+
+        // 수량 변경 버튼
+        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
+            if (quantity > 1) {
+                quantity--
+                quantityText.text = quantity.toString()
+            }
+        }
+        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
+            quantity++
+            quantityText.text = quantity.toString()
+        }
+
+        // 단품 장바구니 추가
+        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeMainActivity::class.java
+            )
+            startActivity(intent)
+        }
     }
 }

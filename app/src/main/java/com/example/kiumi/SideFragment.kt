@@ -50,7 +50,9 @@ class SideFragment : Fragment() {
             MenuItem("코울슬로", "+₩200", "179 Kcal", R.drawable.coleslaw, true)
         )
 
-        val adapter = MenuAdapter(menuItems)
+        val adapter = MenuAdapter(menuItems) { menuItem ->
+            (activity as? ActualPracticeMainActivity)?.showSideSelectionPopup(menuItem)
+        }
         recyclerView.adapter = adapter
 
         // Inflate the layout for this fragment
