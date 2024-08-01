@@ -61,16 +61,39 @@
         android:layout_marginTop="30dp" />
 
 
-
     <!-- 카드 이미지 -->
     <ImageView
         android:id="@+id/imageViewCard"
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="269dp"
+        android:layout_height="263dp"
+        android:layout_marginTop="92dp"
         android:src="@drawable/ic_card_pay"
-        app:layout_constraintTop_toBottomOf="@id/textViewInstructions"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="50dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstructions" />
+
+    <ImageView
+        android:id="@+id/imageViewCard1"
+        android:layout_width="171dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="1dp"
+        android:rotation="-3"
+        android:src="@drawable/ic_card_pay_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstructions" />
+
+    <ImageView
+        android:id="@+id/imageViewCard2"
+        android:layout_width="171dp"
+        android:layout_height="177dp"
+        android:layout_marginTop="44dp"
+        android:src="@drawable/ic_card_pay_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewInstructions" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
