@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ActualPracticeOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeCartAddedActivity"
             android:exported="false" />
         <activity

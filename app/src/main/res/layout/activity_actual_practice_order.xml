@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Order header -->
+    <LinearLayout
+        android:id="@+id/order_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/shopping_basket_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="주문"
+            android:textSize="22dp"
+            android:fontFamily="@font/jamsil_bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- Order item list -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/order_header"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:layout_width="55dp"
+                android:layout_height="18dp"
+                android:text="취소"
+                android:textSize="10dp"
+                android:background="@drawable/button_background_gray"
+                android:layout_gravity="center"
+                android:layout_margin="5dp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_burger_set" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingStart="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맥스파이시® 상하이 버거 - 세트"
+                    android:textSize="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="826 Kcal"
+                    android:textSize="10dp"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3가지 음료 제공 - 미디엄, 후렌치 후라이"
+                    android:textSize="8dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@android:color/black" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="18dp"
+                    android:text="세부정보 표시"
+                    android:textSize="10dp"
+                    android:background="@drawable/button_background_gray"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="-"
+                android:textSize="10dp"
+                android:background="@drawable/button_background_gray"
+                android:id="@+id/button_decrease" />
+            <TextView
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:text="1"
+                android:textSize="10dp"
+                android:background="@drawable/button_background_gray"
+                android:gravity="center" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:text="+"
+                android:textSize="10dp"
+                android:background="@drawable/button_background_gray"
+                android:id="@+id/button_increase" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₩5,900"
+                android:textSize="16sp"
+                android:layout_marginStart="8dp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 바텀바 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bottom_bar_card"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        app:cardElevation="10dp"
+        app:cardBackgroundColor="@color/white"
+        android:padding="8dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--소계-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
+                android:gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="소계"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="20dp" />
+                <TextView
+                    android:id="@+id/sumif"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:text="₩5,900"
+                    android:textSize="10dp"
+                    android:textColor="@color/black"
+                    android:gravity="right"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="20dp"/>
+            </LinearLayout>
+            <!--합계-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="합계"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/jamsil_bold"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="8dp" />
+                <TextView
+                    android:id="@+id/sumall"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:text="₩5,900"
+                    android:textSize="16dp"
+                    android:fontFamily="@font/jamsil_bold"
+                    android:textColor="@color/black"
+                    android:gravity="right"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/left_section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/order_more"
+                            android:layout_width="105dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:text="추가 주문"
+                            android:background="@drawable/button_background_gray"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="3dp"/>
+
+                        <TextView
+                            android:id="@+id/order_finish"
+                            android:layout_width="200dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:text="주문 완료"
+                            android:background="@color/yellow"
+                            android:textColor="@color/black"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="20dp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/gotohome"
+                                    android:layout_width="0dp"
+                                    android:layout_height="22dp"
+                                    android:layout_weight="1"
+                                    android:text="처음으로"
+                                    android:textSize="12dp"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_background_gray"
+                                    android:textColor="@color/black"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:paddingBottom="0dp"
+                                    android:paddingTop="0dp" />
+
+                                <TextView
+                                    android:id="@+id/help"
+                                    android:layout_width="0dp"
+                                    android:layout_height="22dp"
+                                    android:layout_weight="1"
+                                    android:text="도움 기능"
+                                    android:textSize="12dp"
+                                    android:gravity="center"
+                                    android:drawableLeft="@drawable/help_icon"
+                                    android:background="@drawable/button_background_gray"
+                                    android:layout_marginRight="10dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:paddingBottom="0dp"
+                                    android:paddingTop="0dp"
+                                    android:textColor="@color/black"/>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는\n다를 수 있습니다. 요청시 추가 영양정보를 제공해 드립니다."
+                                android:textSize="8dp"
+                                android:textColor="@color/black"
+                                android:gravity="center"
+                                android:layout_marginTop="8dp"/>
+                        </LinearLayout>
+
+                        <!-- 포인트 적립 -->
+                        <LinearLayout
+                            android:id="@+id/button_points"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:background="@color/yellow"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:padding="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingTop="8dp"
+                                android:text="포인트를 적립하세요"
+                                android:textColor="#000"
+                                android:textSize="8dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/jamsil_bold"
+                                android:text="결제 전 선택 필수"
+                                android:textColor="#000"
+                                android:textSize="8dp" />
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:paddingTop="5dp"
+                                android:src="@drawable/ic_downarrow" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

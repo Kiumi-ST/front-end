@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="50dp"
+    android:gravity="center"
+    android:background="@android:color/white">
+
+    <TextView
+        android:id="@+id/suggestion_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="함께 즐기면 더욱 좋습니다"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:fontFamily="@font/jamsil_bold"
+        android:gravity="center"
+        android:layout_gravity="center" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:clipToPadding="false"/>
+
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="선택안함"
+        android:background="@drawable/item_background"
+        android:onClick="dismiss"/>
+</LinearLayout>
