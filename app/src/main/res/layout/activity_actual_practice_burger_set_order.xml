@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".ActualPracticeBurgerSetOrderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 상단 로고 및 타이틀 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_mcdonalds_logo" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Button
+                android:id="@+id/button_nutrition_info"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:textSize="10dp"
+                android:text="영양정보"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/title"
+            android:paddingHorizontal="10dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맥스파이시® 상하이 버거 - 세트"
+                    android:textSize="28sp"
+                    android:textColor="#000"
+                    android:paddingStart="8dp" />
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₩5,900 826 Kcal"
+                    android:textSize="28sp"
+                    android:textColor="#000"
+                    android:paddingStart="8dp" />
+
+                <ImageView
+                    android:id="@+id/set_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:src="@drawable/ic_burger_set"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <!-- 세부 메뉴 정보 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="clip_horizontal"
+                android:layout_marginTop="20dp">
+
+                <!-- 버거 정보 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/burger_info"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="맥스파이시® 상하이 버거\n494 Kcal"
+                            android:textSize="12sp"
+                            android:textColor="#000"
+                            android:gravity="left"
+                            android:layout_marginLeft="5dp" />
+
+                        <ImageView
+                            android:id="@+id/burger_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_burger_single"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_modify_burger"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="재료추가/변경"
+                        android:textSize="12sp"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="5dp"/>
+                </LinearLayout>
+
+                <!-- 사이드 메뉴 정보 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/side_info"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="후렌치 후라이 - 미디엄\n332 Kcal"
+                            android:textSize="12sp"
+                            android:textColor="#000"
+                            android:gravity="left"
+                            android:layout_marginLeft="5dp" />
+
+                        <ImageView
+                            android:id="@+id/side_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/french_fries_medium"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_modify_side"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="재료추가/변경"
+                        android:textSize="12sp"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="5dp" />
+                    <Button
+                        android:id="@+id/button_edit_side"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="수정"
+                        android:textSize="12sp"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginHorizontal="5dp" />
+                </LinearLayout>
+
+                <!-- 음료 정보 -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/drink_info"
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            android:text="코카콜라 제로 - 미디엄\n0 Kcal"
+                            android:textSize="12sp"
+                            android:textColor="#000"
+                            android:gravity="left"
+                            android:layout_marginLeft="5dp"/>
+
+                        <ImageView
+                            android:id="@+id/drink_image"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/coca_cola"
+                            android:layout_gravity="center"/>
+
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/button_modify_drink"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="재료추가/변경"
+                        android:textSize="12sp"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="5dp" />
+                    <Button
+                        android:id="@+id/button_edit_drink"
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"
+                        android:text="수정"
+                        android:textSize="12sp"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginHorizontal="5dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 수량 선택 및 장바구니 추가 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_gravity="center">
+
+            <Button
+                android:id="@+id/button_decrease_quantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="-"
+                android:textColor="#000"
+                android:background="@drawable/button_background"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/quantity"
+                android:layout_width="330dp"
+                android:layout_height="30dp"
+                android:text="1"
+                android:textSize="14sp"
+                android:textColor="#000"
+                android:gravity="center"
+                android:background="@drawable/button_background" />
+
+            <Button
+                android:id="@+id/button_increase_quantity"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:text="+"
+                android:textColor="#000"
+                android:background="@drawable/button_background"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="fill_horizontal"
+            android:paddingHorizontal="10dp"
+            android:layout_marginTop="5dp">
+
+            <Button
+                android:id="@+id/button_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="취소"
+                android:textColor="#000"
+                android:background="@drawable/button_background" />
+
+            <Button
+                android:id="@+id/button_add_to_cart"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="장바구니 추가"
+                android:layout_gravity="center"
+                android:background="@color/yellow"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+
+        <!-- 하단 버튼 영역 -->
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:id="@+id/gotohome"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="처음으로"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:background="@drawable/button_background_gray"
+                android:textColor="@color/black"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp" />
+
+            <TextView
+                android:id="@+id/help"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="도움 기능"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:drawableLeft="@drawable/help_icon"
+                android:background="@drawable/button_background_gray"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는\n다를 수 있습니다. 요청시 추가 영양정보를 제공해 드립니다."
+            android:textSize="8dp"
+            android:textColor="@color/black"
+            android:layout_marginVertical="8dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+</RelativeLayout>

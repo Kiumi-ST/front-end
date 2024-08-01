@@ -47,7 +47,9 @@ class DrinkFragment : Fragment() {
             MenuItem("코카 콜라 제로", "₩1,400", "0 Kcal", R.drawable.coca_cola, false),
         )
 
-        val adapter = MenuAdapter(menuItems)
+        val adapter = MenuAdapter(menuItems) { menuItem ->
+            (activity as? ActualPracticeMainActivity)?.showDrinkSelectionPopup(menuItem)
+        }
         recyclerView.adapter = adapter
 
         // Inflate the layout for this fragment

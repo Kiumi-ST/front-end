@@ -65,7 +65,9 @@ class BurgerFragment : Fragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        adapter = MenuAdapter(menuItems)
+        adapter = MenuAdapter(menuItems) { menuItem ->
+            (activity as? ActualPracticeMainActivity)?.showBurgerSelectionPopup(menuItem)
+        }
         recyclerView.adapter = adapter
 
         // Inflate the layout for this fragment
