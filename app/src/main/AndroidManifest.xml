@@ -22,6 +22,12 @@
             android:name=".ActualPracticeOrderActivity"
             android:exported="false" />
         <activity
+            android:name=".ProposalPaymentSelection"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalQRSuccess"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeCartAddedActivity"
             android:exported="false" />
         <activity
