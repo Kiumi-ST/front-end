@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityActualPracticeMainBinding
 import com.example.kiumi.databinding.ActivitySurveyBinding
@@ -33,6 +34,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
+    private var previousActivity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,9 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
+
+        // 이전 액티비티 이름을 인텐트로부터 받아오기
+        previousActivity = intent.getStringExtra("previous_activity")
 
         home = findViewById(R.id.home)
         burger = findViewById(R.id.burger)
@@ -69,12 +74,32 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         // QR 코드 버튼 초기화
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeQRSuccess::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_메인") }
             startActivity(intent)
         }
 
         // 주문 내역 버튼 클릭 시 팝업 호출
         findViewById<TextView>(R.id.order_history).setOnClickListener {
             OrderSummaryDialogFragment().show(supportFragmentManager, "OrderSummaryDialog")
+        }
+
+        // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
+    }
+
+    // 뒤로 가기 버튼을 눌렀을 때 실행되는 콜백 메소드
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // 뒤로 가기 실행 시 실행할 동작 코드 구현
+            val params = Bundle().apply {
+                putString("previous_screen_name", previousActivity) // 잘못 클릭했던 화면 이름
+                putString("screen_name", "실전 연습_메인") // 현재 화면 이름
+            }
+            firebaseAnalytics.logEvent("go_back", params)
+
+            // 실제로 뒤로 가기 동작을 수행하도록 추가
+            isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
+            onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
     }
 
@@ -125,12 +150,12 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeSetSelectionActivity::class.java
-            )
+            ).apply { putExtra("previous_activity", "실전 연습_버거 선택 (세트, 단품 여부)") }
             startActivity(intent)
             popupBurgerSelectionContainer.visibility = View.GONE
         }
 
-        findViewById<LinearLayout>(R.id.button_single).setOnClickListener {
+        findViewById<LinearLayout>(R.id.button_single).setOnClickListener { // 뒤로 가기가 안 됨.
             popupSingBurgerContainer.visibility = View.VISIBLE
             popupSingBurgerContainer.bringToFront()
             popupBurgerSelectionContainer.visibility = View.GONE
@@ -158,7 +183,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeMainActivity::class.java
-            )
+            ).apply { putExtra("previous_activity", "실전 연습_버거 선택-단품") }
             startActivity(intent)
             popupSingBurgerContainer.visibility = View.GONE
         }
@@ -189,7 +214,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeMainActivity::class.java
-            )
+            ).apply { putExtra("previous_activity", "실전 연습_음료-단품") }
             startActivity(intent)
         }
     }
@@ -219,7 +244,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeMainActivity::class.java
-            )
+            ).apply { putExtra("previous_activity", "실전 연습_사이드-단품") }
             startActivity(intent)
         }
     }
