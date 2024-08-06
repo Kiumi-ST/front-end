@@ -7,26 +7,25 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MenuAdapter(
-    private var menuItems: List<MenuItem>,
-    private val onItemClick: (MenuItem) -> Unit
-) : RecyclerView.Adapter<MenuAdapter.MenuViewHolder>() {
+class ProposalMenuAdapter (
+    private var menuItems: List<ProposalMenuItem>,
+//    private val onItemClick: (ProposalMenuItem) -> Unit
+) : RecyclerView.Adapter<ProposalMenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.image)
         val name: TextView = itemView.findViewById(R.id.name)
         val price: TextView = itemView.findViewById(R.id.price)
-        val calories: TextView = itemView.findViewById(R.id.calories)
         val newLabel: TextView = itemView.findViewById(R.id.new_label)
 
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    onItemClick(menuItems[position])
-                }
-            }
-        }
+//        init {
+//            itemView.setOnClickListener {
+//                val position = adapterPosition
+//                if (position != RecyclerView.NO_POSITION) {
+//                    onItemClick(menuItems[position])
+//                }
+//            }
+//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {
@@ -39,13 +38,12 @@ class MenuAdapter(
         holder.image.setImageResource(menuItem.imageResourceId)
         holder.name.text = menuItem.name
         holder.price.text = menuItem.price
-        holder.calories.text = menuItem.calories
         holder.newLabel.visibility = if (menuItem.isNew) View.VISIBLE else View.GONE
     }
 
     override fun getItemCount() = menuItems.size
 
-    fun updateMenuItems(newMenuItems: List<MenuItem>) {
+    fun updateMenuItems(newMenuItems: List<ProposalMenuItem>) {
         menuItems = newMenuItems
         notifyDataSetChanged()
     }

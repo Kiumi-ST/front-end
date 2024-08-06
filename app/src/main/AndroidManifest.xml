@@ -19,6 +19,15 @@
             android:name=".ProposalMainActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualPracticeBurgerSetOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeDrinkSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeSideMenuSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeOrderActivity"
             android:exported="false" />
         <activity
@@ -39,12 +48,12 @@
         <activity
             android:name=".ProposalFirstActivity"
             android:exported="false" />
-        <activity
-            android:name=".InprovementFirstActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ImprovementActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".InprovementFirstActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ImprovementActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ActualPracticeThankYou"
             android:exported="false" />
@@ -67,6 +76,10 @@
         <activity
             android:name=".EnglishPracticeActivity"
             android:exported="false" />
+        <activity
+            android:name=".ActualPracticeSetSelectionActivity"
+            android:exported="false"
+            android:parentActivityName=".ActualPracticeActivity" />
         <activity
             android:name=".ActualPracticePlaceSelectionActivity"
             android:exported="false"
@@ -97,7 +110,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

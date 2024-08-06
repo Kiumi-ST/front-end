@@ -7,14 +7,14 @@
     android:layout_gravity="center">
 
     <ImageView
-        android:id="@+id/burger_image"
+        android:id="@+id/single_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_gravity="center"
         android:src="@drawable/ic_burger_single" />
 
     <TextView
-        android:id="@+id/burger_title"
+        android:id="@+id/single_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="불고기 버거"
@@ -24,7 +24,7 @@
         android:paddingTop="8dp" />
 
     <TextView
-        android:id="@+id/burger_price_calories"
+        android:id="@+id/single_price_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="₩2,200 430 Kcal"
@@ -106,5 +106,5 @@
         android:background="@color/yellow"
         android:textColor="#000"
         android:padding="14dp"
-    android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp" />
 </LinearLayout>

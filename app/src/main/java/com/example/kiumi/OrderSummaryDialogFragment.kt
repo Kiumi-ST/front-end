@@ -53,7 +53,9 @@ class OrderSummaryDialogFragment : DialogFragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        adapter = MenuAdapter(menuItems)
+        adapter = MenuAdapter(menuItems){ menuItem ->
+            (activity as? ActualPracticeMainActivity)?.showSideSelectionPopup(menuItem)
+        }
         recyclerView.adapter = adapter
 
         //선택안함 버튼 클릭 시

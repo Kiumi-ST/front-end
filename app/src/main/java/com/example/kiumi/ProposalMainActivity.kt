@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityProposalMainBinding
 
 class ProposalMainActivity : AppCompatActivity() {
-    lateinit var binding: ProposalMainActivity
+    lateinit var binding: ActivityProposalMainBinding
     private lateinit var home: LinearLayout
     private lateinit var burger: LinearLayout
     private lateinit var side: LinearLayout
@@ -46,14 +46,14 @@ class ProposalMainActivity : AppCompatActivity() {
         sideIndicator = findViewById(R.id.side_indicator)
         drinkIndicator = findViewById(R.id.drink_indicator)
 
-        setMenuClickListener(home, homeText, homeIndicator, HomeFragment())
-        setMenuClickListener(burger, burgerText, burgerIndicator, BurgerFragment())
-        setMenuClickListener(side, sideText, sideIndicator, SideFragment())
-        setMenuClickListener(drink, drinkText, drinkIndicator, DrinkFragment())
+        setMenuClickListener(home, homeText, homeIndicator, ProposalHomeFragment())
+        setMenuClickListener(burger, burgerText, burgerIndicator, ProposalBurgerFragment())
+        setMenuClickListener(side, sideText, sideIndicator, ProposalSideFragment())
+        setMenuClickListener(drink, drinkText, drinkIndicator, ProposalDrinkFragment())
 
         // Default selection
         selectMenu(home, homeText, homeIndicator)
-        replaceFragment(HomeFragment())
+        replaceFragment(ProposalHomeFragment())
 
         // QR 코드 버튼 초기화
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
