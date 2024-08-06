@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_marginBottom="10dp">
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="55dp"
+        android:layout_height="18dp"
+        android:text="취소"
+        android:textSize="10dp"
+        android:background="@drawable/button_background_gray"
+        android:layout_gravity="center"
+        android:layout_margin="5dp" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:src="@drawable/ic_burger_set" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="8dp">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="맥스파이시® 상하이 버거 - 세트"
+            android:textSize="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="826 Kcal"
+            android:textSize="10dp"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3가지 음료 제공 - 미디엄, 후렌치 후라이"
+            android:textSize="8dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@android:color/black" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:text="세부정보 표시"
+            android:textSize="10dp"
+            android:background="@drawable/button_background_gray"
+            android:layout_gravity="left"
+            android:layout_marginTop="5dp" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:text="-"
+        android:textSize="10dp"
+        android:background="@drawable/button_background_gray"
+        android:id="@+id/button_decrease" />
+    <TextView
+        android:id="@+id/item_count"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:text="1"
+        android:textSize="10dp"
+        android:background="@drawable/button_background_gray"
+        android:gravity="center" />
+    <Button
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:text="+"
+        android:textSize="10dp"
+        android:background="@drawable/button_background_gray"
+        android:id="@+id/button_increase" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="₩5,900"
+        android:textSize="12dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/black" />
+</LinearLayout>
