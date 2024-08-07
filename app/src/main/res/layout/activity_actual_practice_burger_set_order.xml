@@ -197,13 +197,13 @@
 
                         <TextView
                             android:id="@+id/drink_info"
-                            android:layout_width="90dp"
+                            android:layout_width="80dp"
                             android:layout_height="wrap_content"
                             android:text="코카콜라 제로 - 미디엄\n0 Kcal"
                             android:textSize="12sp"
                             android:textColor="#000"
                             android:gravity="left"
-                            android:layout_marginLeft="5dp"/>
+                            android:layout_marginLeft="10dp"/>
 
                         <ImageView
                             android:id="@+id/drink_image"

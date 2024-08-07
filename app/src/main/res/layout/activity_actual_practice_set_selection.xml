@@ -114,10 +114,11 @@
                 <LinearLayout
                     android:id="@+id/button_set"
                     android:layout_width="140dp"
-                    android:layout_height="170dp"
+                    android:layout_height="150dp"
                     android:orientation="vertical"
                     android:background="@drawable/button_background"
                     android:padding="5dp"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp">
 
                     <ImageView
@@ -148,7 +149,7 @@
                 <LinearLayout
                     android:id="@+id/button_large_set"
                     android:layout_width="140dp"
-                    android:layout_height="170dp"
+                    android:layout_height="150dp"
                     android:orientation="vertical"
                     android:background="@drawable/button_background"
                     android:padding="5dp">

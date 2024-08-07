@@ -93,6 +93,7 @@
                         android:src="@drawable/ic_circle_check" />
 
                     <TextView
+                        android:id="@+id/menu_name_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="맥스파이시® 상하이 버거-세트"
@@ -186,17 +187,17 @@
                     android:textColor="#000"
                     android:paddingStart="10dp"
                     android:layout_marginBottom="10dp"/>
-                <!-- 세트 / 라지세트 선택 버튼 -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_marginLeft="10dp">
 
                     <LinearLayout
-                        android:id="@+id/button_set"
+                        android:id="@+id/button_drink1"
                         android:layout_width="140dp"
-                        android:layout_height="170dp"
+                        android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
                         android:padding="5dp"
@@ -205,61 +206,88 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/coca_cola"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
                         <TextView
-                            android:id="@+id/button_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="맥스파이시® 상하이 버거 - 세트"
+                            android:text="코카-콜라"
                             android:textColor="#000"
                             android:textSize="12sp"/>
 
                         <TextView
-                            android:id="@+id/button_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩5,900 494 Kcal"
+                            android:text="143 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
                             android:textSize="12sp"/>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/button_large_set"
+                        android:id="@+id/button_drink2"
                         android:layout_width="140dp"
-                        android:layout_height="170dp"
+                        android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
                         android:padding="5dp">
 
                         <ImageView
-                            android:id="@+id/large_set_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/sprite"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
                         <TextView
-                            android:id="@+id/button_large_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="맥스파이시® 상하이 버거 - 라지세트"
+                            android:text="스프라이트"
                             android:textColor="#000"
                             android:textSize="12sp"/>
 
                         <TextView
-                            android:id="@+id/button_large_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩6,500 494 Kcal"
+                            android:text="149 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
                             android:textSize="12sp"/>
                     </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/button_drink3"
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_background"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/coca_cola"
+                        android:layout_gravity="center"
+                        android:paddingBottom="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="코카 콜라 제로"
+                        android:textColor="#000"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 Kcal"
+                        android:textColor="#000"
+                        android:gravity="center"
+                        android:textSize="12sp"/>
                 </LinearLayout>
                 <View
                     android:layout_width="0dp"

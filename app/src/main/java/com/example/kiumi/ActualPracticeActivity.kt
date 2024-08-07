@@ -19,6 +19,8 @@ class ActualPracticeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice)
 
+        CartManager.clearCart()
+
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
 

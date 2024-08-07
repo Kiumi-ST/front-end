@@ -54,7 +54,7 @@ class OrderSummaryDialogFragment : DialogFragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         adapter = MenuAdapter(menuItems){ menuItem ->
-            (activity as? ActualPracticeMainActivity)?.showSideSelectionPopup(menuItem)
+            (activity as? ActualPracticeMainActivity)?.showSingleItemPopup(menuItem)
         }
         recyclerView.adapter = adapter
 
