@@ -55,6 +55,7 @@ class OrderSummaryDialogFragment : DialogFragment() {
 
         adapter = MenuAdapter(menuItems){ menuItem ->
             (activity as? ActualPracticeMainActivity)?.showSingleItemPopup(menuItem)
+            dismiss()
         }
         recyclerView.adapter = adapter
 

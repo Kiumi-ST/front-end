@@ -46,6 +46,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
             firebaseAnalytics.logEvent("select_dining_option"){
                 param(FirebaseAnalytics.Param.CONTENT, "take_out")
             }
+            startActivity(Intent(this, ActualPracticeMainActivity::class.java))
         }
 
         // 처음으로 버튼 클릭 시

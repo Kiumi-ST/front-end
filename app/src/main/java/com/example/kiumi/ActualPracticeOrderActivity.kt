@@ -3,6 +3,7 @@ package com.example.kiumi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -41,8 +42,19 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         CartManager.addListener { updateTotalPrice() }
         updateTotalPrice()
 
+        findViewById<TextView>(R.id.order_more).setOnClickListener {
+            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeMainActivity::class.java)
+            startActivity(intent)
+        }
+
         findViewById<TextView>(R.id.order_finish).setOnClickListener {
             val intent = Intent(this, ActualPracticePaymentSelection::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
+            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java)
             startActivity(intent)
         }
     }

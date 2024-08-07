@@ -49,11 +49,8 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
         // 이전 단계 버튼에 클릭 리스너 추가
         val buttonPreviousStep: Button = findViewById(R.id.buttonPreviousStep)
         buttonPreviousStep.setOnClickListener {
-            // 이전 단계 액티비티로 이동 (변경 필요)
-            // val intent = Intent(this, PreviousActivity::class.java)
-            // startActivity(intent)
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "이전 단계로 이동", Toast.LENGTH_SHORT).show()
+            // 이전 단계 액티비티로 이동
+            finish()
         }
 
         // 처음으로 버튼에 클릭 리스너 추가
