@@ -20,6 +20,7 @@ class ActualPracticeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_actual_practice)
 
         CartManager.clearCart()
+        PointManager.resetPoint()
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
@@ -54,6 +55,12 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         // 도움 버튼 클릭 시
         findViewById<Button>(R.id.button_help).setOnClickListener {
+        }
+
+        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
+            val intent = Intent(this@ActualPracticeActivity, ActualPracticeQRSuccess::class.java)
+            startActivity(intent)
         }
     }
 

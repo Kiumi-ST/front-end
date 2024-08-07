@@ -26,7 +26,7 @@ class ActualPracticeQRSuccess : AppCompatActivity() {
         // 버튼에 클릭 리스너 설정
         buttonConfirm.setOnClickListener {
             // ActualPracticePaymentSelection 액티비티로 이동하는 인텐트 생성
-            val intent = Intent(this, ActualPracticePaymentSelection::class.java)
+            val intent = Intent(this, ActualPracticeMainActivity::class.java)
             startActivity(intent)
         }
     }

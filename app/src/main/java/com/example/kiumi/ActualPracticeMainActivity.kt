@@ -74,6 +74,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         // QR 코드 버튼 초기화
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
             val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeQRSuccess::class.java)
             startActivity(intent)
         }

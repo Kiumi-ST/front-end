@@ -1,5 +1,6 @@
 package com.example.kiumi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -39,6 +40,11 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         orderRecyclerView.adapter = orderAdapter
         CartManager.addListener { updateTotalPrice() }
         updateTotalPrice()
+
+        findViewById<TextView>(R.id.order_finish).setOnClickListener {
+            val intent = Intent(this, ActualPracticePaymentSelection::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {

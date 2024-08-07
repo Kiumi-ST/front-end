@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiumi.R
@@ -22,6 +23,10 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
+
+        if (PointManager.isPointEarned()){
+            findViewById<TextView>(R.id.textViewSubtitle).text = ""
+        }
 
         // 카드 결제에 클릭 리스너 추가
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)

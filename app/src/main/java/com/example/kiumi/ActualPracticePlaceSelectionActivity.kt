@@ -60,6 +60,11 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_english).setOnClickListener {
         }
 
+        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
+            val intent = Intent(this@ActualPracticePlaceSelectionActivity, ActualPracticeQRSuccess::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onStart() {
