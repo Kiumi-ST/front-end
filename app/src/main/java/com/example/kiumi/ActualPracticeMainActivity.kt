@@ -179,30 +179,6 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             popupBurgerSelectionContainer.visibility = View.GONE
         }
-
-        // 단품 팝업
-        // 수량 변경 버튼
-        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
-            if (quantity > 1) {
-                quantity--
-                quantityText.text = quantity.toString()
-            }
-        }
-        
-        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
-            quantity++
-            quantityText.text = quantity.toString()
-        }
-
-        // 단품 장바구니 추가
-        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
-            val intent = Intent(
-                this@ActualPracticeMainActivity,
-                ActualPracticeMainActivity::class.java
-            ).apply { putExtra("previous_activity", "실전 연습_버거 선택-단품") }
-            startActivity(intent)
-            popupSingBurgerContainer.visibility = View.GONE
-        }
     }
 
     fun showSingleItemPopup(menuItem: MenuItem) {
@@ -244,8 +220,12 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             updateOrderSummary()
             val intent = Intent(
                 this@ActualPracticeMainActivity,
-                ActualPracticeMainActivity::class.java
-            ).apply { putExtra("previous_activity", "실전 연습_음료-단품") }
+                ActualPracticeCartAddedActivity::class.java
+            ).apply {
+                putExtra("ITEM_PRICE", menuItem.price)
+                putExtra("ITEM_QUANTITY", quantity)
+                putExtra("previous_activity", "실전 연습_단품")
+            }
             startActivity(intent)
         }
     }
@@ -256,16 +236,6 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         notificationBadge.text = totalItems.toString()
         priceTextView.text = totalPrice
-
-        // 단품 장바구니 추가
-        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
-            val intent = Intent(
-                this@ActualPracticeMainActivity,
-                ActualPracticeMainActivity::class.java
-            ).apply { putExtra("previous_activity", "실전 연습_사이드-단품") }
-            startActivity(intent)
-        }
-
     }
 
     override fun onStart() {

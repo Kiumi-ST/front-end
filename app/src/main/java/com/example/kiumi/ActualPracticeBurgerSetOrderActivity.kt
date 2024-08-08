@@ -12,12 +12,13 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
 class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var menuItem: MenuItem
     private var isLargeSet: Boolean = false
     private lateinit var selectedSide: MenuItem
     private lateinit var selectedDrink: MenuItem
     private var quantity = 1
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
     private var previousActivity: String? = null
@@ -26,16 +27,16 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_burger_set_order)
 
-        menuItem = intent.getParcelableExtra("menuItem") ?: return
-        isLargeSet = intent.getBooleanExtra("isLargeSet", false)
-        selectedSide = intent.getParcelableExtra("selectedSide") ?: return
-        selectedDrink = intent.getParcelableExtra("selectedDrink") ?: return
-      
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
 
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
+
+        menuItem = intent.getParcelableExtra("menuItem") ?: return
+        isLargeSet = intent.getBooleanExtra("isLargeSet", false)
+        selectedSide = intent.getParcelableExtra("selectedSide") ?: return
+        selectedDrink = intent.getParcelableExtra("selectedDrink") ?: return
 
         val quantityText: TextView = findViewById(R.id.quantity)
 
@@ -56,8 +57,12 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
             val orderItem = OrderItem(menuItem, quantity, true, isLargeSet, selectedSide.name, selectedDrink.name, totalPrice.toString(), totalCalories.toString())
             CartManager.addItem(orderItem)
-            val intent = Intent(this, ActualPracticeMainActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 확인") }
+            val intent = Intent(this, ActualPracticeCartAddedActivity::class.java)
+                .apply {
+                    putExtra("ITEM_PRICE", totalPrice.toString())
+                    putExtra("ITEM_QUANTITY", quantity)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
             startActivity(intent)
         }
 

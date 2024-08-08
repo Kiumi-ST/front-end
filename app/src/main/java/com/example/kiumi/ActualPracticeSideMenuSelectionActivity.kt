@@ -12,6 +12,12 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
 class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
+
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
+    private var previousActivity: String? = null
+
     private lateinit var menuItem: MenuItem
     private var isLargeSet: Boolean = false
     private lateinit var selectedSide: MenuItem
@@ -20,14 +26,16 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
         MenuItem("후렌치 후라이 - 미디엄", "₩0", "332 Kcal", R.drawable.french_fries_medium, false),
         MenuItem("코울슬로", "₩200", "179 Kcal", R.drawable.coleslaw, true)
     )
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private var startTime: Long = 0
-    private var endTime: Long = 0
-    private var previousActivity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_side_menu_selection)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
+
+        // 이전 액티비티 이름을 인텐트로부터 받아오기
+        previousActivity = intent.getStringExtra("previous_activity")
 
         menuItem = intent.getParcelableExtra("menuItem") ?: return
         isLargeSet = intent.getBooleanExtra("isLargeSet", false)
@@ -48,12 +56,6 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
             selectedSide = sideMenuItems[1]
             goToDrinkSelection()
         }
-        
-        // Obtain the FirebaseAnalytics instance
-        firebaseAnalytics = Firebase.analytics
-
-        // 이전 액티비티 이름을 인텐트로부터 받아오기
-        previousActivity = intent.getStringExtra("previous_activity")
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
