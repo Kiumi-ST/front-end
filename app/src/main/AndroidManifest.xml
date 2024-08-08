@@ -47,6 +47,7 @@
             android:exported="false" />
         <activity
             android:name=".InstructionActivity"
+            android:name=".ProposalMainActivity"
             android:exported="false" />
         <activity
             android:name=".ActualPracticeBurgerSetOrderActivity"
@@ -78,12 +79,12 @@
         <activity
             android:name=".ProposalFirstActivity"
             android:exported="false" />
-        <activity
-            android:name=".InprovementFirstActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ImprovementActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".InprovementFirstActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ImprovementActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ActualPracticeThankYou"
             android:exported="false" />

@@ -1,15 +1,19 @@
 package com.example.kiumi
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.analytics.FirebaseAnalytics
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,6 +31,7 @@ class OrderSummaryDialogFragment : DialogFragment() {
     private var param2: String? = null
 
     private lateinit var adapter: MenuAdapter
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
     val menuItems = listOf(
         MenuItem("후렌치 후라이 - 미디엄", " ", "332 Kcal", R.drawable.french_fries_medium, false),
         MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
@@ -40,6 +45,8 @@ class OrderSummaryDialogFragment : DialogFragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        // FirebaseAnalytics 초기화
+        firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
     }
 
     override fun onCreateView(
@@ -62,12 +69,23 @@ class OrderSummaryDialogFragment : DialogFragment() {
         val confirmButton: Button = view.findViewById(R.id.confirm_button)
         confirmButton.setOnClickListener {
             val intent = Intent(activity, ActualPracticeOrderActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_주문 내역 클릭 시") }
             startActivity(intent)
             dismiss()
         }
 
         // Inflate the layout for this fragment
         return view
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        // 뒤로 가기 또는 다이얼로그 종료 시 이벤트 로깅
+        val params = Bundle().apply {
+            putString("previous_screen_name", "실전 연습_메인") // 이전 화면 이름
+            putString("screen_name", "실전 연습_주문 내역 클릭 시") // 현재 화면 이름
+        }
+        firebaseAnalytics.logEvent("go_back", params)
     }
 
     companion object {
