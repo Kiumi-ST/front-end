@@ -31,6 +31,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         previousActivity = intent.getStringExtra("previous_activity")
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
             val intent = Intent(
                 this@ActualPracticePlaceSelectionActivity,
                 ActualPracticeQRSuccess::class.java
@@ -66,7 +67,6 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_english).setOnClickListener {
         }
 
-        // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 

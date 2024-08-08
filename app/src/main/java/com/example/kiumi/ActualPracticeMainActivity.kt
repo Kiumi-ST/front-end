@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -27,6 +28,8 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     private lateinit var burgerText: TextView
     private lateinit var sideText: TextView
     private lateinit var drinkText: TextView
+    private lateinit var notificationBadge: TextView
+    private lateinit var priceTextView: TextView
     private lateinit var homeIndicator: View
     private lateinit var burgerIndicator: View
     private lateinit var sideIndicator: View
@@ -62,6 +65,9 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         sideIndicator = findViewById(R.id.side_indicator)
         drinkIndicator = findViewById(R.id.drink_indicator)
 
+        notificationBadge = findViewById(R.id.notification_badge)
+        priceTextView = findViewById(R.id.price)
+
         setMenuClickListener(home, homeText, homeIndicator, HomeFragment())
         setMenuClickListener(burger, burgerText, burgerIndicator, BurgerFragment())
         setMenuClickListener(side, sideText, sideIndicator, SideFragment())
@@ -73,6 +79,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         // QR 코드 버튼 초기화
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
             val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeQRSuccess::class.java)
                 .apply { putExtra("previous_activity", "실전 연습_메인") }
             startActivity(intent)
@@ -83,6 +90,9 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             OrderSummaryDialogFragment().show(supportFragmentManager, "OrderSummaryDialog")
         }
 
+        CartManager.addListener { updateOrderSummary() }
+        updateOrderSummary()
+        
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
@@ -137,10 +147,13 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     fun showBurgerSelectionPopup(menuItem: MenuItem) {
         val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
         val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
+        val title: TextView = findViewById(R.id.title)
+        val singleImage: ImageView = findViewById(R.id.burger_single_image)
+        val singlePriceCalories: TextView = findViewById(R.id.burger_price_calorie)
 
-        var quantity = 1
-        val quantityText: TextView = findViewById(R.id.quantity)
-
+        title.text = menuItem.name
+        singleImage.setImageResource(menuItem.imageResourceId)
+        singlePriceCalories.text = "${menuItem.price} ${menuItem.calories}"
 
         popupBurgerSelectionContainer.visibility = View.VISIBLE
         popupSingBurgerContainer.bringToFront()
@@ -150,15 +163,17 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeSetSelectionActivity::class.java
-            ).apply { putExtra("previous_activity", "실전 연습_버거 선택 (세트, 단품 여부)") }
+            ).apply { 
+              putExtra("menuItem", menuItem)
+              putExtra("previous_activity", "실전 연습_버거 선택 (세트, 단품 여부)")
+            }
             startActivity(intent)
             popupBurgerSelectionContainer.visibility = View.GONE
         }
 
         findViewById<LinearLayout>(R.id.button_single).setOnClickListener { // 뒤로 가기가 안 됨.
-            popupSingBurgerContainer.visibility = View.VISIBLE
-            popupSingBurgerContainer.bringToFront()
             popupBurgerSelectionContainer.visibility = View.GONE
+            showSingleItemPopup(menuItem)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
@@ -173,6 +188,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
                 quantityText.text = quantity.toString()
             }
         }
+        
         findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
             quantity++
             quantityText.text = quantity.toString()
@@ -189,10 +205,17 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         }
     }
 
-    fun showDrinkSelectionPopup(menuItem: MenuItem) {
+    fun showSingleItemPopup(menuItem: MenuItem) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
+        val singleImage: ImageView = findViewById(R.id.single_image)
+        val singleTitle: TextView = findViewById(R.id.single_title)
+        val singlePriceCalories: TextView = findViewById(R.id.single_price_calories)
         var quantity = 1
         val quantityText: TextView = findViewById(R.id.quantity)
+
+        singleImage.setImageResource(menuItem.imageResourceId)
+        singleTitle.text = menuItem.name
+        singlePriceCalories.text = "${menuItem.price} ${menuItem.calories}"
 
         popupSingleBurger.visibility = View.VISIBLE
         popupSingleBurger.bringToFront()
@@ -209,8 +232,16 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             quantityText.text = quantity.toString()
         }
 
-        // 단품 장바구니 추가
+        findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            popupSingleBurger.visibility = View.GONE
+        }
+
+        // 장바구니 추가
         findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
+            val orderItem = OrderItem(menuItem, quantity)
+            CartManager.addItem(orderItem)
+            popupSingleBurger.visibility = View.GONE
+            updateOrderSummary()
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeMainActivity::class.java
@@ -219,25 +250,12 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         }
     }
 
-    fun showSideSelectionPopup(menuItem: MenuItem) {
-        val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
-        var quantity = 1
-        val quantityText: TextView = findViewById(R.id.quantity)
+    private fun updateOrderSummary() {
+        val totalItems = CartManager.getTotalItems()
+        val totalPrice = CartManager.getTotalPrice()
 
-        popupSingleBurger.visibility = View.VISIBLE
-        popupSingleBurger.bringToFront()
-
-        // 수량 변경 버튼
-        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
-            if (quantity > 1) {
-                quantity--
-                quantityText.text = quantity.toString()
-            }
-        }
-        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
-            quantity++
-            quantityText.text = quantity.toString()
-        }
+        notificationBadge.text = totalItems.toString()
+        priceTextView.text = totalPrice
 
         // 단품 장바구니 추가
         findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
@@ -247,8 +265,9 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             ).apply { putExtra("previous_activity", "실전 연습_사이드-단품") }
             startActivity(intent)
         }
+
     }
-    
+
     override fun onStart() {
         super.onStart()
         startTime = System.currentTimeMillis()

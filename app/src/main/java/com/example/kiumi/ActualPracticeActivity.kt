@@ -20,6 +20,9 @@ class ActualPracticeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice)
 
+        CartManager.clearCart()
+        PointManager.resetPoint()
+
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
 
@@ -28,6 +31,7 @@ class ActualPracticeActivity : AppCompatActivity() {
                 param(FirebaseAnalytics.Param.CONTENT, "QR_code_scan")
             }
 
+            PointManager.setPointEarned(true)
             val intent = Intent(
                 this@ActualPracticeActivity,
                 ActualPracticeQRSuccess::class.java
@@ -54,7 +58,7 @@ class ActualPracticeActivity : AppCompatActivity() {
         // 도움 버튼 클릭 시
         findViewById<Button>(R.id.button_help).setOnClickListener {
         }
-
+        
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }

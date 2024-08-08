@@ -48,7 +48,7 @@ class DrinkFragment : Fragment() {
         )
 
         val adapter = MenuAdapter(menuItems) { menuItem ->
-            (activity as? ActualPracticeMainActivity)?.showDrinkSelectionPopup(menuItem)
+            (activity as? ActualPracticeMainActivity)?.showSingleItemPopup(menuItem)
         }
         recyclerView.adapter = adapter
 

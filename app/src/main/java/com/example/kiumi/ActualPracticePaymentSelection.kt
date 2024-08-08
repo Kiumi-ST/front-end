@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -25,8 +26,14 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
 
+      
+        if (PointManager.isPointEarned()){
+            findViewById<TextView>(R.id.textViewSubtitle).text = ""
+        }
+        
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
+        
 
         // 카드 결제에 클릭 리스너 추가
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
@@ -49,11 +56,7 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
         // 이전 단계 버튼에 클릭 리스너 추가
         val buttonPreviousStep: Button = findViewById(R.id.buttonPreviousStep)
         buttonPreviousStep.setOnClickListener {
-            // 이전 단계 액티비티로 이동 (변경 필요)
-            // val intent = Intent(this, PreviousActivity::class.java)
-            // startActivity(intent).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "이전 단계로 이동", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         // 처음으로 버튼에 클릭 리스너 추가

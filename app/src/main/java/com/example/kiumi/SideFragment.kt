@@ -46,12 +46,12 @@ class SideFragment : Fragment() {
             MenuItem("츄러스 & 선데이 - 콤보", "₩3,000", " ", R.drawable.churros_sundae_combo, true),
             MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
             MenuItem("맥너겟® - 6조각", "₩3,000", "256 Kcal", R.drawable.mcnuggets, false),
-            MenuItem("후렌치 후라이 - 미디엄", " ", "332 Kcal", R.drawable.french_fries_medium, false),
-            MenuItem("코울슬로", "+₩200", "179 Kcal", R.drawable.coleslaw, true)
+            MenuItem("후렌치 후라이 - 미디엄", "₩1,500", "332 Kcal", R.drawable.french_fries_medium, false),
+            MenuItem("코울슬로", "₩1,900", "179 Kcal", R.drawable.coleslaw, true)
         )
 
         val adapter = MenuAdapter(menuItems) { menuItem ->
-            (activity as? ActualPracticeMainActivity)?.showSideSelectionPopup(menuItem)
+            (activity as? ActualPracticeMainActivity)?.showSingleItemPopup(menuItem)
         }
         recyclerView.adapter = adapter
 

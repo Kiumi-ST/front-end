@@ -9,7 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class OrderAdapter(
-    private var orderItems:  MutableList<OrderItem>
+    private var orderItems:  MutableList<OrderItem>,
+    private val onRemoveItem: (OrderItem) -> Unit
 ) : RecyclerView.Adapter<OrderAdapter.OrderViewHolder>() {
 
     inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -21,6 +22,8 @@ class OrderAdapter(
         val buttonIncrease: Button = itemView.findViewById(R.id.button_increase)
         val itemCount: TextView = itemView.findViewById(R.id.item_count)
         val cancelButton: Button = itemView.findViewById(R.id.cancel_button)
+        val setSide: TextView = itemView.findViewById(R.id.set_side)
+        val buttonSet: TextView = itemView.findViewById(R.id.button_set)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrderViewHolder {
@@ -31,12 +34,29 @@ class OrderAdapter(
     override fun onBindViewHolder(holder: OrderViewHolder, position: Int) {
         val orderItem = orderItems[position]
         val menuItem = orderItem.menuItem
-        holder.image.setImageResource(menuItem.imageResourceId)
-        holder.name.text = menuItem.name
-        holder.calories.text = menuItem.calories
+
         holder.itemCount.text = orderItem.quantity.toString()
 
-        val itemPrice = menuItem.price.replace(",", "").replace("₩", "").toInt()
+        if (orderItem.isSet) {
+            holder.image.setImageResource(R.drawable.ic_burger_set)
+            holder.name.text = "${menuItem.name} - ${if (orderItem.isLargeSet) "라지세트" else "세트"}"
+            holder.calories.text = orderItem.totalCalories
+            holder.setSide.visibility = View.VISIBLE
+            holder.buttonSet.visibility = View.VISIBLE
+            holder.setSide.text = "${orderItem.drink}, ${orderItem.side}"
+        } else {
+            holder.image.setImageResource(menuItem.imageResourceId)
+            holder.name.text = menuItem.name
+            holder.calories.text = menuItem.calories
+            holder.setSide.visibility = View.GONE
+            holder.buttonSet.visibility = View.GONE
+        }
+
+        val itemPrice = if (orderItem.isSet) {
+            orderItem.totalPrice.replace(",", "").replace("₩", "").toInt()
+        } else {
+            menuItem.price.replace(",", "").replace("₩", "").toInt()
+        }
         holder.price.text = "₩${itemPrice * orderItem.quantity}"
 
         holder.buttonDecrease.setOnClickListener {
@@ -44,6 +64,7 @@ class OrderAdapter(
                 orderItem.quantity--
                 holder.itemCount.text = orderItem.quantity.toString()
                 holder.price.text = "₩${itemPrice * orderItem.quantity}"
+                CartManager.updateItemQuantity(orderItem, orderItem.quantity)
                 notifyItemChanged(position)
             }
         }
@@ -52,13 +73,12 @@ class OrderAdapter(
             orderItem.quantity++
             holder.itemCount.text = orderItem.quantity.toString()
             holder.price.text = "₩${itemPrice * orderItem.quantity}"
+            CartManager.updateItemQuantity(orderItem, orderItem.quantity)
             notifyItemChanged(position)
         }
 
         holder.cancelButton.setOnClickListener {
-            orderItems.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemRangeChanged(position, orderItems.size)
+            onRemoveItem(orderItem)
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
@@ -11,6 +12,14 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
 class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
+    private lateinit var menuItem: MenuItem
+    private var isLargeSet: Boolean = false
+    private lateinit var selectedSide: MenuItem
+
+    private val sideMenuItems = listOf(
+        MenuItem("후렌치 후라이 - 미디엄", "₩0", "332 Kcal", R.drawable.french_fries_medium, false),
+        MenuItem("코울슬로", "₩200", "179 Kcal", R.drawable.coleslaw, true)
+    )
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -20,23 +29,31 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_side_menu_selection)
 
+        menuItem = intent.getParcelableExtra("menuItem") ?: return
+        isLargeSet = intent.getBooleanExtra("isLargeSet", false)
+
+        val baseSetPrice = menuItem.price.replace("₩", "").replace(",", "").toInt()
+        val setPrice = if (isLargeSet) baseSetPrice + 2700 else baseSetPrice + 2000
+
+        findViewById<TextView>(R.id.title).text = "${menuItem.name} - ${if (isLargeSet) "라지세트" else "세트"}"
+        findViewById<TextView>(R.id.title2).text = "₩$setPrice ${menuItem.calories}"
+        findViewById<TextView>(R.id.menu_name_text).text = "${menuItem.name}"
+
+        findViewById<LinearLayout>(R.id.button_side1).setOnClickListener {
+            selectedSide = sideMenuItems[0]
+            goToDrinkSelection()
+        }
+
+        findViewById<LinearLayout>(R.id.button_side2).setOnClickListener {
+            selectedSide = sideMenuItems[1]
+            goToDrinkSelection()
+        }
+        
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
 
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
-
-        findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
-            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드") }
-            startActivity(intent)
-        }
-
-        findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
-            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드") }
-            startActivity(intent)
-        }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
@@ -79,5 +96,15 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
             putString("screen_name", "실전 연습_버거 선택-세트 사이드")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
+    private fun goToDrinkSelection() {
+        val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java).apply {
+            putExtra("menuItem", menuItem)
+            putExtra("isLargeSet", isLargeSet)
+            putExtra("selectedSide", selectedSide)
+            putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드")
+        }
+        startActivity(intent)
     }
 }
