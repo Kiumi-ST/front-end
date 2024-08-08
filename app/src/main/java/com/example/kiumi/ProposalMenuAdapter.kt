@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ProposalMenuAdapter (
     private var menuItems: List<ProposalMenuItem>,
-//    private val onItemClick: (ProposalMenuItem) -> Unit
+    private val onItemClick: (ProposalMenuItem) -> Unit
 ) : RecyclerView.Adapter<ProposalMenuAdapter.MenuViewHolder>() {
 
     inner class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -18,14 +18,14 @@ class ProposalMenuAdapter (
         val price: TextView = itemView.findViewById(R.id.price)
         val newLabel: TextView = itemView.findViewById(R.id.new_label)
 
-//        init {
-//            itemView.setOnClickListener {
-//                val position = adapterPosition
-//                if (position != RecyclerView.NO_POSITION) {
-//                    onItemClick(menuItems[position])
-//                }
-//            }
-//        }
+        init {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onItemClick(menuItems[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuViewHolder {

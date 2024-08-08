@@ -16,6 +16,21 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ProposalOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalBurgerSetOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalDrinkSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalSideMenuSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalSetSelectionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProposalMainActivity"
             android:exported="false" />
         <activity
@@ -47,13 +62,12 @@
             android:exported="false" />
         <activity
             android:name=".ProposalFirstActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".InprovementFirstActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".ImprovementActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".InprovementFirstActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".ImprovementActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".ActualPracticeThankYou"
             android:exported="false" />
@@ -110,7 +124,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

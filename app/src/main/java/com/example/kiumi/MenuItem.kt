@@ -19,3 +19,8 @@ data class OrderItem(
     val menuItem: MenuItem,
     var quantity: Int = 1
 )
+
+data class ProposalOrderItem(
+    val menuItem: ProposalMenuItem,
+    var quantity: Int = 1
+)
