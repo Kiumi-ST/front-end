@@ -1,0 +1,9 @@
+<!-- res/drawable/layered_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- selectableItemBackground를 첫 번째 레이어로 추가 -->
+    <item
+        android:drawable="?android:attr/selectableItemBackground" />
+    <!-- blinking_border_animation을 두 번째 레이어로 추가 -->
+    <item
+        android:drawable="@drawable/blinking_border_animation" />
+</layer-list>
