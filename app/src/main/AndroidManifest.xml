@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ProposalMainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeBurgerSetOrderActivity"
             android:exported="false" />
         <activity
@@ -45,12 +48,12 @@
         <activity
             android:name=".ProposalFirstActivity"
             android:exported="false" />
-        <activity
-            android:name=".InprovementFirstActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ImprovementActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".InprovementFirstActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".ImprovementActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ActualPracticeThankYou"
             android:exported="false" />

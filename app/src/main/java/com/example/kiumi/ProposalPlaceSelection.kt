@@ -2,8 +2,9 @@ package com.example.kiumi
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
+import com.google.firebase.analytics.logEvent
 
 class ProposalPlaceSelection : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -35,6 +37,33 @@ class ProposalPlaceSelection : AppCompatActivity() {
             ).apply { putExtra("previous_activity", "개선안_장소") }
             startActivity(intent)
         }
+        
+        // 매장 식사 버튼 클릭 시
+        findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
+            firebaseAnalytics.logEvent("select_dining_option"){
+                param(FirebaseAnalytics.Param.CONTENT, "dine_in")
+            }
+            startActivity(Intent(this, ProposalMainActivity::class.java))
+        }
+
+        // 포장 버튼 클릭 시
+        findViewById<LinearLayout>(R.id.button_take_out).setOnClickListener {
+            firebaseAnalytics.logEvent("select_dining_option"){
+                param(FirebaseAnalytics.Param.CONTENT, "take_out")
+            }
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<Button>(R.id.buttonHome).setOnClickListener {
+        }
+
+        // 도움 기능 버튼 클릭 시
+        findViewById<LinearLayout>(R.id.linearLayoutHelp).setOnClickListener {
+        }
+
+        // 영어 버튼 클릭 시
+        findViewById<Button>(R.id.button_english).setOnClickListener {
+        }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -54,6 +83,7 @@ class ProposalPlaceSelection : AppCompatActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
+
     }
 
     override fun onStart() {

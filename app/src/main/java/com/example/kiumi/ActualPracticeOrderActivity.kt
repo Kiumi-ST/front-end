@@ -6,8 +6,13 @@ import androidx.activity.OnBackPressedCallback
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ActualPracticeOrderActivity : AppCompatActivity() {
+    private lateinit var orderRecyclerView: RecyclerView
+    private lateinit var orderAdapter: OrderAdapter
+    private lateinit var orderItems: MutableList<OrderItem>
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -21,6 +26,22 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         firebaseAnalytics = Firebase.analytics
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
+        
+        orderRecyclerView = findViewById(R.id.order_recycler_view)
+        orderRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        // 샘플 데이터 생성
+        val menuItem = MenuItem("맥스파이시® 상하이 버거 - 세트", "₩5,900", "826 Kcal",R.drawable.ic_burger_set, true)
+        val menuItem2 = MenuItem("불고기 버거 - 세트", "₩4,500", "700 Kcal", R.drawable.ic_burger_set, false)
+
+        orderItems = mutableListOf(
+            OrderItem(menuItem) ,
+            OrderItem(menuItem2)
+            // 더 많은 아이템 추가 가능
+        )
+
+        orderAdapter = OrderAdapter(orderItems)
+        orderRecyclerView.adapter = orderAdapter
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
