@@ -50,14 +50,11 @@
                 android:layout_gravity="start">
 
                 <LinearLayout
-                    android:id="@+id/button_set"
-                    android:layout_width="140dp"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
                     android:background="@drawable/button_background"
-                    android:padding="5dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="16dp">
+                    android:gravity="center_vertical">
 
                     <View
                         android:layout_width="3dp"
@@ -80,12 +77,11 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/button_large_set"
-                    android:layout_width="140dp"
-                    android:layout_height="150dp"
-                    android:orientation="vertical"
-                    android:background="@drawable/button_background"
-                    android:padding="5dp">
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/button_background">
 
                     <ImageView
                         android:layout_marginLeft="6dp"

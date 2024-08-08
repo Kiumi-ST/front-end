@@ -18,9 +18,9 @@
         <activity
             android:name=".TutorialPaymentSelection"
             android:exported="false" />
-        <activity
-            android:name=".TutorialCartAddedActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".TutorialCartAddedActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".TutorialBurgerSetOrderActivity"
             android:exported="false" />
@@ -34,9 +34,6 @@
             android:name=".TutorialDrinkSelectionActiviy"
             android:exported="false" />
         <activity
-            android:name=".TutorialSidemenuSelectionActivity"
-            android:exported="false" />
-        <activity
             android:name=".TutorialSetSelectionActivity"
             android:exported="false" />
         <activity
@@ -45,8 +42,10 @@
         <activity
             android:name=".TutorialPlaceSelectionActivity"
             android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".InstructionActivity"-->
+<!--            android:exported="false" />-->
         <activity
-            android:name=".InstructionActivity"
             android:name=".ProposalMainActivity"
             android:exported="false" />
         <activity

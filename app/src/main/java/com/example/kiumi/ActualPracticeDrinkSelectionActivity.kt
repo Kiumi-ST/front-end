@@ -13,6 +13,11 @@ import com.google.firebase.analytics.analytics
 
 class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
 
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var startTime: Long = 0
+    private var endTime: Long = 0
+    private var previousActivity: String? = null
+
     private lateinit var menuItem: MenuItem
     private var isLargeSet: Boolean = false
     private lateinit var selectedSide: MenuItem
@@ -23,15 +28,16 @@ class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
         MenuItem("스프라이트", "0", "149 Kcal", R.drawable.sprite, false),
         MenuItem("코카 콜라 제로", "0", "0 Kcal", R.drawable.coca_cola, false)
     )
-    
-    private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private var startTime: Long = 0
-    private var endTime: Long = 0
-    private var previousActivity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_drink_selection)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
+
+        // 이전 액티비티 이름을 인텐트로부터 받아오기
+        previousActivity = intent.getStringExtra("previous_activity")
 
         menuItem = intent.getParcelableExtra("menuItem") ?: return
         isLargeSet = intent.getBooleanExtra("isLargeSet", false)
