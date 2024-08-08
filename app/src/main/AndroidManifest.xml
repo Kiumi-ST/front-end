@@ -16,6 +16,39 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TutorialPaymentSelection"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialCartAddedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialBurgerSetOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialSideMenuSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialOrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialDrinkSelectionActiviy"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialSidemenuSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialSetSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TutorialPlaceSelectionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InstructionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ActualPracticeBurgerSetOrderActivity"
             android:exported="false" />
         <activity
@@ -107,7 +140,7 @@
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

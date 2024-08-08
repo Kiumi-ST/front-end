@@ -198,7 +198,7 @@
                         android:layout_width="140dp"
                         android:layout_height="170dp"
                         android:orientation="vertical"
-                        android:background="@drawable/button_background"
+                        android:background="@drawable/blinking_border_animation"
                         android:padding="5dp"
                         android:layout_marginRight="16dp">
 
