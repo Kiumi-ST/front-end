@@ -11,13 +11,26 @@ import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kiumi.ActualPracticePickup
+import com.google.firebase.Firebase
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.analytics
 
 class ActualPracticePayment : AppCompatActivity() {
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+    private var previousActivity: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_payment)
+
+        // Obtain the FirebaseAnalytics instance
+        firebaseAnalytics = Firebase.analytics
+
+        // 이전 액티비티 이름을 인텐트로부터 받아오기
+        previousActivity = intent.getStringExtra("previous_activity")
 
         Toast.makeText(this, "5초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
 
@@ -69,5 +82,25 @@ class ActualPracticePayment : AppCompatActivity() {
         animator2.repeatMode = ObjectAnimator.REVERSE // 역방향 애니메이션
 
         animator2.start()
+
+        // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
+        onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
+
+    // 뒤로 가기 버튼을 눌렀을 때 실행되는 콜백 메소드
+    private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            // 뒤로 가기 실행 시 실행할 동작 코드 구현
+            val params = Bundle().apply {
+                putString("previous_screen_name", previousActivity)
+                putString("screen_name", "실전 연습_카드 결제")
+            }
+            firebaseAnalytics.logEvent("go_back", params)
+
+            // 실제로 뒤로 가기 동작을 수행하도록 추가
+            isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
+            onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
+        }
+    }
+
 }
