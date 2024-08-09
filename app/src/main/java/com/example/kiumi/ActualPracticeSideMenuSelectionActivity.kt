@@ -63,6 +63,13 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드") }
+            startActivity(intent)
+        }
+
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }

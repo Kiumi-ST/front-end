@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ActualPracticeOrderCancelActivity"
+            android:exported="false" />
+        <activity
             android:name=".TutorialPaymentSelection"
             android:exported="false" />
 <!--        <activity-->

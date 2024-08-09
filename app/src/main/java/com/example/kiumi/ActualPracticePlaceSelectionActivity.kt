@@ -57,6 +57,9 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         // 처음으로 버튼 클릭 시
         findViewById<Button>(R.id.buttonHome).setOnClickListener {
+            val intent = Intent(this@ActualPracticePlaceSelectionActivity, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_장소") }
+            startActivity(intent)
         }
 
         // 도움 기능 버튼 클릭 시

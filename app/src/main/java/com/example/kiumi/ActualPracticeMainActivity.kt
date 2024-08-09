@@ -90,6 +90,13 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             OrderSummaryDialogFragment().show(supportFragmentManager, "OrderSummaryDialog")
         }
 
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_메인") }
+            startActivity(intent)
+        }
+
         CartManager.addListener { updateOrderSummary() }
         updateOrderSummary()
         

@@ -62,11 +62,9 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
         // 처음으로 버튼에 클릭 리스너 추가
         val buttonHome: Button = findViewById(R.id.buttonHome)
         buttonHome.setOnClickListener {
-            // 처음 화면으로 이동 (변경 필요)
-            // val intent = Intent(this, HomeActivity::class.java)
-            // startActivity(intent).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "처음 화면으로 이동", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_결제 방법") }
+            startActivity(intent)
         }
 
         // 도움 기능 버튼에 클릭 리스너 추가
