@@ -59,7 +59,7 @@ class ActualPracticeSetSelectionActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트") }
+                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이즈") }
             startActivity(intent)
         }
 
@@ -73,7 +73,7 @@ class ActualPracticeSetSelectionActivity : AppCompatActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity) // 잘못 클릭했던 화면 이름
-                putString("screen_name", "실전 연습_버거 선택-세트") // 현재 화면 이름
+                putString("screen_name", "실전 연습_버거 선택-세트 사이즈") // 현재 화면 이름
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -95,7 +95,7 @@ class ActualPracticeSetSelectionActivity : AppCompatActivity() {
 
         val params = Bundle().apply {
             putLong("screen_duration", duration)
-            putString("screen_name", "실전 연습_버거 선택-세트")
+            putString("screen_name", "실전 연습_버거 선택-세트 사이즈")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
@@ -104,7 +104,7 @@ class ActualPracticeSetSelectionActivity : AppCompatActivity() {
         val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java).apply {
             putExtra("menuItem", menuItem)
             putExtra("isLargeSet", isLargeSet)
-            putExtra("previous_activity", "실전 연습_버거 선택-세트")
+            putExtra("previous_activity", "실전 연습_버거 선택-세트 사이즈")
         }
         startActivity(intent)
     }

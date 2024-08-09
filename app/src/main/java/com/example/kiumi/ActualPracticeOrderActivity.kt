@@ -56,18 +56,18 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         updateTotalPrice()
 
         findViewById<TextView>(R.id.order_more).setOnClickListener {
-            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeMainActivity::class.java)
+            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeMainActivity::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
 
         findViewById<TextView>(R.id.order_finish).setOnClickListener {
-            val intent = Intent(this, ActualPracticePaymentSelection::class.java)
+            val intent = Intent(this, ActualPracticePaymentSelection::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             PointManager.setPointEarned(true)
-            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java)
+            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
         
