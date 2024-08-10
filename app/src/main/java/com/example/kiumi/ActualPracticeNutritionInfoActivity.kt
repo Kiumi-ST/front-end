@@ -69,7 +69,7 @@ class ActualPracticeNutritionInfoActivity : AppCompatActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity)
-                putString("screen_name", "실전 연습_주문 취소")
+                putString("screen_name", "실전 연습_영양정보")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
