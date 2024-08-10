@@ -46,14 +46,11 @@ class ProposalSideFragment : Fragment() {
             ProposalMenuItem("츄러스 & 선데이 - 콤보", "₩3,000", R.drawable.churros_sundae_combo, true),
             ProposalMenuItem("케이준 비프 스낵랩", "₩2,200", R.drawable.cajun_beef_snack_wrap, false),
             ProposalMenuItem("맥너겟® - 6조각", "₩3,000", R.drawable.mcnuggets, false),
-            ProposalMenuItem("후렌치 후라이 - 미디엄", " ", R.drawable.french_fries_medium, false),
-            ProposalMenuItem("코울슬로", "+₩200", R.drawable.coleslaw, true)
-        )
+            )
 
-        val adapter = ProposalMenuAdapter(menuItems)
-//        val adapter = ProposalMenuAdapter(menuItems) { menuItem ->
-//            (activity as? ProposalMainActivity)?.showSideSelectionPopup(menuItem)
-//        }
+        val adapter = ProposalMenuAdapter(menuItems) { menuItem ->
+            (activity as? ProposalMainActivity)?.showSingleItemPopup(menuItem)
+        }
         recyclerView.adapter = adapter
 
         // Inflate the layout for this fragment

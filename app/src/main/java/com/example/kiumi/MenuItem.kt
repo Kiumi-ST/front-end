@@ -46,7 +46,35 @@ data class ProposalMenuItem(
     val price: String,
     val imageResourceId: Int,
     val isNew: Boolean
-)
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
+        parcel.readString() ?: "",
+        parcel.readInt(),
+        parcel.readByte() != 0.toByte()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(name)
+        parcel.writeString(price)
+        parcel.writeInt(imageResourceId)
+        parcel.writeByte(if (isNew) 1 else 0)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<ProposalMenuItem> {
+        override fun createFromParcel(parcel: Parcel): ProposalMenuItem {
+            return ProposalMenuItem(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ProposalMenuItem?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
 
 data class OrderItem(
     val menuItem: MenuItem,
@@ -57,4 +85,14 @@ data class OrderItem(
     val drink: String = "",
     val totalPrice: String = "",
     val totalCalories: String = ""
+)
+
+data class ProposalOrderItem(
+    val menuItem: ProposalMenuItem,
+    var quantity: Int = 1,
+    val isSet: Boolean = false,
+    val isLargeSet: Boolean = false,
+    val side: String = "",
+    val drink: String = "",
+    val totalPrice: String = "",
 )
