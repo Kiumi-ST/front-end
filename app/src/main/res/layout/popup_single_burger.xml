@@ -53,6 +53,7 @@
         android:layout_height="30dp"
         android:textSize="14dp"
         android:text="재료추가/변경"
+        android:visibility="gone"
         android:layout_gravity="center"
         android:background="@drawable/button_background"
         android:textColor="#000"

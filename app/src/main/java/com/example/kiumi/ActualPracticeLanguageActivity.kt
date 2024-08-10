@@ -1,38 +1,25 @@
 package com.example.kiumi
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeCartAddedActivity : AppCompatActivity() {
+class ActualPracticeLanguageActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
     private var previousActivity: String? = null
 
-    // Handler와 Runnable을 클래스 변수로 정의
-    private val handler = Handler(Looper.getMainLooper())
-    private val navigateRunnable = Runnable {
-        val intent = Intent(
-            this@ActualPracticeCartAddedActivity,
-            ActualPracticeMainActivity::class.java
-        ).apply {
-            putExtra("previous_activity", "실전 연습_장바구니 추가 완료")
-        }
-        startActivity(intent)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cart_added)
+        setContentView(R.layout.activity_actual_practice_language)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
@@ -40,23 +27,19 @@ class ActualPracticeCartAddedActivity : AppCompatActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        val price: TextView = findViewById(R.id.price)
-
-        // 인텐트에서 데이터를 받아옴
-        val itemPrice = intent.getStringExtra("ITEM_PRICE")
-        val itemQuantity = intent.getIntExtra("ITEM_QUANTITY", 1)
-
-        // 데이터 설정
-        if (itemPrice != null && itemQuantity != null) {
-            val totalPrice = itemPrice.replace("₩", "").replace(",", "").toInt() * itemQuantity
-            price.text = "₩${totalPrice}"
-        } else {
-            price.text = ""
+        findViewById<Button>(R.id.button_english).setOnClickListener {
+            Toast.makeText(this, "현재는 한국어만 지원합니다.", Toast.LENGTH_LONG).show()
         }
 
-        // 3초 후에 이동
-        Toast.makeText(this, "3초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
-        handler.postDelayed(navigateRunnable, 3000)
+        findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            finish()
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_언어") }
+            startActivity(intent)
+        }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
@@ -66,17 +49,11 @@ class ActualPracticeCartAddedActivity : AppCompatActivity() {
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
-
-            CartManager.removeLastItem() // 장바구니에 마지막으로 추가한 메뉴 없앰
-
             val params = Bundle().apply {
-                putString("previous_screen_name", previousActivity) // 잘못 클릭했던 화면 이름
-                putString("screen_name", "실전 연습_장바구니 추가 완료") // 현재 화면 이름
+                putString("previous_screen_name", previousActivity)
+                putString("screen_name", "실전 연습_언어")
             }
             firebaseAnalytics.logEvent("go_back", params)
-
-            // 예약된 3초 후 이동 작업을 취소
-            handler.removeCallbacks(navigateRunnable)
 
             // 실제로 뒤로 가기 동작을 수행하도록 추가
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
@@ -96,9 +73,8 @@ class ActualPracticeCartAddedActivity : AppCompatActivity() {
 
         val params = Bundle().apply {
             putLong("screen_duration", duration)
-            putString("screen_name", "실전 연습_장바구니 추가 완료")
+            putString("screen_name", "실전 연습_언어")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
-
 }

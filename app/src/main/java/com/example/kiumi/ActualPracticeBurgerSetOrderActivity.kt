@@ -50,9 +50,43 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.burger_info).text = "${menuItem.name} \n ${menuItem.calories}"
         findViewById<TextView>(R.id.side_info).text = "${selectedSide.name} \n ${selectedSide.calories}"
         findViewById<TextView>(R.id.drink_info).text = "${selectedDrink.name} \n ${selectedDrink.calories}"
+        findViewById<ImageView>(R.id.set_burger_image).setImageResource(menuItem.imageResourceId)
+        findViewById<ImageView>(R.id.set_side_image).setImageResource(selectedSide.imageResourceId)
+        findViewById<ImageView>(R.id.set_drink_image).setImageResource(selectedDrink.imageResourceId)
         findViewById<ImageView>(R.id.burger_image).setImageResource(menuItem.imageResourceId)
         findViewById<ImageView>(R.id.side_image).setImageResource(selectedSide.imageResourceId)
         findViewById<ImageView>(R.id.drink_image).setImageResource(selectedDrink.imageResourceId)
+
+        findViewById<Button>(R.id.button_modify_burger).setOnClickListener {
+            val intent = Intent(this, ActualPracticeBurgerCustomizationActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_edit_side).setOnClickListener {
+            val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedDrink", selectedDrink)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_edit_drink).setOnClickListener {
+            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedSide", selectedSide)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
 
         findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
             val orderItem = OrderItem(menuItem, quantity, true, isLargeSet, selectedSide.name, selectedDrink.name, totalPrice.toString(), totalCalories.toString())
@@ -63,6 +97,18 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
                     putExtra("ITEM_QUANTITY", quantity)
                     putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
                 }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this,
+                ActualPracticeNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+            }
             startActivity(intent)
         }
 
@@ -81,6 +127,13 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
             quantity++
             quantityText.text = quantity.toString()
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 확인 ") }
+            startActivity(intent)
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록

@@ -11,4 +11,5 @@
     <color name="yellow_iconBackground">#F9E77E</color>
     <color name="pink_iconBackground">#F5D6DA</color>
     <color name="blue_iconBackground">#7AA1C3</color>
+    <color name="gray">#C2C2C2</color>
 </resources>

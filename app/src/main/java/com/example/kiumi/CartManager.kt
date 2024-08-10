@@ -14,6 +14,13 @@ object CartManager {
         notifyListeners()
     }
 
+    fun removeLastItem() {
+        if (cartItems.isNotEmpty()) {
+            cartItems.removeAt(cartItems.size - 1)
+            notifyListeners()
+        }
+    }
+
     fun getItems(): List<OrderItem> {
         return cartItems
     }
@@ -74,6 +81,13 @@ object ProposalCartManager {
     fun removeItem(item: ProposalOrderItem) {
         cartItems.remove(item)
         notifyListeners()
+    }
+
+    fun removeLastItem() {
+        if (cartItems.isNotEmpty()) {
+            cartItems.removeAt(cartItems.size - 1)
+            notifyListeners()
+        }
     }
 
     fun getItems(): List<ProposalOrderItem> {

@@ -65,8 +65,31 @@ class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
             goToBurgerSetOrder()
         }
 
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this,
+                ActualPracticeNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_버거 선택-세트 음료")
+            }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_back).setOnClickListener {
+            finish()
+        }
+
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 음료") }
+            startActivity(intent)
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java)
                 .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 음료") }
             startActivity(intent)
         }

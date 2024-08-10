@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".ActualPracticeBurgerCustomizationActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- 상단 로고 및 타이틀 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginVertical="40dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_mcdonalds_logo" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="재료추가/변경"
+                android:textSize="40sp"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="horizontal"
+            android:layout_below="@id/title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_background"
+                    android:layout_marginHorizontal="40dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/menu_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_burger_set"
+                            android:layout_margin="10dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp">
+
+                            <TextView
+                                android:id="@+id/menu_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="맥스파이시® 상하이 버거 - 세트"
+                                android:textColor="#000"
+                                android:textSize="12sp"
+                                android:layout_marginBottom="10dp"/>
+
+                            <TextView
+                                android:id="@+id/menu_kcal_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="₩5,900 826 Kcal"
+                                android:textColor="#000"
+                                android:textSize="12sp"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="40dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_background">
+
+                    <View
+                        android:background="#C2C2C2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="4px"
+                        android:layout_marginTop="50dp"/>
+
+                    <LinearLayout
+                        android:id="@+id/detailInfoLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_lettuce"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:text="양상추"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="3"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_gravity="center">
+
+                                <Button
+                                    android:id="@+id/button_decrease_quantity_1"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="-"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/quantity_1"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="1"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_background" />
+
+                                <Button
+                                    android:id="@+id/button_increase_quantity_1"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="+"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:background="#C2C2C2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="4px"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_patty"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:text="함박패티"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="3"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_gravity="center">
+
+                                <Button
+                                    android:id="@+id/button_decrease_quantity_2"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="-"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/quantity_2"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="1"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_background" />
+
+                                <Button
+                                    android:id="@+id/button_increase_quantity_2"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="+"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:background="#C2C2C2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="4px"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_whitemayo"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:text="화이트 마요 소스"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="3"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_gravity="center">
+
+                                <Button
+                                    android:id="@+id/button_decrease_quantity_3"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="-"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/quantity_3"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="1"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_background" />
+
+                                <Button
+                                    android:id="@+id/button_increase_quantity_3"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="+"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:background="#C2C2C2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="4px"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="10dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_bulgogisauce"/>
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:layout_height="wrap_content"
+                                android:text="불고기소스"
+                                android:textAlignment="center"
+                                android:textColor="#000"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_weight="3"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="10dp"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_gravity="center">
+
+                                <Button
+                                    android:id="@+id/button_decrease_quantity_4"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="-"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+
+                                <TextView
+                                    android:id="@+id/quantity_4"
+                                    android:layout_width="50dp"
+                                    android:layout_height="30dp"
+                                    android:text="1"
+                                    android:textSize="14sp"
+                                    android:textColor="#000"
+                                    android:gravity="center"
+                                    android:background="@drawable/button_background" />
+
+                                <Button
+                                    android:id="@+id/button_increase_quantity_4"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="+"
+                                    android:textColor="#000"
+                                    android:background="@drawable/button_background"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_back"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="변경 취소"
+                        android:textColor="#000"
+                        android:background="@drawable/button_background"
+                        android:layout_marginHorizontal="10dp" />
+
+                    <Button
+                        android:id="@+id/button_save"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="변경 저장"
+                        android:textColor="#000"
+                        android:background="@color/yellow"
+                        android:layout_marginHorizontal="10dp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 하단 버튼 영역 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/gotohome"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="1"
+                    android:text="처음으로"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:background="@drawable/button_background_gray"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp" />
+
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="0dp"
+                    android:layout_height="22dp"
+                    android:layout_weight="1"
+                    android:text="도움 기능"
+                    android:textSize="12dp"
+                    android:gravity="center"
+                    android:drawableLeft="@drawable/help_icon"
+                    android:background="@drawable/button_background_gray"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:paddingBottom="0dp"
+                    android:paddingTop="0dp"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는\n다를 수 있습니다. 요청시 추가 영양정보를 제공해 드립니다."
+                android:textSize="8dp"
+                android:textColor="@color/black"
+                android:layout_marginVertical="8dp"
+                android:layout_marginLeft="10dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

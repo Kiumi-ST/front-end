@@ -38,6 +38,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
     private var startTime: Long = 0
     private var endTime: Long = 0
     private var previousActivity: String? = null
+    private var popupStartTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,6 +91,13 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             OrderSummaryDialogFragment().show(supportFragmentManager, "OrderSummaryDialog")
         }
 
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this@ActualPracticeMainActivity, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_메인") }
+            startActivity(intent)
+        }
+
         CartManager.addListener { updateOrderSummary() }
         updateOrderSummary()
         
@@ -99,8 +107,46 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
     // 뒤로 가기 버튼을 눌렀을 때 실행되는 콜백 메소드
     private val onBackPressedCallback = object : OnBackPressedCallback(true) {
+        var menuItemIsBurger: Boolean = false
+
         override fun handleOnBackPressed() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
+            val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
+            val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
+
+            if (popupSingleBurger.visibility == View.VISIBLE){
+                logPopupDuration("실전 연습_단품")
+                popupSingleBurger.visibility = View.GONE
+
+                if (menuItemIsBurger) {
+                    val params = Bundle().apply {
+                        putString("previous_screen_name", "실전 연습_버거 선택 (세트, 단품 여부)") // 잘못 클릭했던 화면 이름
+                        putString("screen_name", "실전 연습_단품") // 현재 화면 이름
+                    }
+                    firebaseAnalytics.logEvent("go_back", params)
+                    popupBurgerSelectionContainer.visibility = View.VISIBLE
+                }else{
+                    val params = Bundle().apply {
+                        putString("previous_screen_name", "실전 연습_메인") // 잘못 클릭했던 화면 이름
+                        putString("screen_name", "실전 연습_단품") // 현재 화면 이름
+                    }
+                    firebaseAnalytics.logEvent("go_back", params)
+                }
+                return
+            }
+
+            if (popupBurgerSelectionContainer.visibility == View.VISIBLE) {
+                logPopupDuration("실전 연습_버거 선택 (세트, 단품 여부)")
+                popupBurgerSelectionContainer.visibility = View.GONE
+
+                val params = Bundle().apply {
+                    putString("previous_screen_name", "실전 연습_메인") // 잘못 클릭했던 화면 이름
+                    putString("screen_name", "실전 연습_버거 선택 (세트, 단품 여부)") // 현재 화면 이름
+                }
+                firebaseAnalytics.logEvent("go_back", params)
+                return
+            }
+
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity) // 잘못 클릭했던 화면 이름
                 putString("screen_name", "실전 연습_메인") // 현재 화면 이름
@@ -155,6 +201,9 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         singleImage.setImageResource(menuItem.imageResourceId)
         singlePriceCalories.text = "${menuItem.price} ${menuItem.calories}"
 
+        // 팝업 열림 시간 기록
+        recordPopupStartTime()
+
         popupBurgerSelectionContainer.visibility = View.VISIBLE
         popupSingBurgerContainer.bringToFront()
 
@@ -167,21 +216,27 @@ class ActualPracticeMainActivity : AppCompatActivity() {
               putExtra("menuItem", menuItem)
               putExtra("previous_activity", "실전 연습_버거 선택 (세트, 단품 여부)")
             }
+            // 팝업 닫힘 시간 기록 및 로그
+            logPopupDuration("실전 연습_버거 선택 (세트, 단품 여부)")
             startActivity(intent)
             popupBurgerSelectionContainer.visibility = View.GONE
         }
 
         findViewById<LinearLayout>(R.id.button_single).setOnClickListener { // 뒤로 가기가 안 됨.
+            // 팝업 닫힘 시간 기록 및 로그
+            logPopupDuration("실전 연습_버거 선택 (세트, 단품 여부)")
             popupBurgerSelectionContainer.visibility = View.GONE
-            showSingleItemPopup(menuItem)
+            showSingleItemPopup(menuItem, showModifyButton = true)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            // 팝업 닫힘 시간 기록 및 로그
+            logPopupDuration("실전 연습_버거 선택 (세트, 단품 여부)")
             popupBurgerSelectionContainer.visibility = View.GONE
         }
     }
 
-    fun showSingleItemPopup(menuItem: MenuItem) {
+    fun showSingleItemPopup(menuItem: MenuItem, showModifyButton: Boolean = false) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
         val singleImage: ImageView = findViewById(R.id.single_image)
         val singleTitle: TextView = findViewById(R.id.single_title)
@@ -193,8 +248,23 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         singleTitle.text = menuItem.name
         singlePriceCalories.text = "${menuItem.price} ${menuItem.calories}"
 
+        // 팝업 열림 시간 기록
+        recordPopupStartTime()
+
         popupSingleBurger.visibility = View.VISIBLE
         popupSingleBurger.bringToFront()
+
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_단품")
+            }
+            startActivity(intent)
+        }
 
         // 수량 변경 버튼
         findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
@@ -210,6 +280,22 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             popupSingleBurger.visibility = View.GONE
+            // 팝업 닫힘 시간 기록 및 로그
+            logPopupDuration("실전 연습_단품")
+        }
+
+        if (showModifyButton) {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.VISIBLE
+            findViewById<Button>(R.id.button_add_modify).setOnClickListener {
+                val intent = Intent(this, ActualPracticeBurgerCustomizationActivity::class.java)
+                    .apply {
+                        putExtra("menuItem", menuItem)
+                        putExtra("previous_activity", "실전 연습_단품")
+                    }
+                startActivity(intent)
+            }
+        } else {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.GONE
         }
 
         // 장바구니 추가
@@ -218,6 +304,8 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             CartManager.addItem(orderItem)
             popupSingleBurger.visibility = View.GONE
             updateOrderSummary()
+            // 팝업 닫힘 시간 기록 및 로그
+            logPopupDuration("실전 연습_단품")
             val intent = Intent(
                 this@ActualPracticeMainActivity,
                 ActualPracticeCartAddedActivity::class.java
@@ -228,6 +316,10 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             }
             startActivity(intent)
         }
+
+        // 뒤로 가기 버튼 처리
+        onBackPressedCallback.isEnabled = true
+        onBackPressedCallback.menuItemIsBurger = menuItem.name.endsWith("버거")
     }
 
     private fun updateOrderSummary() {
@@ -254,4 +346,22 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
+
+    // 팝업이 열릴 때 호출
+    private fun recordPopupStartTime(){
+        popupStartTime = System.currentTimeMillis()
+    }
+
+    // 팝업이 닫힐 때 호출
+    private fun logPopupDuration(popupName: String){
+        val popupEndTime = System.currentTimeMillis()
+        val duration = popupEndTime - popupStartTime
+
+        val params = Bundle().apply {
+            putString("screen_name", popupName) // 이것들 다 맞추기
+            putLong("screen_duration", duration)
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
 }

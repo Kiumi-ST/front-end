@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
@@ -57,6 +58,9 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         // 처음으로 버튼 클릭 시
         findViewById<Button>(R.id.buttonHome).setOnClickListener {
+            val intent = Intent(this@ActualPracticePlaceSelectionActivity, ActualPracticeOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "실전 연습_장소") }
+            startActivity(intent)
         }
 
         // 도움 기능 버튼 클릭 시
@@ -65,6 +69,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         // 영어 버튼 클릭 시
         findViewById<Button>(R.id.button_english).setOnClickListener {
+            Toast.makeText(this, "현재는 한국어만 지원합니다.", Toast.LENGTH_LONG).show()
         }
 
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

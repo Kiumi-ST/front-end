@@ -19,6 +19,18 @@
             android:name=".ProposalCartAddedActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualPracticeLanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeBurgerCustomizationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeNutritionInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticeOrderCancelActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProposalOrderActivity"
             android:exported="false" />
         <activity
@@ -35,7 +47,8 @@
             android:exported="false" />
         <activity
             android:name=".TutorialPaymentSelection"
-            android:exported="false" /> <!-- <activity -->
+            android:exported="false" />
+            <!-- <activity -->
         <!-- android:name=".TutorialCartAddedActivity" -->
         <!-- android:exported="false" /> -->
         <activity
@@ -106,7 +119,16 @@
             android:name=".ActualPracticePickup"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePayment"
+            android:name=".ActualPracticePaymentMobileGiftComplete"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePaymentMobileGift"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePaymentMobileGiftScan"
+            android:exported="false" />
+        <activity
+            android:name=".ActualPracticePaymentCard"
             android:exported="false" />
         <activity
             android:name=".ActualPracticePaymentSelection"
