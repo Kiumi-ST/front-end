@@ -57,40 +57,24 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         updateTotalPrice()
 
         findViewById<TextView>(R.id.order_more).setOnClickListener {
-<<<<<<< HEAD
-            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeMainActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_주문 내역") }
-=======
             val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeMainActivity::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
->>>>>>> 5911886e8e7836ff250042e022f96c61583cacb4
             startActivity(intent)
         }
 
         findViewById<TextView>(R.id.order_finish).setOnClickListener {
-<<<<<<< HEAD
-            val intent = Intent(this, ActualPracticePaymentSelection::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_주문 내역") }
-=======
             val intent = Intent(this, ActualPracticePaymentSelection::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
->>>>>>> 5911886e8e7836ff250042e022f96c61583cacb4
             startActivity(intent)
         }
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             PointManager.setPointEarned(true)
-<<<<<<< HEAD
-            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_주문 내역") }
+            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
 
         // 처음으로 버튼 클릭 시
         findViewById<TextView>(R.id.gotohome).setOnClickListener {
-            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_주문 내역") }
-=======
-            val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
->>>>>>> 5911886e8e7836ff250042e022f96c61583cacb4
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
         
