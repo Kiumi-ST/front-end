@@ -57,6 +57,18 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
             goToDrinkSelection()
         }
 
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this,
+                ActualPracticeNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드")
+            }
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
                 .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드") }

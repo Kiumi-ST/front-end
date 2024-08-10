@@ -254,6 +254,18 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         popupSingleBurger.visibility = View.VISIBLE
         popupSingleBurger.bringToFront()
 
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeMainActivity,
+                ActualPracticeNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_단품")
+            }
+            startActivity(intent)
+        }
+
         // 수량 변경 버튼
         findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
             if (quantity > 1) {
