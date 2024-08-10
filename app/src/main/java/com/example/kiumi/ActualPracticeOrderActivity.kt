@@ -3,6 +3,7 @@ package com.example.kiumi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -68,6 +69,12 @@ class ActualPracticeOrderActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             PointManager.setPointEarned(true)
             val intent = Intent(this@ActualPracticeOrderActivity, ActualPracticeQRSuccess::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
+            startActivity(intent)
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_주문 내역") }
             startActivity(intent)
         }
         

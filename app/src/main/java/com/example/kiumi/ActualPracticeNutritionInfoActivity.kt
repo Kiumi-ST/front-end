@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
@@ -13,9 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
-import com.google.firebase.analytics.logEvent
 
-class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
+class ActualPracticeNutritionInfoActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -23,7 +22,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_place_selection)
+        setContentView(R.layout.activity_actual_practice_nutrition_info)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
@@ -31,47 +30,36 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
-            PointManager.setPointEarned(true)
-            val intent = Intent(
-                this@ActualPracticePlaceSelectionActivity,
-                ActualPracticeQRSuccess::class.java
-            ).apply { putExtra("previous_activity", "실전 연습_장소") }
-            startActivity(intent)
+        val itemName = intent.getStringExtra("ITEM_NAME")
+        val itemImageResourceId = intent.getIntExtra("ITEM_IMAGERESID", 0)
+
+        findViewById<TextView>(R.id.menu_text).text = itemName
+        findViewById<ImageView>(R.id.menu_image).setImageResource(itemImageResourceId)
+
+        Toast.makeText(this, "해당 정보는 임의의 정보로, 정확하지 않을 수 있습니다.", Toast.LENGTH_LONG).show()
+
+        // 상세 정보 토글
+        findViewById<ImageView>(R.id.toggleButton).setOnClickListener {
+            if (findViewById<LinearLayout>(R.id.detailInfoLayout).visibility == View.GONE) {
+                findViewById<LinearLayout>(R.id.detailInfoLayout).visibility = View.VISIBLE
+                findViewById<ImageView>(R.id.toggleButton).setImageResource(R.drawable.ic_uparrow)
+            } else {
+                findViewById<LinearLayout>(R.id.detailInfoLayout).visibility = View.GONE
+                findViewById<ImageView>(R.id.toggleButton).setImageResource(R.drawable.ic_downarrow)
+            }
         }
 
-        // 매장 식사 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
-            firebaseAnalytics.logEvent("select_dining_option"){
-                param(FirebaseAnalytics.Param.CONTENT, "dine_in")
-            }
-            startActivity(Intent(this, ActualPracticeMainActivity::class.java).apply { putExtra("previous_activity", "실전 연습_장소") })
-        }
-
-        // 포장 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.button_take_out).setOnClickListener {
-            firebaseAnalytics.logEvent("select_dining_option"){
-                param(FirebaseAnalytics.Param.CONTENT, "take_out")
-            }
-            startActivity(Intent(this, ActualPracticeMainActivity::class.java).apply { putExtra("previous_activity", "실전 연습_장소") })
+        findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            finish()
         }
 
         // 처음으로 버튼 클릭 시
-        findViewById<Button>(R.id.buttonHome).setOnClickListener {
-            val intent = Intent(this@ActualPracticePlaceSelectionActivity, ActualPracticeOrderCancelActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_장소") }
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_영양정보") }
             startActivity(intent)
         }
 
-        // 도움 기능 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.linearLayoutHelp).setOnClickListener {
-        }
-
-        // 영어 버튼 클릭 시
-        findViewById<Button>(R.id.button_english).setOnClickListener {
-            Toast.makeText(this, "현재는 한국어만 지원합니다.", Toast.LENGTH_LONG).show()
-        }
-
+        // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }
 
@@ -81,7 +69,7 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity)
-                putString("screen_name", "실전 연습_장소")
+                putString("screen_name", "실전 연습_영양정보")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -103,9 +91,8 @@ class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
 
         val params = Bundle().apply {
             putLong("screen_duration", duration)
-            putString("screen_name", "실전 연습_장소")
+            putString("screen_name", "실전 연습_영양정보")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
-
 }

@@ -53,6 +53,11 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         // 언어 버튼 클릭 시
         findViewById<Button>(R.id.button_language).setOnClickListener {
+            val intent = Intent(
+                this@ActualPracticeActivity,
+                ActualPracticeLanguageActivity::class.java
+            ).apply { putExtra("previous_activity", "실전 연습_대기") }
+            startActivity(intent)
         }
 
         // 도움 버튼 클릭 시

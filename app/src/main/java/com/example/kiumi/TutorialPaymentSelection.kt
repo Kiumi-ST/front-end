@@ -19,7 +19,7 @@ class TutorialPaymentSelection : AppCompatActivity() {
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
         cardPaymentLayout.setOnClickListener {
             // ActualPracticePayment 액티비티로 이동
-            val intent = Intent(this, ActualPracticePayment::class.java)
+            val intent = Intent(this, ActualPracticePaymentCard::class.java)
             startActivity(intent)
         }
 
