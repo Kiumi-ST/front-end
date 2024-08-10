@@ -226,7 +226,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             // 팝업 닫힘 시간 기록 및 로그
             logPopupDuration("실전 연습_버거 선택 (세트, 단품 여부)")
             popupBurgerSelectionContainer.visibility = View.GONE
-            showSingleItemPopup(menuItem)
+            showSingleItemPopup(menuItem, showModifyButton = true)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
@@ -236,7 +236,7 @@ class ActualPracticeMainActivity : AppCompatActivity() {
         }
     }
 
-    fun showSingleItemPopup(menuItem: MenuItem) {
+    fun showSingleItemPopup(menuItem: MenuItem, showModifyButton: Boolean = false) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
         val singleImage: ImageView = findViewById(R.id.single_image)
         val singleTitle: TextView = findViewById(R.id.single_title)
@@ -282,6 +282,20 @@ class ActualPracticeMainActivity : AppCompatActivity() {
             popupSingleBurger.visibility = View.GONE
             // 팝업 닫힘 시간 기록 및 로그
             logPopupDuration("실전 연습_단품")
+        }
+
+        if (showModifyButton) {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.VISIBLE
+            findViewById<Button>(R.id.button_add_modify).setOnClickListener {
+                val intent = Intent(this, ActualPracticeBurgerCustomizationActivity::class.java)
+                    .apply {
+                        putExtra("menuItem", menuItem)
+                        putExtra("previous_activity", "실전 연습_단품")
+                    }
+                startActivity(intent)
+            }
+        } else {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.GONE
         }
 
         // 장바구니 추가

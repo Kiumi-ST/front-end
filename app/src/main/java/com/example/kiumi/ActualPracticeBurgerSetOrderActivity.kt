@@ -50,9 +50,21 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.burger_info).text = "${menuItem.name} \n ${menuItem.calories}"
         findViewById<TextView>(R.id.side_info).text = "${selectedSide.name} \n ${selectedSide.calories}"
         findViewById<TextView>(R.id.drink_info).text = "${selectedDrink.name} \n ${selectedDrink.calories}"
+        findViewById<ImageView>(R.id.set_burger_image).setImageResource(menuItem.imageResourceId)
+        findViewById<ImageView>(R.id.set_side_image).setImageResource(selectedSide.imageResourceId)
+        findViewById<ImageView>(R.id.set_drink_image).setImageResource(selectedDrink.imageResourceId)
         findViewById<ImageView>(R.id.burger_image).setImageResource(menuItem.imageResourceId)
         findViewById<ImageView>(R.id.side_image).setImageResource(selectedSide.imageResourceId)
         findViewById<ImageView>(R.id.drink_image).setImageResource(selectedDrink.imageResourceId)
+
+        findViewById<Button>(R.id.button_modify_burger).setOnClickListener {
+            val intent = Intent(this, ActualPracticeBurgerCustomizationActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
 
         findViewById<Button>(R.id.button_edit_side).setOnClickListener {
             val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java)
