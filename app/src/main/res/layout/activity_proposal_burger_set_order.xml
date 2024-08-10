@@ -117,6 +117,7 @@
                         <TextView
                             android:id="@+id/burger_info"
                             android:layout_width="90dp"
+                            android:padding="3dp"
                             android:layout_height="wrap_content"
                             android:text="맥스파이시® \n상하이 버거"
                             android:textSize="13dp"
@@ -176,6 +177,7 @@
                             android:id="@+id/side_info"
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
+                            android:padding="3dp"
                             android:text="후렌치 후라이 - 미디엄"
                             android:textSize="13dp"
                             android:fontFamily="@font/jamsil_bold"
@@ -235,6 +237,7 @@
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
                             android:text="코카콜라 제로 - 미디엄"
+                            android:padding="3dp"
                             android:textSize="13dp"
                             android:fontFamily="@font/jamsil_bold"
                             android:textColor="#000"

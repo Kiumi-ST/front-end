@@ -211,18 +211,19 @@
                     android:gravity="center">
 
                     <LinearLayout
-                        android:id="@+id/button_set"
-                        android:layout_width="120dp"
+                        android:id="@+id/button_side1"
+                        android:layout_width="140dp"
                         android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
                         android:padding="5dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="16dp">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/french_fries_medium"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
@@ -230,34 +231,32 @@
                             android:id="@+id/button_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="세트"
+                            android:text="후렌치 후라이"
                             android:textColor="#000"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/jamsil_bold"/>
+                            android:textSize="14dp"/>
 
                         <TextView
-                            android:id="@+id/button_set_text_price"
+                            android:id="@+id/button_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩5,900"
+                            android:text="332 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
-                            android:textSize="13dp"/>
+                            android:textSize="12sp"/>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/button_large_set"
-                        android:layout_width="120dp"
+                        android:id="@+id/button_side2"
+                        android:layout_width="140dp"
                         android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
                         android:padding="5dp">
 
                         <ImageView
-                            android:id="@+id/large_set_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/coleslaw"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
@@ -265,19 +264,18 @@
                             android:id="@+id/button_large_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="라지세트"
+                            android:text="코울슬로"
                             android:textColor="#000"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/jamsil_bold"/>
+                            android:textSize="14dp"/>
 
                         <TextView
-                            android:id="@+id/button_large_set_text_price"
+                            android:id="@+id/button_large_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩6,500"
+                            android:text="+₩200 179 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
-                            android:textSize="13dp"/>
+                            android:textSize="12sp"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

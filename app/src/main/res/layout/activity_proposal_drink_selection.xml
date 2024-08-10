@@ -208,11 +208,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:gravity="center">
+                    android:layout_marginLeft="10dp">
 
                     <LinearLayout
-                        android:id="@+id/button_set"
-                        android:layout_width="120dp"
+                        android:id="@+id/button_drink1"
+                        android:layout_width="140dp"
                         android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
@@ -222,63 +222,64 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/coca_cola"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
                         <TextView
-                            android:id="@+id/button_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="세트"
+                            android:text="코카-콜라"
                             android:textColor="#000"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/jamsil_bold"/>
-
-                        <TextView
-                            android:id="@+id/button_set_text_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₩5,900"
-                            android:textColor="#000"
-                            android:gravity="center"
-                            android:textSize="13dp"/>
+                            android:textSize="14dp"/>
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/button_large_set"
-                        android:layout_width="120dp"
+                        android:id="@+id/button_drink2"
+                        android:layout_width="140dp"
                         android:layout_height="150dp"
                         android:orientation="vertical"
                         android:background="@drawable/button_background"
                         android:padding="5dp">
 
                         <ImageView
-                            android:id="@+id/large_set_image"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/ic_burger_set"
+                            android:src="@drawable/sprite"
                             android:layout_gravity="center"
                             android:paddingBottom="8dp"/>
 
                         <TextView
-                            android:id="@+id/button_large_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="라지세트"
+                            android:text="스프라이트"
                             android:textColor="#000"
-                            android:textSize="14dp"
-                            android:fontFamily="@font/jamsil_bold"/>
-
-                        <TextView
-                            android:id="@+id/button_large_set_text_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="₩6,500"
-                            android:textColor="#000"
-                            android:gravity="center"
-                            android:textSize="13dp"/>
+                            android:textSize="14dp"/>
                     </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/button_drink3"
+                    android:layout_width="140dp"
+                    android:layout_height="150dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/button_background"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/coca_cola"
+                        android:layout_gravity="center"
+                        android:paddingBottom="8dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="코카 콜라 제로"
+                        android:textColor="#000"
+                        android:textSize="14dp"/>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

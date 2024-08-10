@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    tools:context=".ActualPracticeSideMenuSelectionActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- 상단 로고 및 타이틀 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_mcdonalds_logo" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="맥스파이시® 상하이 버거 - 세트"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:paddingStart="8dp" />
+
+                <TextView
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₩5,900 494 Kcal"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:paddingStart="8dp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+            <Button
+                android:id="@+id/button_nutrition_info"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
+                android:textSize="10dp"
+                android:text="영양정보"
+                android:layout_gravity="center"
+                android:background="@drawable/button_background"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/title"
+            android:layout_marginTop="10dp">
+
+            <!-- 좌측 진행 상황 -->
+            <LinearLayout
+                android:layout_width="95dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="start">
+
+                <LinearLayout
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_background"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/ic_circle_check" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="맥스파이시® 상하이 버거-세트"
+                        android:textSize="10sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/button_background"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="3dp"
+                        android:background="#FFC107" />
+
+                    <ImageView
+                        android:layout_marginRight="4dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/ic_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="세트메뉴 사이드를 선택하세요"
+                        android:textSize="10sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/button_background">
+
+                    <ImageView
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/ic_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="세트메뉴 음료를 선택하세요"
+                        android:textSize="10sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="95dp"
+                    android:layout_height="35dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/button_background">
+
+                    <ImageView
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_width="13dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/ic_circle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="주문 확인하기"
+                        android:textSize="10sp"
+                        android:textColor="#000" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="575dp"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/title3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="세트메뉴 사이드를 선택하세요"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:paddingStart="10dp"
+                    android:layout_marginBottom="10dp"/>
+                <!-- 세트 / 라지세트 선택 버튼 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:id="@+id/button_set"
+                        android:layout_width="140dp"
+                        android:layout_height="170dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/blinking_border_animation"
+                        android:padding="5dp"
+                        android:layout_marginRight="16dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_burger_set"
+                            android:layout_gravity="center"
+                            android:paddingBottom="8dp"/>
+
+                        <TextView
+                            android:id="@+id/button_set_text_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="맥스파이시® 상하이 버거 - 세트"
+                            android:textColor="#000"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/button_set_text_price_calories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₩5,900 494 Kcal"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/button_large_set"
+                        android:layout_width="140dp"
+                        android:layout_height="170dp"
+                        android:orientation="vertical"
+                        android:background="@drawable/button_background"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/large_set_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_burger_set"
+                            android:layout_gravity="center"
+                            android:paddingBottom="8dp"/>
+
+                        <TextView
+                            android:id="@+id/button_large_set_text_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="맥스파이시® 상하이 버거 - 라지세트"
+                            android:textColor="#000"
+                            android:textSize="12sp"/>
+
+                        <TextView
+                            android:id="@+id/button_large_set_text_price_calories"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₩6,500 494 Kcal"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <Button
+                    android:id="@+id/button_cancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="취소"
+                    android:textColor="#000"
+                    android:background="@drawable/button_background"
+                    android:layout_marginHorizontal="10dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+        <!-- 하단 버튼 영역 -->
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/gotohome"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="처음으로"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:background="@drawable/button_background_gray"
+                android:textColor="@color/black"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp" />
+
+            <TextView
+                android:id="@+id/help"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_weight="1"
+                android:text="도움 기능"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:drawableLeft="@drawable/help_icon"
+                android:background="@drawable/button_background_gray"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는\n다를 수 있습니다. 요청시 추가 영양정보를 제공해 드립니다."
+            android:textSize="8dp"
+            android:textColor="@color/black"
+            android:layout_marginVertical="8dp"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+</RelativeLayout>

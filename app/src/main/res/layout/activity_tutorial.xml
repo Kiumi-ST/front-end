@@ -1,9 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TutorialActivity">
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context=".ActualPracticeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/top_image"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/practice_banner" />
+
+    <ImageView
+        android:id="@+id/center_image"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/practice_home" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:background="@color/yellow">
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="*매장에 따라 해피 스낵 할인 제품 및 제품별 판매 시간 상이\n*카카오 선물하기, 모바일 상품권 사용 가능(무료 쿠폰 사용은 카운터에서 문의해주세요)\n*현금 결제는 카운터에서만 가능 Plaese pay at Front Counter for Cash"
+            android:textColor="#000"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+    <!-- 하단 버튼 영역 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingTop="90dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/button_points"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_weight="2"
+                android:background="@color/yellow"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:text="포인트를 적립하세요"
+                    android:textColor="#000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="결제 전 선택 필수"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="10dp"
+                    android:src="@drawable/ic_qr" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:paddingTop="8dp"
+                    android:src="@drawable/ic_downarrow" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="bottom"
+                android:orientation="vertical"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="16dp">
+
+                <Button
+                    android:id="@+id/button_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/blinking_border_animation"
+                    android:paddingBottom="10dp"
+                    android:text="주문하기"
+                    android:textColor="#000" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/button_language"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="8dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_background"
+                        android:drawableLeft="@drawable/ic_language"
+                        android:drawablePadding="4dp"
+                        android:text="언어"
+                        android:textColor="#000" />
+
+                    <Button
+                        android:id="@+id/button_help"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_background"
+                        android:drawableStart="@drawable/ic_disabled"
+                        android:drawablePadding="0dp"
+                        android:layoutDirection="ltr"
+                        android:text="도움 기능"
+                        android:textColor="#000" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/instruction_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="일일 영양 권장량은 보통 2,000 칼로리이지만 필요한 칼로리는 다를 수 있습니다. 요청 시 추가 영양정보를 제공해 드립니다."
+                    android:textColor="#000"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

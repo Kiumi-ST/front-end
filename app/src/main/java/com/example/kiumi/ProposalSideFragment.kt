@@ -49,7 +49,7 @@ class ProposalSideFragment : Fragment() {
             )
 
         val adapter = ProposalMenuAdapter(menuItems) { menuItem ->
-            (activity as? ProposalMainActivity)?.showSideSelectionPopup(menuItem)
+            (activity as? ProposalMainActivity)?.showSingleItemPopup(menuItem)
         }
         recyclerView.adapter = adapter
 
