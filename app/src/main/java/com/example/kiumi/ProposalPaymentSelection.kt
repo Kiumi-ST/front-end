@@ -35,7 +35,7 @@ class ProposalPaymentSelection : AppCompatActivity() {
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
         cardPaymentLayout.setOnClickListener {
             // ActualPracticePayment 액티비티로 이동
-            val intent = Intent(this, ActualPracticePayment::class.java).apply { putExtra("previous_activity", "개선안_결제 방법") }
+            val intent = Intent(this, ActualPracticePaymentCard::class.java).apply { putExtra("previous_activity", "개선안_결제 방법") }
             startActivity(intent)
         }
 

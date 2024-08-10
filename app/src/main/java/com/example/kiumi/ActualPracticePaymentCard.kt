@@ -13,12 +13,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kiumi.ActualPracticePickup
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticePayment : AppCompatActivity() {
+class ActualPracticePaymentCard : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var previousActivity: String? = null
 
@@ -32,7 +31,7 @@ class ActualPracticePayment : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_payment)
+        setContentView(R.layout.activity_actual_practice_payment_card)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics

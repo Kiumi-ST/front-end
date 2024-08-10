@@ -39,18 +39,16 @@ class ActualPracticePaymentSelection : AppCompatActivity() {
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
         cardPaymentLayout.setOnClickListener {
             // ActualPracticePayment 액티비티로 이동
-            val intent = Intent(this, ActualPracticePayment::class.java).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
+            val intent = Intent(this, ActualPracticePaymentCard::class.java).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
             startActivity(intent)
         }
 
         // 모바일 상품권에 클릭 리스너 추가
         val giftCardLayout: LinearLayout = findViewById(R.id.linearLayoutGiftCard)
         giftCardLayout.setOnClickListener {
-            // 이전 단계 액티비티로 이동 (변경 필요)
-            // val intent = Intent(this, PreviousActivity::class.java)
-            // startActivity(intent).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "모바일 상품권으로 이동", Toast.LENGTH_SHORT).show()
+            // ActualPracticePaymentMobileGiftScan 액티비티로 이동
+            val intent = Intent(this, ActualPracticePaymentMobileGiftScan::class.java).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
+            startActivity(intent)
         }
 
         // 이전 단계 버튼에 클릭 리스너 추가
