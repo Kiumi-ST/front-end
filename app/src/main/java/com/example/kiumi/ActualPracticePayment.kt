@@ -22,6 +22,14 @@ class ActualPracticePayment : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var previousActivity: String? = null
 
+    // Handler와 Runnable을 클래스 변수로 정의
+    private val handler = Handler(Looper.getMainLooper())
+    private val navigateRunnable = Runnable {
+        val intent = Intent(this, ActualPracticePickup::class.java).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
+        startActivity(intent)
+        finish()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actual_practice_payment)
@@ -38,11 +46,7 @@ class ActualPracticePayment : AppCompatActivity() {
         instructionsTextView.text = Html.fromHtml(getString(R.string.instructions_text), Html.FROM_HTML_MODE_LEGACY)
 
         // 5초 후에 다음 액티비티로 이동
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, ActualPracticePickup::class.java)
-            startActivity(intent)
-            finish()
-        }, 5000) // 5000ms = 5초
+        handler.postDelayed(navigateRunnable, 5000) // 5000ms = 5초
 
         // 첫 번째 ImageView의 애니메이션 설정 (아래로 먼저 이동 및 회전)
         val imageViewCard1 = findViewById<ImageView>(R.id.imageViewCard1)
@@ -96,6 +100,9 @@ class ActualPracticePayment : AppCompatActivity() {
                 putString("screen_name", "실전 연습_카드 결제")
             }
             firebaseAnalytics.logEvent("go_back", params)
+
+            // 예약된 5초 후 이동 작업을 취소
+            handler.removeCallbacks(navigateRunnable)
 
             // 실제로 뒤로 가기 동작을 수행하도록 추가
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행

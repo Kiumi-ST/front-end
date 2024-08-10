@@ -1,9 +1,11 @@
 package com.example.kiumi
 
+import android.app.Dialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,6 +31,9 @@ class OrderSummaryDialogFragment : DialogFragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private var startTime: Long = 0
+    private var endTime: Long = 0
 
     private lateinit var adapter: MenuAdapter
     private lateinit var firebaseAnalytics: FirebaseAnalytics
@@ -66,6 +71,8 @@ class OrderSummaryDialogFragment : DialogFragment() {
         }
         recyclerView.adapter = adapter
 
+        startTime = System.currentTimeMillis()
+
         //선택안함 버튼 클릭 시
         val confirmButton: Button = view.findViewById(R.id.confirm_button)
         confirmButton.setOnClickListener {
@@ -79,14 +86,47 @@ class OrderSummaryDialogFragment : DialogFragment() {
         return view
     }
 
-    override fun onDismiss(dialog: DialogInterface) {
-        super.onDismiss(dialog)
-        // 뒤로 가기 또는 다이얼로그 종료 시 이벤트 로깅
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+
+        dialog.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
+                // 뒤로 가기 버튼이 눌렸을 때 처리
+                onBackPressed()
+                true
+            } else {
+                false
+            }
+        }
+
+        return dialog
+    }
+
+    private fun onBackPressed() {
+
         val params = Bundle().apply {
-            putString("previous_screen_name", "실전 연습_메인") // 이전 화면 이름
-            putString("screen_name", "실전 연습_주문 내역 클릭 시") // 현재 화면 이름
+            putString("previous_screen_name", "실전 연습_메인")
+            putString("screen_name", "실전 연습_주문 내역 클릭 시")
         }
         firebaseAnalytics.logEvent("go_back", params)
+
+        dismiss() // 팝업 닫기
+    }
+
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+
+        // 다이얼로그 종료 시 이벤트 로깅
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        // 팝업 닫힐 때 체류 시간을 로깅
+        val params = Bundle().apply {
+            putString("screen_name", "실전 연습_주문 내역 클릭 시")
+            putLong("screen_duration", duration)
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
     }
 
     companion object {
