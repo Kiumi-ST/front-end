@@ -65,7 +65,6 @@ class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
             goToBurgerSetOrder()
         }
 
-
         findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
             val intent = Intent(
                 this,
@@ -76,6 +75,10 @@ class ActualPracticeDrinkSelectionActivity : AppCompatActivity() {
                 putExtra("previous_activity", "실전 연습_버거 선택-세트 음료")
             }
             startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_back).setOnClickListener {
+            finish()
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {

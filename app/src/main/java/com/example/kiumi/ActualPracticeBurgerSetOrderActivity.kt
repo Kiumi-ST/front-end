@@ -54,6 +54,28 @@ class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.side_image).setImageResource(selectedSide.imageResourceId)
         findViewById<ImageView>(R.id.drink_image).setImageResource(selectedDrink.imageResourceId)
 
+        findViewById<Button>(R.id.button_edit_side).setOnClickListener {
+            val intent = Intent(this, ActualPracticeSideMenuSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedDrink", selectedDrink)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_edit_drink).setOnClickListener {
+            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedSide", selectedSide)
+                    putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
             val orderItem = OrderItem(menuItem, quantity, true, isLargeSet, selectedSide.name, selectedDrink.name, totalPrice.toString(), totalCalories.toString())
             CartManager.addItem(orderItem)

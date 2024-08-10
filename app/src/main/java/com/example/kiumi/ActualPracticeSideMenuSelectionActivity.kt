@@ -69,6 +69,10 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        findViewById<Button>(R.id.button_back).setOnClickListener {
+            finish()
+        }
+
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ActualPracticeMainActivity::class.java)
                 .apply { putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드") }
@@ -120,12 +124,23 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
     }
 
     private fun goToDrinkSelection() {
-        val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java).apply {
-            putExtra("menuItem", menuItem)
-            putExtra("isLargeSet", isLargeSet)
-            putExtra("selectedSide", selectedSide)
-            putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드")
+        if (previousActivity == "실전 연습_버거 선택-세트 확인") {
+            val intent = Intent(this, ActualPracticeBurgerSetOrderActivity::class.java).apply {
+                putExtra("menuItem", menuItem)
+                putExtra("isLargeSet", isLargeSet)
+                putExtra("selectedSide", selectedSide)
+                putExtra("selectedDrink", intent.getParcelableExtra<MenuItem>("selectedDrink"))
+                putExtra("previous_activity", "실전 연습_버거 선택-세트 확인")
+            }
+            startActivity(intent)
+        } else {
+            val intent = Intent(this, ActualPracticeDrinkSelectionActivity::class.java).apply {
+                putExtra("menuItem", menuItem)
+                putExtra("isLargeSet", isLargeSet)
+                putExtra("selectedSide", selectedSide)
+                putExtra("previous_activity", "실전 연습_버거 선택-세트 사이드")
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
 }
