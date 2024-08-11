@@ -1,5 +1,7 @@
 package com.example.kiumi
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.AnimationDrawable
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MenuTutorialAdapter(
     private var menuItems: List<MenuItem>,
-    private val onItemClick: (MenuItem) -> Unit
+    private val onItemClick: (MenuItem) -> Unit,
+    private val context: Context  // Context를 받아서 SharedPreferences에 접근할 수 있게 합니다.
 ) : RecyclerView.Adapter<MenuTutorialAdapter.MenuViewHolder>() {
+
+    private val preferences: SharedPreferences = context.getSharedPreferences("com.example.kiumi.PREFERENCES", Context.MODE_PRIVATE)
 
     inner class MenuViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.image)
@@ -24,7 +29,10 @@ class MenuTutorialAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    onItemClick(menuItems[position])
+                    val menuItem = menuItems[position]
+                    if (menuItem.name == "창녕 갈릭 버거") {
+                        onItemClick(menuItem)  // "창녕 갈릭 버거"인 경우에만 클릭 이벤트 처리
+                    }
                 }
             }
         }
@@ -43,12 +51,18 @@ class MenuTutorialAdapter(
         holder.calories.text = menuItem.calories
         holder.newLabel.visibility = if (menuItem.isNew) View.VISIBLE else View.GONE
 
-        // 배경 설정
+        // SharedPreferences에서 상태를 확인하여 배경 설정
+        val isBurgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
+
         if (menuItem.name == "창녕 갈릭 버거") {
-            holder.itemView.setBackgroundResource(R.drawable.blinking_border_animation)
-            val background = holder.itemView.background
-            if (background is AnimationDrawable) {
-                (background as AnimationDrawable).start()
+            if (isBurgerSetClicked) {
+                holder.itemView.setBackgroundResource(R.drawable.item_background)
+            } else {
+                holder.itemView.setBackgroundResource(R.drawable.blinking_border_animation)
+                val background = holder.itemView.background
+                if (background is AnimationDrawable) {
+                    (background as AnimationDrawable).start()
+                }
             }
         } else {
             holder.itemView.setBackgroundResource(R.drawable.item_background)

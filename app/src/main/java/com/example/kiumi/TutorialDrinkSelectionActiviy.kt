@@ -20,8 +20,6 @@ class TutorialDrinkSelectionActiviy : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
-            val intent = Intent(this, TutorialBurgerSetOrderActivity::class.java)
-            startActivity(intent)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {

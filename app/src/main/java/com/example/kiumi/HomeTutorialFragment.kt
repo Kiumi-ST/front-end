@@ -1,5 +1,7 @@
 package com.example.kiumi
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,33 +14,30 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class HomeTutorialFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var preferences: SharedPreferences
+    private lateinit var burgerSetButton2: TextView
+    private lateinit var drinksButton2: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        preferences = activity?.getSharedPreferences("com.example.kiumi.PREFERENCES", Context.MODE_PRIVATE)!!
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home_tutorial, container, false)
 
-        // TextView에 애니메이션 설정
-        val burgerSetButton2: TextView = view.findViewById(R.id.burger_set_2)
-        burgerSetButton2.setBackgroundResource(R.drawable.blinking_border_animation)
-        val animationDrawable = burgerSetButton2.background as AnimationDrawable
-        animationDrawable.start()
+        // View 초기화
+        burgerSetButton2 = view.findViewById(R.id.burger_set_2)
+        drinksButton2 = view.findViewById(R.id.drinks_2)
 
-        val drinksButton2: TextView = view.findViewById(R.id.drinks_2)
-
+        // 버튼 상태 설정 및 클릭 리스너 설정
         burgerSetButton2.setOnClickListener {
+            // 프래그먼트를 BurgerTutorialFragment로 교체
             (activity as TutorialMainActivity).replaceFragment(BurgerTutorialFragment())
         }
 
@@ -46,8 +45,28 @@ class HomeTutorialFragment : Fragment() {
             (activity as TutorialMainActivity).replaceFragment(DrinkFragment())
         }
 
+        // 초기 버튼 상태 설정
+        updateBurgerSetButtonState()
+
         return view
     }
+
+    override fun onResume() {
+        super.onResume()
+        updateBurgerSetButtonState()
+    }
+
+    private fun updateBurgerSetButtonState() {
+        val burgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
+        if (burgerSetClicked) {
+            burgerSetButton2.setBackgroundResource(R.drawable.button_background_gray)
+        } else {
+            burgerSetButton2.setBackgroundResource(R.drawable.blinking_border_animation)
+            val animationDrawable = burgerSetButton2.background as AnimationDrawable
+            animationDrawable.start()
+        }
+    }
+
 
     companion object {
         @JvmStatic
