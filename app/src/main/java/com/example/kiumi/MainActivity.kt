@@ -30,11 +30,21 @@ class MainActivity : AppCompatActivity() {
         val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
         isTTSActive = sharedPref.getBoolean("isTTSActive", false)
 
+        val toggleButton = findViewById<ToggleButton>(R.id.toggleButton)
+        toggleButton.isChecked = isTTSActive
+
+        toggleButton.setOnClickListener {
+            isTTSActive = (it as ToggleButton).isChecked
+            with(sharedPref.edit()) {
+                putBoolean("isTTSActive", isTTSActive)
+                apply()
+            }
+        }
+
         firebaseAnalytics = Firebase.analytics
 
         // Initialize toggle button state
-        val toggleButton = findViewById<ToggleButton>(R.id.toggleButton)
-        toggleButton.isChecked = isTTSActive
+
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -74,13 +84,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SurveyActivity::class.java))
         }
 
-        toggleButton.setOnClickListener {
-            isTTSActive = (it as ToggleButton).isChecked
-            with(sharedPref.edit()) {
-                putBoolean("isTTSActive", isTTSActive)
-                apply()
-            }
-        }
+
+
 
         Log.d(MainActivity::class.simpleName,"패키지명: $packageName");
     }

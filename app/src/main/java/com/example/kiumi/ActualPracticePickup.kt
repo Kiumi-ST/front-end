@@ -37,7 +37,6 @@ class ActualPracticePickup : AppCompatActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        Toast.makeText(this, "5초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
 
         // 5초 후에 다음 액티비티로 이동
         handler.postDelayed(navigateRunnable, 5000) // 5000ms = 5초

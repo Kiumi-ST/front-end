@@ -39,8 +39,6 @@ class ActualPracticePaymentCard : AppCompatActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        Toast.makeText(this, "5초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
-
         val instructionsTextView = findViewById<TextView>(R.id.textViewInstructions)
         instructionsTextView.text = Html.fromHtml(getString(R.string.instructions_text), Html.FROM_HTML_MODE_LEGACY)
 

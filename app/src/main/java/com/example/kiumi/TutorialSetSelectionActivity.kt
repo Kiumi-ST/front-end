@@ -14,15 +14,12 @@ class TutorialSetSelectionActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_tutorial_set_selection)
 
-
         findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
             val intent = Intent(this, TutorialSideMenuSelectionActivity::class.java)
             startActivity(intent)
         }
 
         findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
-            val intent = Intent(this, TutorialSideMenuSelectionActivity::class.java)
-            startActivity(intent)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {

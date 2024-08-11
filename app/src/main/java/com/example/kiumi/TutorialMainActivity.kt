@@ -1,6 +1,7 @@
 package com.example.kiumi
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
@@ -27,11 +28,17 @@ class TutorialMainActivity : AppCompatActivity() {
     private lateinit var burgerIndicator: View
     private lateinit var sideIndicator: View
     private lateinit var drinkIndicator: View
+    private lateinit var orderHistoryTextView: TextView
+    private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorialMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        // SharedPreferences 초기화
+        preferences = getSharedPreferences("com.example.kiumi.PREFERENCES", MODE_PRIVATE)
 
         home = findViewById(R.id.home)
         burger = findViewById(R.id.burger)
@@ -48,6 +55,8 @@ class TutorialMainActivity : AppCompatActivity() {
         sideIndicator = findViewById(R.id.side_indicator)
         drinkIndicator = findViewById(R.id.drink_indicator)
 
+        orderHistoryTextView = findViewById(R.id.order_history)
+
         setMenuClickListener(home, homeText, homeIndicator, HomeTutorialFragment())
         setMenuClickListener(burger, burgerText, burgerIndicator, BurgerTutorialFragment())
         setMenuClickListener(side, sideText, sideIndicator, SideFragment())
@@ -59,14 +68,21 @@ class TutorialMainActivity : AppCompatActivity() {
 
         // QR 코드 버튼 초기화
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
-            val intent = Intent(this@TutorialMainActivity, ActualPracticeQRSuccess::class.java)
-            startActivity(intent)
         }
 
         // 주문 내역 버튼 클릭 시 팝업 호출
         findViewById<TextView>(R.id.order_history).setOnClickListener {
             OrderSummaryDialogTutorialFragment().show(supportFragmentManager, "OrderSummaryDialogTutorial")
         }
+
+        // 주문 내역 버튼 초기 배경 설정
+        updateOrderHistoryButtonState()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        updateOrderHistoryButtonState()
     }
 
     private fun setMenuClickListener(menu: LinearLayout, menuText: TextView, menuIndicator: View, fragment: Fragment) {
@@ -100,6 +116,18 @@ class TutorialMainActivity : AppCompatActivity() {
             .commit()
     }
 
+    private fun updateOrderHistoryButtonState() {
+        val burgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
+        if (burgerSetClicked) {
+            orderHistoryTextView.setBackgroundResource(R.drawable.blinking_border_animation)
+            val orderHistoryAnimation = orderHistoryTextView.background as AnimationDrawable
+            orderHistoryAnimation.start()
+        } else {
+            orderHistoryTextView.setBackgroundResource(R.drawable.button_background_gray)
+        }
+    }
+
+
     fun showBurgerSelectionPopup(menuItem: MenuItem) {
         val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
         val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
@@ -110,7 +138,6 @@ class TutorialMainActivity : AppCompatActivity() {
         popupBurgerSelectionContainer.visibility = View.VISIBLE
         popupSingBurgerContainer.bringToFront()
 
-        // 애니메이션 설정
         val takeOutLayout: LinearLayout = findViewById(R.id.button_set)
         takeOutLayout.setBackgroundResource(R.drawable.blinking_border_animation)
         val animationDrawable = takeOutLayout.background as AnimationDrawable
@@ -126,17 +153,16 @@ class TutorialMainActivity : AppCompatActivity() {
             popupBurgerSelectionContainer.visibility = View.GONE
         }
 
+        // button_single 클릭 리스너 설정 (비활성화)
         findViewById<LinearLayout>(R.id.button_single).setOnClickListener {
-            popupSingBurgerContainer.visibility = View.VISIBLE
-            popupSingBurgerContainer.bringToFront()
-            popupBurgerSelectionContainer.visibility = View.GONE
+            // 이 버튼은 클릭해도 아무런 동작을 하지 않도록 합니다.
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             popupBurgerSelectionContainer.visibility = View.GONE
         }
 
-        // 단품 팝업
+        // 단품 팝업의 다른 설정은 그대로 유지
         // 수량 변경 버튼
         findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
             if (quantity > 1) {
@@ -157,8 +183,10 @@ class TutorialMainActivity : AppCompatActivity() {
             )
             startActivity(intent)
             popupSingBurgerContainer.visibility = View.GONE
+
         }
     }
+
 
     fun showDrinkSelectionPopup(menuItem: MenuItem) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
@@ -187,6 +215,7 @@ class TutorialMainActivity : AppCompatActivity() {
                 TutorialMainActivity::class.java
             )
             startActivity(intent)
+
         }
     }
 
@@ -217,6 +246,7 @@ class TutorialMainActivity : AppCompatActivity() {
                 TutorialMainActivity::class.java
             )
             startActivity(intent)
+
         }
     }
 }

@@ -8,23 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderSummaryDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class OrderSummaryDialogTutorialFragment : DialogFragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -48,19 +40,19 @@ class OrderSummaryDialogTutorialFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_order_summary_dialog_tutorial, container, false)
 
-        //리사이클러 뷰
+        // 리사이클러 뷰 설정
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        adapter = MenuAdapter(menuItems){ menuItem ->
-            (activity as? TutorialMainActivity)?.showSideSelectionPopup(menuItem)
+        // 클릭 이벤트를 빈 리스너로 설정
+        adapter = MenuAdapter(menuItems) {
+            // 클릭해도 아무런 동작이 없도록 설정
         }
         recyclerView.adapter = adapter
 
-        //선택안함 버튼 클릭 시
+        // 선택안함 버튼 클릭 시
         val confirmButton: Button = view.findViewById(R.id.confirm_button)
         confirmButton.setOnClickListener {
             val intent = Intent(activity, TutorialOrderActivity::class.java)
@@ -74,20 +66,10 @@ class OrderSummaryDialogTutorialFragment : DialogFragment() {
         val animationDrawable = confirmButtonAnimation.background as AnimationDrawable
         animationDrawable.start()
 
-        // Inflate the layout for this fragment
         return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrderSummaryDialogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             OrderSummaryDialogTutorialFragment().apply {
