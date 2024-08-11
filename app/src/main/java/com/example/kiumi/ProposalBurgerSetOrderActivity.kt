@@ -101,4 +101,21 @@ class ProposalBurgerSetOrderActivity : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "개선안_버거 선택-세트 확인")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
 }

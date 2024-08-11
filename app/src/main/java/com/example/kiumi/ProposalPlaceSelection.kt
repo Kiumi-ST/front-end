@@ -40,17 +40,12 @@ class ProposalPlaceSelection : AppCompatActivity() {
         
         // 매장 식사 버튼 클릭 시
         findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
-            firebaseAnalytics.logEvent("select_dining_option"){
-                param(FirebaseAnalytics.Param.CONTENT, "dine_in")
-            }
-            startActivity(Intent(this, ProposalMainActivity::class.java))
+            startActivity(Intent(this, ProposalMainActivity::class.java).apply { putExtra("previous_activity", "개선안_장소") })
         }
 
         // 포장 버튼 클릭 시
         findViewById<LinearLayout>(R.id.button_take_out).setOnClickListener {
-            firebaseAnalytics.logEvent("select_dining_option"){
-                param(FirebaseAnalytics.Param.CONTENT, "take_out")
-            }
+            startActivity(Intent(this, ProposalMainActivity::class.java).apply { putExtra("previous_activity", "개선안_장소") })
         }
 
         // 처음으로 버튼 클릭 시

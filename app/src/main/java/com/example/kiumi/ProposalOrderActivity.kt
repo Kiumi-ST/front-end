@@ -57,19 +57,19 @@ class ProposalOrderActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.order_more).setOnClickListener {
             val intent =
-                Intent(this@ProposalOrderActivity, ProposalMainActivity::class.java)
+                Intent(this@ProposalOrderActivity, ProposalMainActivity::class.java).apply { putExtra("previous_activity", "개선안_주문 내역") }
             startActivity(intent)
         }
 
         findViewById<TextView>(R.id.order_finish).setOnClickListener {
-            val intent = Intent(this, ProposalPaymentSelection::class.java)
+            val intent = Intent(this, ProposalPaymentSelection::class.java).apply { putExtra("previous_activity", "개선안_주문 내역") }
             startActivity(intent)
         }
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             PointManager.setPointEarned(true)
             val intent =
-                Intent(this@ProposalOrderActivity, ProposalQRSuccess::class.java)
+                Intent(this@ProposalOrderActivity, ProposalQRSuccess::class.java).apply { putExtra("previous_activity", "개선안_주문 내역") }
             startActivity(intent)
         }
 
@@ -103,5 +103,22 @@ class ProposalOrderActivity : AppCompatActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        startTime = System.currentTimeMillis()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        endTime = System.currentTimeMillis()
+        val duration = endTime - startTime
+
+        val params = Bundle().apply {
+            putLong("screen_duration", duration)
+            putString("screen_name", "개선안_주문 내역")
+        }
+        firebaseAnalytics.logEvent("screen_view_duration", params)
     }
 }
