@@ -14,12 +14,20 @@ class TutorialDrinkSelectionActiviy : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_tutorial_drink_selection_activiy)
 
-        findViewById<LinearLayout>(R.id.button_set).setOnClickListener {
+        findViewById<LinearLayout>(R.id.button_drink1).setOnClickListener {
             val intent = Intent(this, TutorialBurgerSetOrderActivity::class.java)
             startActivity(intent)
         }
 
-        findViewById<LinearLayout>(R.id.button_large_set).setOnClickListener {
+        findViewById<LinearLayout>(R.id.button_drink2).setOnClickListener {
+        }
+
+        findViewById<LinearLayout>(R.id.button_drink3).setOnClickListener {
+        }
+
+        findViewById<Button>(R.id.button_back).setOnClickListener {
+            val intent = Intent(this, TutorialSideMenuSelectionActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
@@ -28,7 +36,7 @@ class TutorialDrinkSelectionActiviy : AppCompatActivity() {
         }
 
         // LinearLayout에 애니메이션 설정
-        val takeOutLayout: LinearLayout = findViewById(R.id.button_set)
+        val takeOutLayout: LinearLayout = findViewById(R.id.button_drink1)
         takeOutLayout.setBackgroundResource(R.drawable.blinking_border_animation)
         val animationDrawable = takeOutLayout.background as AnimationDrawable
         animationDrawable.start()

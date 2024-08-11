@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".TutorialCartAddedActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProposalCartAddedActivity"
             android:exported="false" />
         <activity
@@ -47,8 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".TutorialPaymentSelection"
-            android:exported="false" />
-            <!-- <activity -->
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".TutorialCartAddedActivity" -->
         <!-- android:exported="false" /> -->
         <activity

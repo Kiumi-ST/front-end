@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
 class MenuTutorialAdapter(
     private var menuItems: List<MenuItem>,
     private val onItemClick: (MenuItem) -> Unit,
@@ -30,8 +29,11 @@ class MenuTutorialAdapter(
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     val menuItem = menuItems[position]
-                    if (menuItem.name == "창녕 갈릭 버거") {
-                        onItemClick(menuItem)  // "창녕 갈릭 버거"인 경우에만 클릭 이벤트 처리
+                    val isBurgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
+
+                    // "창녕 갈릭 버거"이고 burger_set_clicked가 false일 때만 클릭 이벤트 처리
+                    if (menuItem.name == "창녕 갈릭 버거" && !isBurgerSetClicked) {
+                        onItemClick(menuItem)
                     }
                 }
             }
@@ -61,7 +63,7 @@ class MenuTutorialAdapter(
                 holder.itemView.setBackgroundResource(R.drawable.blinking_border_animation)
                 val background = holder.itemView.background
                 if (background is AnimationDrawable) {
-                    (background as AnimationDrawable).start()
+                    background.start()
                 }
             }
         } else {

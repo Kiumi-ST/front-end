@@ -93,7 +93,7 @@
                     android:id="@+id/take_out_image"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_burger_single"
+                    android:src="@drawable/changneung_gallic_burger"
                     android:layout_gravity="center"
                     android:paddingTop="8dp"
                     android:layout_margin="8dp"
@@ -107,7 +107,7 @@
                     android:id="@+id/burger_price_calorie"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="가격 칼로리"
+                    android:text="￦6,600 674 Kcal"
                     android:textColor="#000" />
             </LinearLayout>
         </LinearLayout>

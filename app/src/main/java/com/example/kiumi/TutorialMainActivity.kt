@@ -118,14 +118,25 @@ class TutorialMainActivity : AppCompatActivity() {
 
     private fun updateOrderHistoryButtonState() {
         val burgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
+
+        // TextView 참조 가져오기
+        val priceTextView: TextView = findViewById(R.id.price)
+
         if (burgerSetClicked) {
             orderHistoryTextView.setBackgroundResource(R.drawable.blinking_border_animation)
             val orderHistoryAnimation = orderHistoryTextView.background as AnimationDrawable
             orderHistoryAnimation.start()
+
+            // burgerSetClicked가 true이면 텍스트를 ₩8600으로 변경
+            priceTextView.text = "₩8600"
         } else {
             orderHistoryTextView.setBackgroundResource(R.drawable.button_background_gray)
+
+            // burgerSetClicked가 false이면 텍스트를 ₩0으로 초기화
+            priceTextView.text = "₩0"
         }
     }
+
 
 
     fun showBurgerSelectionPopup(menuItem: MenuItem) {

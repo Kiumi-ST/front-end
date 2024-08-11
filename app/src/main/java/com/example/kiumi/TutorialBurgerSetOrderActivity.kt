@@ -5,14 +5,13 @@ import android.content.SharedPreferences
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 
 class TutorialBurgerSetOrderActivity : AppCompatActivity() {
 
-    private var quantity = 1
+    //private var quantity = 1
     private lateinit var preferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +27,7 @@ class TutorialBurgerSetOrderActivity : AppCompatActivity() {
             // burger_set_clicked 상태를 true로 저장
             preferences.edit().putBoolean("burger_set_clicked", true).apply()
 
-            // TutorialMainActivity로 이동
-            val intent = Intent(this, TutorialMainActivity::class.java)
+            val intent = Intent(this, TutorialCartAddedActivity::class.java)
             startActivity(intent)
         }
 
