@@ -1,26 +1,28 @@
 package com.example.kiumi
 
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.speech.tts.TextToSpeech
+import android.util.Log
+import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.fragment.app.DialogFragment
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import java.util.*
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-class OrderSummaryDialogTutorialFragment : DialogFragment() {
-
-    private var param1: String? = null
-    private var param2: String? = null
+class OrderSummaryDialogTutorialFragment : DialogFragment(), TextToSpeech.OnInitListener {
 
     private lateinit var adapter: MenuAdapter
+    private lateinit var tts: TextToSpeech
+    private var isTTSActive: Boolean = false
+
     val menuItems = listOf(
         MenuItem("후렌치 후라이 - 미디엄", " ", "332 Kcal", R.drawable.french_fries_medium, false),
         MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
@@ -30,10 +32,14 @@ class OrderSummaryDialogTutorialFragment : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Bundle로 전달된 isTTSActive 값 받기
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            isTTSActive = it.getBoolean("isTTSActive", false)  // 기본값 false로 설정
         }
+
+        // TTS 초기화
+        tts = TextToSpeech(activity, this)
     }
 
     override fun onCreateView(
@@ -46,37 +52,68 @@ class OrderSummaryDialogTutorialFragment : DialogFragment() {
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        // 클릭 이벤트를 빈 리스너로 설정
-        adapter = MenuAdapter(menuItems) {
-            // 클릭해도 아무런 동작이 없도록 설정
-        }
+        adapter = MenuAdapter(menuItems) { }
         recyclerView.adapter = adapter
 
         // 선택안함 버튼 클릭 시
         val confirmButton: Button = view.findViewById(R.id.confirm_button)
         confirmButton.setOnClickListener {
-            val intent = Intent(activity, TutorialOrderActivity::class.java)
-            startActivity(intent)
+            // 팝업 닫기 전에 SharedPreferences에 애니메이션 상태 저장
+            val sharedPref = activity?.getSharedPreferences("com.example.kiumi.PREFERENCES", Context.MODE_PRIVATE)
+            sharedPref?.edit()?.putBoolean("blinkingAnimation", true)?.apply()
+
+            val intent = Intent(activity, TutorialOrderActivity::class.java).apply {
+                putExtra("isTTSActive", isTTSActive)  // 다음 액티비티로 isTTSActive 값 전달
+            }
+            activity?.startActivity(intent)
             dismiss()
         }
 
         // Button에 애니메이션 설정
-        val confirmButtonAnimation: Button = view.findViewById(R.id.confirm_button)
-        confirmButtonAnimation.setBackgroundResource(R.drawable.blinking_border_animation)
-        val animationDrawable = confirmButtonAnimation.background as AnimationDrawable
+        confirmButton.setBackgroundResource(R.drawable.blinking_border_animation)
+        val animationDrawable = confirmButton.background as AnimationDrawable
         animationDrawable.start()
 
         return view
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderSummaryDialogTutorialFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        // 다이얼로그가 닫힐 때 SharedPreferences에 애니메이션 상태 저장
+        val sharedPref = activity?.getSharedPreferences("com.example.kiumi.PREFERENCES", Context.MODE_PRIVATE)
+        sharedPref?.edit()?.putBoolean("blinkingAnimation", true)?.apply()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 프래그먼트가 화면에 표시되면 TTS로 안내 메시지 출력
+        if (isTTSActive && ::tts.isInitialized) {
+            speakText("선택안함을 클릭해주세요")
+        }
+    }
+
+    private fun speakText(text: String) {
+        if (isTTSActive) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+        }
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            tts.setLanguage(Locale.KOREAN)
+            // TTS가 활성화된 경우 초기화 후 메시지 출력
+            if (isTTSActive) {
+                speakText("선택안함을 클릭해주세요")
             }
+        }
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
     }
 }
+
