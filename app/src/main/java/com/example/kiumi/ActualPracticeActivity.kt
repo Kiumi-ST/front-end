@@ -1,20 +1,36 @@
 package com.example.kiumi
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.ImageCapture
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.logEvent
+import android.Manifest
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.IntentFilter
+import android.graphics.drawable.ColorDrawable
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.PopupWindow
 
 class ActualPracticeActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
+    private val CAMERA_PERMISSION_REQUEST_CODE = 100
+    private lateinit var difficultyReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +41,35 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
+
+        // BroadcastReceiver 초기화
+        difficultyReceiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                // isDifficult가 true인 경우 팝업 표시
+                showPopup()
+            }
+        }
+        // BroadcastReceiver 등록
+        val filter = IntentFilter("com.example.kiumi.ACTION_DIFFICULTY_DETECTED")
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(difficultyReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+        } else {
+            registerReceiver(difficultyReceiver, filter)
+        }
+
+        // 카메라 권한 확인
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            // 권한이 부여되지 않은 경우, 권한 요청
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // 권한이 부여된 경우, 서비스 시작
+            startPhotoCaptureService()
+        }
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             firebaseAnalytics.logEvent("QR_code_scan"){
@@ -100,5 +145,52 @@ class ActualPracticeActivity : AppCompatActivity() {
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // BroadcastReceiver 해제
+        unregisterReceiver(difficultyReceiver)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한이 허용된 경우, 서비스 시작
+                startPhotoCaptureService()
+            } else {
+                // 권한이 거부된 경우, 사용자에게 안내
+                Toast.makeText(this, "카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun startPhotoCaptureService() {
+        // 권한이 허용된 후 서비스 시작
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        startService(serviceIntent)
+    }
+
+    private fun showPopup() {
+        val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val popupView: View = inflater.inflate(R.layout.diff_popup_layout, null)
+
+        val popupWindow = PopupWindow(popupView,
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT, true)
+
+        popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.TOP or Gravity.END, 50, 200)
+
+        popupView.postDelayed({
+            popupWindow.dismiss()
+        }, 3000)
+    }
+
 
 }

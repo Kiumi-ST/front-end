@@ -60,4 +60,10 @@ class ActualPracticeThankYou : AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        // 서비스 중지
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        stopService(serviceIntent)
+    }
 }
