@@ -1,6 +1,7 @@
 package com.example.kiumi
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
@@ -101,6 +102,11 @@ class SurveyActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 if (response.isSuccessful) {
                     val surveyResponse = response.body()
                     Toast.makeText(this@SurveyActivity, surveyResponse?.msg, Toast.LENGTH_LONG).show()
+                    val intent = Intent(
+                        this@SurveyActivity,
+                        MainActivity::class.java
+                    )
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         this@SurveyActivity,

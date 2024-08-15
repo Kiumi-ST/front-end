@@ -1,5 +1,6 @@
 package com.example.kiumi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,8 +49,8 @@ class SurveyCompareActivity : AppCompatActivity() {
             // 홈 아이콘 클릭 시 동작 구현
         }
 
-        question1Group = findViewById(R.id.check1)
-        question2Group = findViewById(R.id.comf1)
+        question1Group = findViewById(R.id.check)
+        question2Group = findViewById(R.id.comf)
         commentsEditText = findViewById(R.id.editTextTextMultiLine)
         submitButton = findViewById(R.id.btnfinish)
 
@@ -71,6 +72,11 @@ class SurveyCompareActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val VotingResponse = response.body()
                     Toast.makeText(this@SurveyCompareActivity, VotingResponse?.msg, Toast.LENGTH_LONG).show()
+                    val intent = Intent(
+                        this@SurveyCompareActivity,
+                        MainActivity::class.java
+                    )
+                    startActivity(intent)
                 } else {
                     Toast.makeText(
                         this@SurveyCompareActivity,
