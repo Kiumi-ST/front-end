@@ -17,6 +17,8 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.logEvent
 
+
+
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private var isTTSActive: Boolean = false
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // SharedPreferences에서 TTS 상태 불러오기
         val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
         isTTSActive = sharedPref.getBoolean("isTTSActive", false)
 
@@ -41,11 +44,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        firebaseAnalytics = Firebase.analytics
+        firebaseAnalytics = FirebaseAnalytics.getInstance(this)
 
-        // Initialize toggle button state
-
-
+        // Initialize toolbar
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
@@ -60,23 +61,22 @@ class MainActivity : AppCompatActivity() {
             // 홈 아이콘 클릭 시 동작 구현
         }
 
-        toolbarLogo?.setOnClickListener {
-        }
+        toolbarLogo?.setOnClickListener {}
 
-        findViewById<ImageView>(R.id.centerLogo).setOnClickListener {
-            startActivity(Intent(this, ProposalQRSuccess::class.java))
-        }
+        findViewById<ImageView>(R.id.centerLogo).setOnClickListener {}
 
         findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
-            firebaseAnalytics.logEvent("button_click_practice"){
+            firebaseAnalytics.logEvent("button_click_practice") {
                 param(FirebaseAnalytics.Param.CONTENT, "practice")
             }
-            startActivity(Intent(this, PracticeSelectionActivity::class.java))
+            val intent = Intent(this, PracticeSelectionActivity::class.java)
+            intent.putExtra("isTTSActive", isTTSActive)  // TTS 상태 전달
+            startActivity(intent)
         }
 
         findViewById<RelativeLayout>(R.id.btnHelp).setOnClickListener {
             val intent = Intent(this, HelpActivity::class.java)
-            intent.putExtra("isTTSActive", isTTSActive)
+            intent.putExtra("isTTSActive", isTTSActive)  // TTS 상태 전달
             startActivity(intent)
         }
 
@@ -84,24 +84,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SurveyActivity::class.java))
         }
 
-
-
-
-        Log.d(MainActivity::class.simpleName,"패키지명: $packageName");
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        // Reset SharedPreferences when the app is restarted
-        val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
-        with(sharedPref.edit()) {
-            putBoolean("isTTSActive", false)
-            apply()
-        }
-
-        // Reset toggle button state
-        val toggleButton = findViewById<ToggleButton>(R.id.toggleButton)
-        toggleButton.isChecked = false
-        isTTSActive = false
+        Log.d(MainActivity::class.simpleName, "패키지명: $packageName")
     }
 }
