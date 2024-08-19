@@ -5,13 +5,27 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "http://10.0.2.2:8080/" // localhost for Android emulator
 
-    val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URL)
+    // Spring boot 서버 연동
+    private const val SPRING_BOOT_BASE_URL = "http://192.168.103.199:8080/" // http://(본인 노트북 IPv4 주소):8080/
+
+    val springBootRetrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(SPRING_BOOT_BASE_URL)
         .client(OkHttpClient.Builder().build())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    val apiService: ApiService = retrofit.create(ApiService::class.java)
+    val springBootApiService: SpringBootApiService = springBootRetrofit.create(SpringBootApiService::class.java)
+
+    // Flask 서버 연동
+    private const val FLASK_BASE_URL = "http://192.168.103.199:8000/"
+
+    val flaskRetrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(FLASK_BASE_URL)
+        .client(OkHttpClient.Builder().build())
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val flaskApiService: FlaskApiService = flaskRetrofit.create(FlaskApiService::class.java)
+
 }

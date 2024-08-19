@@ -98,7 +98,7 @@ class SurveyActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.apiService.submitSurvey(surveyData)
+                val response = RetrofitClient.springBootApiService.submitSurvey(surveyData)
                 if (response.isSuccessful) {
                     val surveyResponse = response.body()
                     Toast.makeText(this@SurveyActivity, surveyResponse?.msg, Toast.LENGTH_LONG).show()

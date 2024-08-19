@@ -24,6 +24,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import android.Manifest
 import android.content.Context
+import android.widget.Toast
 
 class PhotoCaptureService : LifecycleService() {
 
@@ -125,7 +126,7 @@ class PhotoCaptureService : LifecycleService() {
         val body = MultipartBody.Part.createFormData("file", file.name, requestFile)
         val screenNameBody = RequestBody.create("text/plain".toMediaTypeOrNull(), screenName)
 
-        RetrofitClient.apiService.uploadImage(body, screenNameBody).enqueue(object :
+        RetrofitClient.flaskApiService.uploadImage(body, screenNameBody).enqueue(object :
             Callback<AnalyzeResponse> {
             override fun onResponse(call: Call<AnalyzeResponse>, response: Response<AnalyzeResponse>) {
                 if (response.isSuccessful) {
@@ -133,6 +134,11 @@ class PhotoCaptureService : LifecycleService() {
                     Log.d("Server Response", "Dominant Emotion: ${analyzeResponse?.dominantEmotion}, Is Difficult: ${analyzeResponse?.isDifficult}")
                     // isDifficult가 true일 경우 Broadcast 전송
                     if (analyzeResponse?.isDifficult == true) {
+                        Toast.makeText(
+                            this@PhotoCaptureService,
+                            "isDifficult가 true임(서버 연결 확인용, 나중에 지워야 함)",
+                            Toast.LENGTH_LONG
+                        ).show()
                         val intent = Intent("com.example.kiumi.ACTION_DIFFICULTY_DETECTED")
                         sendBroadcast(intent)
                     }

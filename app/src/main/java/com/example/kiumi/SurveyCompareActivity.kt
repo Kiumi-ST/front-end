@@ -68,7 +68,7 @@ class SurveyCompareActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
             try {
-                val response = RetrofitClient.apiService.submitVotingResult(votingRequest)
+                val response = RetrofitClient.springBootApiService.submitVotingResult(votingRequest)
                 if (response.isSuccessful) {
                     val VotingResponse = response.body()
                     Toast.makeText(this@SurveyCompareActivity, VotingResponse?.msg, Toast.LENGTH_LONG).show()
