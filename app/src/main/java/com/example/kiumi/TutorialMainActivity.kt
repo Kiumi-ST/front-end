@@ -4,17 +4,20 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Typeface
 import android.graphics.drawable.AnimationDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.kiumi.databinding.ActivityTutorialMainBinding
+import java.util.*
 
-class TutorialMainActivity : AppCompatActivity() {
+class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     lateinit var binding: ActivityTutorialMainBinding
     private lateinit var home: LinearLayout
     private lateinit var burger: LinearLayout
@@ -30,15 +33,22 @@ class TutorialMainActivity : AppCompatActivity() {
     private lateinit var drinkIndicator: View
     private lateinit var orderHistoryTextView: TextView
     private lateinit var preferences: SharedPreferences
+    private lateinit var tts: TextToSpeech
+    private var isTTSActive: Boolean = false // 기본값 설정
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorialMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         // SharedPreferences 초기화
         preferences = getSharedPreferences("com.example.kiumi.PREFERENCES", MODE_PRIVATE)
+
+        // 이전 액티비티에서 전달된 isTTSActive 값 받아오기 (기본값 false)
+        isTTSActive = intent.getBooleanExtra("isTTSActive", false)
+
+        // TTS 초기화
+        tts = TextToSpeech(this, this)
 
         home = findViewById(R.id.home)
         burger = findViewById(R.id.burger)
@@ -70,19 +80,37 @@ class TutorialMainActivity : AppCompatActivity() {
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
         }
 
-        // 주문 내역 버튼 클릭 시 팝업 호출
         findViewById<TextView>(R.id.order_history).setOnClickListener {
-            OrderSummaryDialogTutorialFragment().show(supportFragmentManager, "OrderSummaryDialogTutorial")
+            val fragment = OrderSummaryDialogTutorialFragment()
+
+            // Bundle에 isTTSActive 값을 담아 전달
+            val bundle = Bundle()
+            bundle.putBoolean("isTTSActive", isTTSActive)
+            fragment.arguments = bundle
+
+            fragment.show(supportFragmentManager, "OrderSummaryDialogTutorial")
+
+            // 팝업 호출 시 orderHistoryTextView 배경을 button_background_gray로 변경
+            orderHistoryTextView.setBackgroundResource(R.drawable.button_background_gray)
         }
 
         // 주문 내역 버튼 초기 배경 설정
         updateOrderHistoryButtonState()
     }
 
-
     override fun onResume() {
         super.onResume()
         updateOrderHistoryButtonState()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == RESULT_OK) {
+            // 팝업에서 돌아올 때 배경을 blinking_border_animation으로 변경하고 애니메이션 시작
+            orderHistoryTextView.setBackgroundResource(R.drawable.blinking_border_animation)
+            val orderHistoryAnimation = orderHistoryTextView.background as AnimationDrawable
+            orderHistoryAnimation.start()
+        }
     }
 
     private fun setMenuClickListener(menu: LinearLayout, menuText: TextView, menuIndicator: View, fragment: Fragment) {
@@ -114,6 +142,13 @@ class TutorialMainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.menu_section, fragment)
             .commit()
+
+        // If the fragment is BurgerTutorialFragment, speak the instruction
+        // TTS가 활성화된 상태이면서 MainActivity에서 TTS를 사용하지 않으려면 조건을 추가
+        val isTTSActiveForMainActivity = intent.getBooleanExtra("isTTSActiveForMainActivity", true)
+        if (fragment is BurgerTutorialFragment && isTTSActive && isTTSActiveForMainActivity) {
+            speakText("창녕 갈릭 버거를 클릭해주세요")
+        }
     }
 
     private fun updateOrderHistoryButtonState() {
@@ -137,8 +172,6 @@ class TutorialMainActivity : AppCompatActivity() {
         }
     }
 
-
-
     fun showBurgerSelectionPopup(menuItem: MenuItem) {
         val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
         val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
@@ -160,6 +193,7 @@ class TutorialMainActivity : AppCompatActivity() {
                 this@TutorialMainActivity,
                 TutorialSetSelectionActivity::class.java
             )
+            intent.putExtra("isTTSActive", isTTSActive)  // isTTSActive 값을 전달
             startActivity(intent)
             popupBurgerSelectionContainer.visibility = View.GONE
         }
@@ -194,7 +228,11 @@ class TutorialMainActivity : AppCompatActivity() {
             )
             startActivity(intent)
             popupSingBurgerContainer.visibility = View.GONE
+        }
 
+        // TTS로 안내 메시지 출력
+        if (isTTSActive) {
+            speakText("세트 선택을 클릭해주세요")
         }
     }
 
@@ -260,4 +298,35 @@ class TutorialMainActivity : AppCompatActivity() {
 
         }
     }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts.setLanguage(Locale.KOREAN)
+            if (result == TextToSpeech.LANG_MISSING_DATA) {
+                Log.e("TTS", "언어 데이터가 없습니다.")
+            } else if (result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "이 언어는 지원되지 않습니다.")
+            } else if (isTTSActive) {
+                //speakText("버거와 세트 버튼을 클릭해주세요")
+            }
+        } else {
+            Log.e("TTS", "TTS 초기화 실패")
+        }
+    }
+
+    private fun speakText(text: String) {
+        if (isTTSActive) {
+            tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
+            Log.d("TTS", "음성 출력: $text")
+        }
+    }
+
+    override fun onDestroy() {
+        if (::tts.isInitialized) {
+            tts.stop()
+            tts.shutdown()
+        }
+        super.onDestroy()
+    }
 }
+

@@ -25,12 +25,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.PopupWindow
 
-class ActualPracticeActivity : AppCompatActivity() {
+class ActualPracticeActivity : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
     private val CAMERA_PERMISSION_REQUEST_CODE = 100
-    private lateinit var difficultyReceiver: BroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,21 +40,6 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
-
-        // BroadcastReceiver 초기화
-        difficultyReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                // isDifficult가 true인 경우 팝업 표시
-                showPopup()
-            }
-        }
-        // BroadcastReceiver 등록
-        val filter = IntentFilter("com.example.kiumi.ACTION_DIFFICULTY_DETECTED")
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(difficultyReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-        } else {
-            registerReceiver(difficultyReceiver, filter)
-        }
 
         // 카메라 권한 확인
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
@@ -146,13 +130,6 @@ class ActualPracticeActivity : AppCompatActivity() {
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-
-        // BroadcastReceiver 해제
-        unregisterReceiver(difficultyReceiver)
-    }
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -175,28 +152,6 @@ class ActualPracticeActivity : AppCompatActivity() {
         val serviceIntent = Intent(this, PhotoCaptureService::class.java)
         serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
         startService(serviceIntent)
-    }
-
-    private fun showPopup() {
-        val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val popupView: View = inflater.inflate(R.layout.diff_popup_layout, null)
-
-        val popupWindow = PopupWindow(popupView,
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT, true)
-
-        popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.TOP or Gravity.END, 50, 200)
-
-        // 팝업 클릭 시 순서지침 화면으로 이동
-        popupView.setOnClickListener {
-            val intent = Intent(this@ActualPracticeActivity, TutorialActivity::class.java)
-            startActivity(intent)
-            popupWindow.dismiss() // 팝업 창 닫기
-        }
-
-        popupView.postDelayed({
-            popupWindow.dismiss()
-        }, 3000)
     }
 
 

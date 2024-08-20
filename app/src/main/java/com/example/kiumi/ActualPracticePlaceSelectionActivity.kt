@@ -15,7 +15,7 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.logEvent
 
-class ActualPracticePlaceSelectionActivity : AppCompatActivity() {
+class ActualPracticePlaceSelectionActivity : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0

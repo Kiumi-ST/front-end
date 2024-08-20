@@ -11,7 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
+class ActualPracticeSideMenuSelectionActivity : PopupActivity() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0

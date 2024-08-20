@@ -11,7 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeSetSelectionActivity : AppCompatActivity() {
+class ActualPracticeSetSelectionActivity : PopupActivity() {
   
     private lateinit var menuItem: MenuItem
     private var isLargeSet: Boolean = false

@@ -18,7 +18,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeMainActivity : AppCompatActivity() {
+class ActualPracticeMainActivity : PopupActivity() {
     lateinit var binding: ActivityActualPracticeMainBinding
     private lateinit var home: LinearLayout
     private lateinit var burger: LinearLayout

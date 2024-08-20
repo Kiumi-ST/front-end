@@ -11,7 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeBurgerSetOrderActivity : AppCompatActivity() {
+class ActualPracticeBurgerSetOrderActivity : PopupActivity() {
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var menuItem: MenuItem

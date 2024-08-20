@@ -13,7 +13,7 @@ import com.google.firebase.analytics.analytics
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ActualPracticeOrderActivity : AppCompatActivity() {
+class ActualPracticeOrderActivity : PopupActivity() {
     private lateinit var orderRecyclerView: RecyclerView
     private lateinit var orderAdapter: OrderAdapter
     private lateinit var orderItems: MutableList<OrderItem>
