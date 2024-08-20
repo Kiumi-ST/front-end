@@ -13,17 +13,17 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
+class ProposalBurgerCustomizationActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
     private var previousActivity: String? = null
 
-    private lateinit var menuItem: MenuItem
+    private lateinit var menuItem: ProposalMenuItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_burger_customization)
+        setContentView(R.layout.activity_proposal_burger_customization)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
@@ -34,7 +34,7 @@ class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
         menuItem = intent.getParcelableExtra("menuItem") ?: return
 
         findViewById<TextView>(R.id.menu_text).text = menuItem.name
-        findViewById<TextView>(R.id.menu_kcal_text).text = "${menuItem.price} ${menuItem.calories}"
+        findViewById<TextView>(R.id.menu_kcal_text).text = "${menuItem.price}"
         findViewById<ImageView>(R.id.menu_image).setImageResource(menuItem.imageResourceId)
 
         Toast.makeText(this, "해당 정보는 임의의 정보로, 정확하지 않을 수 있습니다.", Toast.LENGTH_LONG).show()
@@ -128,7 +128,7 @@ class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
 
         // 처음으로 버튼 클릭 시
         findViewById<TextView>(R.id.gotohome).setOnClickListener {
-            val intent = Intent(this, ActualPracticeOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_영양정보") }
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java).apply { putExtra("previous_activity", "개선안_영양정보") }
             startActivity(intent)
         }
 
@@ -154,7 +154,7 @@ class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity)
-                putString("screen_name", "실전 연습_주문 취소")
+                putString("screen_name", "개선안_주문 취소")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -162,18 +162,6 @@ class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
-    }
-
-    private fun notifyServiceOfCurrentActivity() {
-        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
-        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
-        // 이미 실행 중이면 onStartCommand만 호출됨
-        startService(serviceIntent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        notifyServiceOfCurrentActivity()
     }
 
     override fun onStart() {
@@ -188,7 +176,7 @@ class ActualPracticeBurgerCustomizationActivity : PopupActivity() {
 
         val params = Bundle().apply {
             putLong("screen_duration", duration)
-            putString("screen_name", "실전 연습_영양정보")
+            putString("screen_name", "개선안_영양정보")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }

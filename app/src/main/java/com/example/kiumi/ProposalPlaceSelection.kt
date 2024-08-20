@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -50,6 +51,9 @@ class ProposalPlaceSelection : AppCompatActivity() {
 
         // 처음으로 버튼 클릭 시
         findViewById<Button>(R.id.buttonHome).setOnClickListener {
+            val intent = Intent(this@ProposalPlaceSelection, ProposalOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "개선안_장소") }
+            startActivity(intent)
         }
 
         // 도움 기능 버튼 클릭 시
@@ -58,6 +62,7 @@ class ProposalPlaceSelection : AppCompatActivity() {
 
         // 영어 버튼 클릭 시
         findViewById<Button>(R.id.button_english).setOnClickListener {
+            Toast.makeText(this, "현재는 한국어만 지원합니다.", Toast.LENGTH_LONG).show()
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록

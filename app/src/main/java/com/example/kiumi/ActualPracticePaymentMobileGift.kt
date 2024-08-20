@@ -10,7 +10,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticePaymentMobileGift : AppCompatActivity() {
+class ActualPracticePaymentMobileGift : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var previousActivity: String? = null
 
@@ -62,6 +62,18 @@ class ActualPracticePaymentMobileGift : AppCompatActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 
 }

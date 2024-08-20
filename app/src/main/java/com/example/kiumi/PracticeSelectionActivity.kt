@@ -78,6 +78,14 @@ class PracticeSelectionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
         }
     }
 
+
+    override fun onStart() {
+        super.onStart()
+        // 서비스 중지
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        stopService(serviceIntent)
+    }
+
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             val result = tts.setLanguage(Locale.KOREAN)

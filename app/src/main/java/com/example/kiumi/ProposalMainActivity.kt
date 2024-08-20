@@ -91,6 +91,13 @@ class ProposalMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this@ProposalMainActivity, ProposalOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "개선안_메인") }
+            startActivity(intent)
+        }
+
         ProposalCartManager.addListener { updateOrderSummary() }
         updateOrderSummary()
 
@@ -219,7 +226,7 @@ class ProposalMainActivity : AppCompatActivity() {
             // 팝업 닫힘 시간 기록 및 로그
             logPopupDuration("개선안_버거 선택 (세트, 단품 여부)")
             popupBurgerSelectionContainer.visibility = View.GONE
-            showSingleItemPopup(menuItem)
+            showSingleItemPopup(menuItem, showModifyButton = true)
         }
 
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
@@ -229,7 +236,7 @@ class ProposalMainActivity : AppCompatActivity() {
         }
     }
 
-    fun showSingleItemPopup(menuItem: ProposalMenuItem) {
+    fun showSingleItemPopup(menuItem: ProposalMenuItem, showModifyButton: Boolean = false) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
         val singleImage: ImageView = findViewById(R.id.single_image)
         val singleTitle: TextView = findViewById(R.id.single_title)
@@ -246,6 +253,19 @@ class ProposalMainActivity : AppCompatActivity() {
 
         popupSingleBurger.visibility = View.VISIBLE
         popupSingleBurger.bringToFront()
+
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this@ProposalMainActivity,
+                ProposalNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "개선안_단품")
+            }
+            startActivity(intent)
+        }
+
 
         // 수량 변경 버튼
         findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
@@ -264,6 +284,21 @@ class ProposalMainActivity : AppCompatActivity() {
             // 팝업 닫힘 시간 기록 및 로그
             logPopupDuration("개선안_단품")
         }
+
+        if (showModifyButton) {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.VISIBLE
+            findViewById<Button>(R.id.button_add_modify).setOnClickListener {
+                val intent = Intent(this, ProposalBurgerCustomizationActivity::class.java)
+                    .apply {
+                        putExtra("menuItem", menuItem)
+                        putExtra("previous_activity", "개선안_단품")
+                    }
+                startActivity(intent)
+            }
+        } else {
+            findViewById<Button>(R.id.button_add_modify).visibility = View.GONE
+        }
+
 
         // 장바구니 추가
         findViewById<LinearLayout>(R.id.button_add_to_cart).setOnClickListener {

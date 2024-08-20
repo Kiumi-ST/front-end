@@ -73,6 +73,12 @@ class ProposalOrderActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java).apply { putExtra("previous_activity", "개선안_주문 내역") }
+            startActivity(intent)
+        }
+
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
     }

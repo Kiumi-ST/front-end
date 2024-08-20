@@ -44,6 +44,11 @@ class ProposalActivity : AppCompatActivity() {
 
         // 언어 버튼 클릭 시
         findViewById<Button>(R.id.button_language).setOnClickListener {
+            val intent = Intent(
+                this@ProposalActivity,
+                ProposalLanguageActivity::class.java
+            ).apply { putExtra("previous_activity", "개선안_대기") }
+            startActivity(intent)
         }
 
         // 도움 버튼 클릭 시

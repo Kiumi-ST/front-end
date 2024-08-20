@@ -9,15 +9,13 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeOrderCancelActivity : PopupActivity() {
+class ProposalPaymentMobileGiftComplete : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private var startTime: Long = 0
-    private var endTime: Long = 0
     private var previousActivity: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_order_cancel)
+        setContentView(R.layout.activity_actual_practice_payment_mobile_gift_complete)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
@@ -25,15 +23,15 @@ class ActualPracticeOrderCancelActivity : PopupActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        findViewById<Button>(R.id.button_no).setOnClickListener {
-            finish()
+        findViewById<Button>(R.id.button_yes).setOnClickListener {
+            val intent = Intent(this, ProposalPickup::class.java).apply { putExtra("previous_activity", "개선안_모바일 상품권 결제 완료") }
+            startActivity(intent)
         }
 
-        findViewById<Button>(R.id.button_yes).setOnClickListener {
-            CartManager.clearCart()
-            PointManager.resetPoint()
-            val intent = Intent(this@ActualPracticeOrderCancelActivity, ActualPracticeActivity::class.java)
-                .apply { putExtra("previous_activity", "실전 연습_주문 취소") }
+        val buttonHome: Button = findViewById(R.id.buttonHome)
+        buttonHome.setOnClickListener {
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "개선안_모바일 상품권 결제 완료") }
             startActivity(intent)
         }
 
@@ -47,7 +45,7 @@ class ActualPracticeOrderCancelActivity : PopupActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity)
-                putString("screen_name", "실전 연습_주문 취소")
+                putString("screen_name", "개선안_모바일 상품권 결제 완료")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -57,32 +55,4 @@ class ActualPracticeOrderCancelActivity : PopupActivity() {
         }
     }
 
-    private fun notifyServiceOfCurrentActivity() {
-        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
-        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
-        // 이미 실행 중이면 onStartCommand만 호출됨
-        startService(serviceIntent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        notifyServiceOfCurrentActivity()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        startTime = System.currentTimeMillis()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        endTime = System.currentTimeMillis()
-        val duration = endTime - startTime
-
-        val params = Bundle().apply {
-            putLong("screen_duration", duration)
-            putString("screen_name", "실전 연습_주문 취소")
-        }
-        firebaseAnalytics.logEvent("screen_view_duration", params)
-    }
 }

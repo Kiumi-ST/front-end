@@ -54,6 +54,37 @@ class ProposalBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<ImageView>(R.id.drink_image).setImageResource(selectedDrink.imageResourceId)
 
 
+        findViewById<Button>(R.id.button_modify_burger).setOnClickListener {
+            val intent = Intent(this, ProposalBurgerCustomizationActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("previous_activity", "개선안_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_modify_side).setOnClickListener {
+            val intent = Intent(this, ProposalSideMenuSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedDrink", selectedDrink)
+                    putExtra("previous_activity", "개선안_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_modify_drink).setOnClickListener {
+            val intent = Intent(this, ProposalDrinkSelectionActivity::class.java)
+                .apply {
+                    putExtra("menuItem", menuItem)
+                    putExtra("isLargeSet", isLargeSet)
+                    putExtra("selectedSide", selectedSide)
+                    putExtra("previous_activity", "개선안_버거 선택-세트 확인")
+                }
+            startActivity(intent)
+        }
+
         findViewById<LinearLayout>(R.id.button_add_to_cart).setOnClickListener {
             val orderItem = ProposalOrderItem(menuItem, quantity, true, isLargeSet, selectedSide.name, selectedDrink.name, totalPrice.toString())
             ProposalCartManager.addItem(orderItem)
@@ -63,6 +94,18 @@ class ProposalBurgerSetOrderActivity : AppCompatActivity() {
                     putExtra("ITEM_QUANTITY", quantity)
                     putExtra("previous_activity", "개선안_버거 선택-세트 확인")
                 }
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this,
+                ProposalNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "개선안_버거 선택-세트 확인")
+            }
             startActivity(intent)
         }
 
@@ -81,6 +124,13 @@ class ProposalBurgerSetOrderActivity : AppCompatActivity() {
         findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
             quantity++
             quantityText.text = quantity.toString()
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java)
+                .apply { putExtra("previous_activity", "개선안_버거 선택-세트 확인 ") }
+            startActivity(intent)
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록

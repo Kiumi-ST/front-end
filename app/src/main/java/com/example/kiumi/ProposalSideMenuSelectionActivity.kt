@@ -56,8 +56,27 @@ class ProposalSideMenuSelectionActivity : AppCompatActivity() {
             goToDrinkSelection()
         }
 
+        findViewById<Button>(R.id.button_nutrition_info).setOnClickListener {
+            val intent = Intent(
+                this,
+                ProposalNutritionInfoActivity::class.java
+            ).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "개선안_버거 선택-세트 사이드")
+            }
+            startActivity(intent)
+        }
+
         findViewById<Button>(R.id.button_cancel).setOnClickListener {
             val intent = Intent(this, ProposalMainActivity::class.java)
+                .apply { putExtra("previous_activity", "개선안_버거 선택-세트 사이드") }
+            startActivity(intent)
+        }
+
+        // 처음으로 버튼 클릭 시
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java)
                 .apply { putExtra("previous_activity", "개선안_버거 선택-세트 사이드") }
             startActivity(intent)
         }
@@ -100,12 +119,23 @@ class ProposalSideMenuSelectionActivity : AppCompatActivity() {
     }
 
     private fun goToDrinkSelection() {
-        val intent = Intent(this, ProposalDrinkSelectionActivity::class.java).apply {
-            putExtra("menuItem", menuItem)
-            putExtra("isLargeSet", isLargeSet)
-            putExtra("selectedSide", selectedSide)
-            putExtra("previous_activity", "개선안_버거 선택-세트 사이드")
+        if (previousActivity == "개선안_버거 선택-세트 확인") {
+            val intent = Intent(this, ProposalBurgerSetOrderActivity::class.java).apply {
+                putExtra("menuItem", menuItem)
+                putExtra("isLargeSet", isLargeSet)
+                putExtra("selectedSide", selectedSide)
+                putExtra("selectedDrink", intent.getParcelableExtra<MenuItem>("selectedDrink"))
+                putExtra("previous_activity", "개선안_버거 선택-세트 확인")
+            }
+            startActivity(intent)
+        } else {
+            val intent = Intent(this, ProposalDrinkSelectionActivity::class.java).apply {
+                putExtra("menuItem", menuItem)
+                putExtra("isLargeSet", isLargeSet)
+                putExtra("selectedSide", selectedSide)
+                putExtra("previous_activity", "개선안_버거 선택-세트 사이드")
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
 }

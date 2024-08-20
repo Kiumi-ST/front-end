@@ -18,7 +18,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticeMainActivity : AppCompatActivity() {
+class ActualPracticeMainActivity : PopupActivity() {
     lateinit var binding: ActivityActualPracticeMainBinding
     private lateinit var home: LinearLayout
     private lateinit var burger: LinearLayout
@@ -328,6 +328,18 @@ class ActualPracticeMainActivity : AppCompatActivity() {
 
         notificationBadge.text = totalItems.toString()
         priceTextView.text = totalPrice
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 
     override fun onStart() {

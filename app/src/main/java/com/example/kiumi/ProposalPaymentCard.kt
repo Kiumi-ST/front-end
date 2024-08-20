@@ -17,14 +17,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ActualPracticePaymentCard : PopupActivity() {
+class ProposalPaymentCard : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var previousActivity: String? = null
 
     // Handler와 Runnable을 클래스 변수로 정의
     private val handler = Handler(Looper.getMainLooper())
     private val navigateRunnable = Runnable {
-        val intent = Intent(this, ActualPracticePickup::class.java).apply { putExtra("previous_activity", "실전 연습_결제 방법") }
+        val intent = Intent(this, ProposalPickup::class.java).apply { putExtra("previous_activity", "개선안_결제 방법") }
         startActivity(intent)
         finish()
     }
@@ -94,7 +94,7 @@ class ActualPracticePaymentCard : PopupActivity() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
                 putString("previous_screen_name", previousActivity)
-                putString("screen_name", "실전 연습_카드 결제")
+                putString("screen_name", "개선안_카드 결제")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -105,18 +105,6 @@ class ActualPracticePaymentCard : PopupActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
-    }
-
-    private fun notifyServiceOfCurrentActivity() {
-        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
-        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
-        // 이미 실행 중이면 onStartCommand만 호출됨
-        startService(serviceIntent)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        notifyServiceOfCurrentActivity()
     }
 
 }

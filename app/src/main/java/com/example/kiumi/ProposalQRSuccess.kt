@@ -34,9 +34,7 @@ class ProposalQRSuccess : AppCompatActivity() {
 
         // 버튼에 클릭 리스너 설정
         buttonConfirm.setOnClickListener {
-            // ActualPracticePaymentSelection 액티비티로 이동하는 인텐트 생성
-            val intent = Intent(this, ProposalPaymentSelection::class.java).apply { putExtra("previous_activity", "개선안_QR 코드 스캔 시") }
-            startActivity(intent)
+            finish()
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
