@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -54,16 +55,9 @@ class MainActivity : AppCompatActivity() {
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
-        val titleView = toolbarView?.findViewById<TextView>(R.id.toolbar_title)
-        val toolbarLogo = toolbarView?.findViewById<ImageView>(R.id.toolbar_logo)
-
-        homeIcon?.setOnClickListener {
-            // 홈 아이콘 클릭 시 동작 구현
-        }
-
-        toolbarLogo?.setOnClickListener {}
-
-        findViewById<ImageView>(R.id.centerLogo).setOnClickListener {}
+        homeIcon?.visibility = View.GONE
+        val backIcon = toolbarView?.findViewById<ImageView>(R.id.back_icon)
+        backIcon?.visibility = View.GONE
 
         findViewById<RelativeLayout>(R.id.btnPractice).setOnClickListener {
             firebaseAnalytics.logEvent("button_click_practice") {

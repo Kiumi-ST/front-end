@@ -42,16 +42,20 @@ class SurveyActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         supportActionBar?.setCustomView(R.layout.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
         val titleView = toolbarView?.findViewById<TextView>(R.id.toolbar_title)
+        val backIcon = toolbarView?.findViewById<ImageView>(R.id.back_icon)
+
+        backIcon?.setOnClickListener {
+            finish()
+        }
 
         titleView?.text = "개선점 설문조사"
 
         homeIcon?.setOnClickListener {
-            // 홈 아이콘 클릭 시 동작 구현
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         ratingBar = findViewById(R.id.ratingBar)
