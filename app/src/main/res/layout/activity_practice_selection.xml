@@ -60,7 +60,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@id/btnTutorial_icon"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:background="@drawable/text_yellow_background"
                     android:text="순서 지침"
                     android:textColor="@android:color/black"
@@ -90,7 +90,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@id/btnActualPractice_icon"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:background="@drawable/text_yellow_background"
                     android:text="실전 연습"
                     android:textColor="@android:color/black"
@@ -123,9 +123,10 @@
                 android:layout_height="40dp"
                 android:layout_below="@id/btnProposal_icon"
                 android:layout_gravity="center_horizontal|bottom"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:background="@drawable/text_yellow_background"
                 android:text="개선안 연습하기"
+                android:textColor="@android:color/black"
                 android:textSize="20sp"/>
         </RelativeLayout>
     </LinearLayout>
