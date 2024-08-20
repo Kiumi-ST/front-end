@@ -84,9 +84,9 @@
                     android:layout_height="40dp"
                     android:layout_below="@id/btnPractice_icon"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:textAlignment="center"
                     android:background="@drawable/text_yellow_background"
                     android:text="연습하기"
+                    android:gravity="center"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"/>
             </RelativeLayout>
@@ -114,7 +114,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@id/btnHelp_icon"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:textAlignment="center"
+                    android:gravity="center"
                     android:background="@drawable/text_pink_background"
                     android:text="도움말"
                     android:textColor="@android:color/black"
@@ -147,7 +147,7 @@
                 android:layout_height="40dp"
                 android:layout_below="@id/btnSurvey_icon"
                 android:layout_gravity="center_horizontal|bottom"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:background="@drawable/text_blue_background"
                 android:text="개선점 설문"
                 android:textColor="@android:color/white"
