@@ -2,20 +2,19 @@ package com.example.kiumi
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
-import com.google.firebase.analytics.logEvent
 
-class ProposalPlaceSelection : AppCompatActivity() {
+class ProposalNutritionInfoActivity : AppCompatActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -23,46 +22,41 @@ class ProposalPlaceSelection : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_proposal_place_selection)
+        setContentView(R.layout.activity_proposal_nutrition_info)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics
+
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
-        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
-            val intent = Intent(
-                this@ProposalPlaceSelection,
-                ProposalQRSuccess::class.java
-            ).apply { putExtra("previous_activity", "개선안_장소") }
-            startActivity(intent)
-        }
-        
-        // 매장 식사 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.button_dine_in).setOnClickListener {
-            startActivity(Intent(this, ProposalMainActivity::class.java).apply { putExtra("previous_activity", "개선안_장소") })
+        val itemName = intent.getStringExtra("ITEM_NAME")
+        val itemImageResourceId = intent.getIntExtra("ITEM_IMAGERESID", 0)
+
+        findViewById<TextView>(R.id.menu_text).text = itemName
+        findViewById<ImageView>(R.id.menu_image).setImageResource(itemImageResourceId)
+
+        Toast.makeText(this, "해당 정보는 임의의 정보로, 정확하지 않을 수 있습니다.", Toast.LENGTH_LONG).show()
+
+        // 상세 정보 토글
+        findViewById<ImageView>(R.id.toggleButton).setOnClickListener {
+            if (findViewById<LinearLayout>(R.id.detailInfoLayout).visibility == View.GONE) {
+                findViewById<LinearLayout>(R.id.detailInfoLayout).visibility = View.VISIBLE
+                findViewById<ImageView>(R.id.toggleButton).setImageResource(R.drawable.ic_uparrow)
+            } else {
+                findViewById<LinearLayout>(R.id.detailInfoLayout).visibility = View.GONE
+                findViewById<ImageView>(R.id.toggleButton).setImageResource(R.drawable.ic_downarrow)
+            }
         }
 
-        // 포장 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.button_take_out).setOnClickListener {
-            startActivity(Intent(this, ProposalMainActivity::class.java).apply { putExtra("previous_activity", "개선안_장소") })
+        findViewById<Button>(R.id.button_cancel).setOnClickListener {
+            finish()
         }
 
         // 처음으로 버튼 클릭 시
-        findViewById<Button>(R.id.buttonHome).setOnClickListener {
-            val intent = Intent(this@ProposalPlaceSelection, ProposalOrderCancelActivity::class.java)
-                .apply { putExtra("previous_activity", "개선안_장소") }
+        findViewById<TextView>(R.id.gotohome).setOnClickListener {
+            val intent = Intent(this, ProposalOrderCancelActivity::class.java).apply { putExtra("previous_activity", "실전 연습_영양정보") }
             startActivity(intent)
-        }
-
-        // 도움 기능 버튼 클릭 시
-        findViewById<LinearLayout>(R.id.linearLayoutHelp).setOnClickListener {
-        }
-
-        // 영어 버튼 클릭 시
-        findViewById<Button>(R.id.button_english).setOnClickListener {
-            Toast.makeText(this, "현재는 한국어만 지원합니다.", Toast.LENGTH_LONG).show()
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
@@ -74,8 +68,8 @@ class ProposalPlaceSelection : AppCompatActivity() {
         override fun handleOnBackPressed() {
             // 뒤로 가기 실행 시 실행할 동작 코드 구현
             val params = Bundle().apply {
-                putString("previous_screen_name", previousActivity) // 잘못 클릭했던 화면 이름
-                putString("screen_name", "개선안_장소") // 현재 화면 이름
+                putString("previous_screen_name", previousActivity)
+                putString("screen_name", "개선안_영양정보")
             }
             firebaseAnalytics.logEvent("go_back", params)
 
@@ -83,7 +77,6 @@ class ProposalPlaceSelection : AppCompatActivity() {
             isEnabled = false // 콜백을 비활성화하여 기본 뒤로 가기 동작을 수행
             onBackPressedDispatcher.onBackPressed() // 기본 뒤로 가기 동작 수행
         }
-
     }
 
     override fun onStart() {
@@ -98,7 +91,7 @@ class ProposalPlaceSelection : AppCompatActivity() {
 
         val params = Bundle().apply {
             putLong("screen_duration", duration)
-            putString("screen_name", "개선안_장소")
+            putString("screen_name", "개선안_영양정보")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }

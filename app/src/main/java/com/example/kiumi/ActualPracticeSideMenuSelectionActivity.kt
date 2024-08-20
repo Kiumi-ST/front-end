@@ -106,6 +106,18 @@ class ActualPracticeSideMenuSelectionActivity : AppCompatActivity() {
         }
     }
 
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
+    }
+
     override fun onStart() {
         super.onStart()
         startTime = System.currentTimeMillis()

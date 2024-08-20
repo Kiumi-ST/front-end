@@ -187,6 +187,13 @@ class ActualPracticeActivity : AppCompatActivity() {
 
         popupWindow.showAtLocation(findViewById(android.R.id.content), Gravity.TOP or Gravity.END, 50, 200)
 
+        // 팝업 클릭 시 순서지침 화면으로 이동
+        popupView.setOnClickListener {
+            val intent = Intent(this@ActualPracticeActivity, TutorialActivity::class.java)
+            startActivity(intent)
+            popupWindow.dismiss() // 팝업 창 닫기
+        }
+
         popupView.postDelayed({
             popupWindow.dismiss()
         }, 3000)

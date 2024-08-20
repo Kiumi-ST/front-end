@@ -64,4 +64,11 @@ class PracticeSelectionActivity : AppCompatActivity() {
             startActivity(Intent(this, ProposalFirstActivity::class.java))
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        // 서비스 중지
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        stopService(serviceIntent)
+    }
 }

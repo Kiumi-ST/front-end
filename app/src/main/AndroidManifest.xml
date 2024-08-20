@@ -22,6 +22,36 @@
             android:name=".PhotoCaptureService"
             android:exported="false"/>
         <activity
+            android:name=".ProposalBurgerCustomizationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalLanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalNutritionInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalOrderCancelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalPaymentCard"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalPaymentMobileGift"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalPaymentMobileGiftComplete"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalPaymentMobileGiftScan"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalPickup"
+            android:exported="false" />
+        <activity
+            android:name=".ProposalThankYou"
+            android:exported="false" />
+        <activity
             android:name=".TutorialCartAddedActivity"
             android:exported="false" />
         <activity

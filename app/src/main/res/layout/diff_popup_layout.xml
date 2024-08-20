@@ -2,16 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:background="@drawable/button_background"
+    android:backgroundTint="@color/pink"
+    android:elevation="8dp"
+    android:gravity="center"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/popup_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Difficulty detected!"
-        android:textColor="@android:color/white"
-        android:textSize="14sp" />
+        android:text="어려움을 느끼십니까?"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="3dp"
+        android:textSize="12dp" />
+    <TextView
+        android:id="@+id/popup_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="순서지침을 통해 연습해보세요!"
+        android:textColor="@android:color/black"
+        android:textSize="12dp" />
+    <TextView
+        android:id="@+id/popup_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(클릭 시 순서지침으로 넘어갑니다.)"
+        android:textColor="@android:color/black"
+        android:textSize="9dp" />
 
 </LinearLayout>
