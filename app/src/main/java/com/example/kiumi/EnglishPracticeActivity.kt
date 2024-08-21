@@ -37,11 +37,15 @@ class EnglishPracticeActivity : AppCompatActivity(), TextToSpeech.OnInitListener
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM)
         supportActionBar?.setCustomView(R.layout.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // Enable back button
 
         val toolbarView = supportActionBar?.customView
         val homeIcon = toolbarView?.findViewById<ImageView>(R.id.home_icon)
         val titleView = toolbarView?.findViewById<TextView>(R.id.toolbar_title)
+        val backIcon = toolbarView?.findViewById<ImageView>(R.id.back_icon)
+
+        backIcon?.setOnClickListener {
+            finish()
+        }
 
         titleView?.text = "도움말"
 

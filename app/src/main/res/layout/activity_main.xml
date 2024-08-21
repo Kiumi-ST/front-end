@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:text="키오스크 배움이"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/toolbar_logo"
@@ -88,6 +88,7 @@
                     android:textAlignment="center"
                     android:background="@drawable/text_yellow_background"
                     android:text="연습하기"
+                    android:gravity="center"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"/>
             </RelativeLayout>
