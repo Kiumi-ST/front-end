@@ -88,7 +88,6 @@
                     android:textAlignment="center"
                     android:background="@drawable/text_yellow_background"
                     android:text="연습하기"
-                    android:gravity="center"
                     android:textColor="@android:color/black"
                     android:textSize="20sp"/>
             </RelativeLayout>
@@ -168,7 +167,7 @@
         android:drawableRight="@drawable/toggle_check_selector"
         android:drawablePadding="10dp"
         android:layout_marginTop="20dp"
-        android:textOn="음성지원 서비스를 이용하지 않으시겠습니까?"
+        android:textOn="음성지원 서비스를 이용증입니다."
         android:textOff="음성지원 서비스를 이용하시겠습니까?"/>
 
 </RelativeLayout>
