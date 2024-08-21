@@ -3,6 +3,7 @@ package com.example.kiumi
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
 
@@ -18,7 +19,7 @@ object RetrofitClient {
     val springBootApiService: SpringBootApiService = springBootRetrofit.create(SpringBootApiService::class.java)
 
     // Flask 서버 연동
-    private const val FLASK_BASE_URL = "http://192.168.103.199:8000/"
+    private const val FLASK_BASE_URL = "http://192.168.0.8:8000/"
 
     val flaskRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl(FLASK_BASE_URL)

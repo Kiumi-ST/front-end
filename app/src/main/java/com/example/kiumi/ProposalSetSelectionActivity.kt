@@ -11,7 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalSetSelectionActivity : AppCompatActivity() {
+class ProposalSetSelectionActivity : PopupActivity() {
 
     private lateinit var menuItem: ProposalMenuItem
     private var isLargeSet: Boolean = false
@@ -114,5 +114,17 @@ class ProposalSetSelectionActivity : AppCompatActivity() {
             putExtra("previous_activity", "개선안_버거 선택-세트 사이즈")
         }
         startActivity(intent)
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 }
