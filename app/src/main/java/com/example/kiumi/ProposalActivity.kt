@@ -1,20 +1,27 @@
 package com.example.kiumi
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalActivity : AppCompatActivity() {
+class ProposalActivity : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
     private var previousActivity: String? = null
+    private val CAMERA_PERMISSION_REQUEST_CODE = 100
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +31,20 @@ class ProposalActivity : AppCompatActivity() {
         firebaseAnalytics = Firebase.analytics
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
+
+        // 카메라 권한 확인
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            != PackageManager.PERMISSION_GRANTED) {
+            // 권한이 부여되지 않은 경우, 권한 요청
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_REQUEST_CODE
+            )
+        } else {
+            // 권한이 부여된 경우, 서비스 시작
+            startPhotoCaptureService()
+        }
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
             val intent = Intent(
@@ -90,6 +111,30 @@ class ProposalActivity : AppCompatActivity() {
             putString("screen_name", "개선안_대기")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한이 허용된 경우, 서비스 시작
+                startPhotoCaptureService()
+            } else {
+                // 권한이 거부된 경우, 사용자에게 안내
+                Toast.makeText(this, "카메라 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun startPhotoCaptureService() {
+        // 권한이 허용된 후 서비스 시작
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        startService(serviceIntent)
     }
 
 }

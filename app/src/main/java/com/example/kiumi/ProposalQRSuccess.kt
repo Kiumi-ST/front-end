@@ -12,7 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalQRSuccess : AppCompatActivity() {
+class ProposalQRSuccess : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -72,5 +72,17 @@ class ProposalQRSuccess : AppCompatActivity() {
             putString("screen_name", "개선안_QR 코드 스캔 시")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 }

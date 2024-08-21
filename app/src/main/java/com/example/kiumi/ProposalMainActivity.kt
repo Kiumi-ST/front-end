@@ -17,7 +17,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalMainActivity : AppCompatActivity() {
+class ProposalMainActivity : PopupActivity() {
     lateinit var binding: ActivityProposalMainBinding
     private lateinit var home: LinearLayout
     private lateinit var burger: LinearLayout
@@ -363,6 +363,18 @@ class ProposalMainActivity : AppCompatActivity() {
             putLong("screen_duration", duration)
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 }
 

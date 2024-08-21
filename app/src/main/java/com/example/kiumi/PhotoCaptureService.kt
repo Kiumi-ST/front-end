@@ -134,11 +134,11 @@ class PhotoCaptureService : LifecycleService() {
                     Log.d("Server Response", "Dominant Emotion: ${analyzeResponse?.dominantEmotion}, Is Difficult: ${analyzeResponse?.isDifficult}")
                     // isDifficult가 true일 경우 Broadcast 전송
                     if (analyzeResponse?.isDifficult == true) {
-                        Toast.makeText(
-                            this@PhotoCaptureService,
-                            "isDifficult가 true임(서버 연결 확인용, 나중에 지워야 함)",
-                            Toast.LENGTH_LONG
-                        ).show()
+//                        Toast.makeText(
+//                            this@PhotoCaptureService,
+//                            "isDifficult가 true임(서버 연결 확인용, 나중에 지워야 함)",
+//                            Toast.LENGTH_LONG
+//                        ).show()
                         val intent = Intent("com.example.kiumi.ACTION_DIFFICULTY_DETECTED")
                         sendBroadcast(intent)
                     }

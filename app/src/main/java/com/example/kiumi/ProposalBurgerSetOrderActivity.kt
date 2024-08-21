@@ -12,7 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalBurgerSetOrderActivity : AppCompatActivity() {
+class ProposalBurgerSetOrderActivity : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private lateinit var menuItem: ProposalMenuItem
     private var isLargeSet: Boolean = false
@@ -167,5 +167,17 @@ class ProposalBurgerSetOrderActivity : AppCompatActivity() {
             putString("screen_name", "개선안_버거 선택-세트 확인")
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 }

@@ -11,7 +11,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 
-class ProposalDrinkSelectionActivity : AppCompatActivity() {
+class ProposalDrinkSelectionActivity : PopupActivity() {
     private lateinit var firebaseAnalytics: FirebaseAnalytics
     private var startTime: Long = 0
     private var endTime: Long = 0
@@ -132,5 +132,17 @@ class ProposalDrinkSelectionActivity : AppCompatActivity() {
             putExtra("selectedDrink", selectedDrink)
         }.apply { putExtra("previous_activity", "개선안_버거 선택-세트 음료") }
         startActivity(intent)
+    }
+
+    private fun notifyServiceOfCurrentActivity() {
+        val serviceIntent = Intent(this, PhotoCaptureService::class.java)
+        serviceIntent.putExtra("ACTIVITY_NAME", this::class.java.simpleName)
+        // 이미 실행 중이면 onStartCommand만 호출됨
+        startService(serviceIntent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        notifyServiceOfCurrentActivity()
     }
 }
