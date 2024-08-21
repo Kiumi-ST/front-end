@@ -39,7 +39,7 @@ class ActualPracticePickup : PopupActivity() {
 
 
         // 5초 후에 다음 액티비티로 이동
-        handler.postDelayed(navigateRunnable, 5000) // 5000ms = 5초
+        handler.postDelayed(navigateRunnable, 2500)
 
         // 첫 번째 ImageView의 애니메이션 설정
         val imageViewPickup1 = findViewById<ImageView>(R.id.imageViewPickup1)

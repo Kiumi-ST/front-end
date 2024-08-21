@@ -83,7 +83,6 @@ class PracticeSelectionActivity : AppCompatActivity(), TextToSpeech.OnInitListen
         }
     }
 
-
     override fun onStart() {
         super.onStart()
         // 서비스 중지

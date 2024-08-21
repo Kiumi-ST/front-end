@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
@@ -79,9 +78,8 @@ class OrderSummaryDialogTutorialFragment : DialogFragment(), TextToSpeech.OnInit
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        // 다이얼로그가 닫힐 때 SharedPreferences에 애니메이션 상태 저장
-        val sharedPref = activity?.getSharedPreferences("com.example.kiumi.PREFERENCES", Context.MODE_PRIVATE)
-        sharedPref?.edit()?.putBoolean("blinkingAnimation", true)?.apply()
+        // 프래그먼트가 닫힐 때 TutorialMainActivity에 알림을 보냄
+        (activity as? TutorialMainActivity)?.onFragmentClosed()
     }
 
     override fun onResume() {
@@ -116,4 +114,3 @@ class OrderSummaryDialogTutorialFragment : DialogFragment(), TextToSpeech.OnInit
         super.onDestroy()
     }
 }
-

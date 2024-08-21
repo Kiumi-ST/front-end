@@ -54,9 +54,9 @@ class ProposalCartAddedActivity : AppCompatActivity() {
             price.text = ""
         }
 
-        // 3초 후에 이동
-        Toast.makeText(this, "3초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
-        handler.postDelayed(navigateRunnable, 3000)
+        // 1.5초 후에 이동
+        //Toast.makeText(this, "1.5초 동안 화면이 유지됩니다", Toast.LENGTH_LONG).show()
+        handler.postDelayed(navigateRunnable, 1500)
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)

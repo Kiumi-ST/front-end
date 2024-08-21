@@ -30,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // SharedPreferences에서 TTS 상태 불러오기
+        // SharedPreferences 불러오기
         val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+
+        // SharedPreferences에서 isTTSActive 값을 불러옴 (초기값 false)
         isTTSActive = sharedPref.getBoolean("isTTSActive", false)
 
         val toggleButton = findViewById<ToggleButton>(R.id.toggleButton)
@@ -79,5 +81,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.d(MainActivity::class.simpleName, "패키지명: $packageName")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        // 앱이 종료될 때 isTTSActive 값을 false로 초기화
+        val sharedPref = getSharedPreferences("com.example.kiumi.PREFERENCE_FILE_KEY", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putBoolean("isTTSActive", false)
+            apply()
+        }
     }
 }

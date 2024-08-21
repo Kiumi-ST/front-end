@@ -19,9 +19,9 @@ class TutorialCartAddedActivity : AppCompatActivity() {
         // 이전 액티비티에서 전달된 isTTSActive 값 받아오기 (기본값 false)
         isTTSActive = intent.getBooleanExtra("isTTSActive", false)
 
-        // Coroutine을 사용하여 2초 후에 TutorialMainActivity로 이동
+        // Coroutine을 사용하여 1.5초 후에 TutorialMainActivity로 이동
         lifecycleScope.launch {
-            delay(2000) // 2초 대기
+            delay(1500) // 1.5초 대기
             val intent = Intent(this@TutorialCartAddedActivity, TutorialMainActivity::class.java)
             intent.putExtra("isTTSActive", isTTSActive) // 다음 액티비티로 isTTSActive 값 전달
             startActivity(intent)

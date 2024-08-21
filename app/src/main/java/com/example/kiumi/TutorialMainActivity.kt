@@ -96,11 +96,26 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         // 주문 내역 버튼 초기 배경 설정
         updateOrderHistoryButtonState()
+
+        // orderHistoryTextView가 완전히 로드된 후 배경이 설정되었는지 확인
+        orderHistoryTextView.viewTreeObserver.addOnGlobalLayoutListener {
+            // 주문 내역 버튼이 깜박이고 있는지 확인하고 TTS 메시지 출력
+            announceOrderHistoryClick()
+        }
+
+        if (isTTSActive) {
+            speakText("주문 내역을 클릭해주세요")
+        }
     }
 
     override fun onResume() {
         super.onResume()
+
+        // 주문 내역 버튼 상태 업데이트 (필요하다면 유지)
         updateOrderHistoryButtonState()
+
+        // TTS 메시지 출력을 삭제하여, onResume 시 TTS 메시지가 출력되지 않도록 함
+        // announceOrderHistoryClick() 호출을 제거합니다.
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -172,6 +187,14 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
+    private fun announceOrderHistoryClick() {
+        // orderHistoryTextView의 배경이 blinking_border_animation인지 확인
+        val background = orderHistoryTextView.background
+        if (background is AnimationDrawable && isTTSActive) {
+            //speakText("주문 내역을 클릭해주세요")
+        }
+    }
+
     fun showBurgerSelectionPopup(menuItem: MenuItem) {
         val popupBurgerSelectionContainer: RelativeLayout = findViewById(R.id.popup_burger_selection)
         val popupSingBurgerContainer: RelativeLayout = findViewById(R.id.popup_single_burger)
@@ -235,7 +258,6 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             speakText("세트 선택을 클릭해주세요")
         }
     }
-
 
     fun showDrinkSelectionPopup(menuItem: MenuItem) {
         val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
@@ -321,6 +343,25 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+
+        // TTS가 실행 중이면 멈추도록 설정
+        if (::tts.isInitialized && tts.isSpeaking) {
+            tts.stop()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        // TTS가 실행 중이면 멈추도록 설정
+        if (::tts.isInitialized && tts.isSpeaking) {
+            tts.stop()
+        }
+    }
+
+
     override fun onDestroy() {
         if (::tts.isInitialized) {
             tts.stop()
@@ -328,5 +369,14 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
         super.onDestroy()
     }
-}
 
+    fun onFragmentClosed() {
+        // orderHistoryTextView의 배경을 blinking_border_animation으로 설정하고 애니메이션 시작
+        orderHistoryTextView.setBackgroundResource(R.drawable.blinking_border_animation)
+        val orderHistoryAnimation = orderHistoryTextView.background as AnimationDrawable
+        orderHistoryAnimation.start()
+
+        // 애니메이션 시작 후 TTS 메시지 출력
+        announceOrderHistoryClick()
+    }
+}
