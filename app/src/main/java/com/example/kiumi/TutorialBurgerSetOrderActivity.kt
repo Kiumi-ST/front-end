@@ -36,7 +36,7 @@ class TutorialBurgerSetOrderActivity : AppCompatActivity(), TextToSpeech.OnInitL
             // burger_set_clicked 상태를 true로 저장
             preferences.edit().putBoolean("burger_set_clicked", true).apply()
 
-            val intent = Intent(this, TutorialMainActivity::class.java)
+            val intent = Intent(this, TutorialCartAddedActivity::class.java)
             intent.putExtra("isTTSActive", isTTSActive) // 메인으로 돌아갈 때도 isTTSActive 값 전달
             intent.putExtra("isTTSActiveForMainActivity", false) // MainActivity에서 TTS를 비활성화
             startActivity(intent)

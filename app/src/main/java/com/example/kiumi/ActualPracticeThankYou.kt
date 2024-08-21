@@ -36,7 +36,7 @@ class ActualPracticeThankYou : PopupActivity() {
         previousActivity = intent.getStringExtra("previous_activity")
 
         // 3초 후에 다음 액티비티로 이동
-        handler.postDelayed(navigateRunnable, 3000)
+        handler.postDelayed(navigateRunnable, 1500)
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
         onBackPressedDispatcher.addCallback(this, onBackPressedCallback)
