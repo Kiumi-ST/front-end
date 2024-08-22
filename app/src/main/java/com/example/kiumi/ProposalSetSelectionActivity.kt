@@ -36,8 +36,8 @@ class ProposalSetSelectionActivity : PopupActivity() {
         val baseSetPrice = menuItem.price.replace("₩", "").replace(",", "").toInt()
 
         titleTextView.text = "${menuItem.name}"
-        setTextView.text = "${menuItem.name} - 세트"
-        largeSetTextView.text = "${menuItem.name} - 라지세트"
+        setTextView.text = "세트"
+        largeSetTextView.text = "라지세트"
         setPriceTextView.text = "₩${baseSetPrice + 2000}"
         largerSetPriceTextView.text = "₩${baseSetPrice + 2700}"
 

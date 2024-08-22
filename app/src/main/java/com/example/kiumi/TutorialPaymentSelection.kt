@@ -13,16 +13,15 @@ import java.util.*
 
 class TutorialPaymentSelection : AppCompatActivity(), TextToSpeech.OnInitListener {
 
-    private lateinit var preferences: SharedPreferences
     private lateinit var tts: TextToSpeech
-    private var isTTSActive: Boolean = true // 기본값을 true로 설정
+    private var isTTSActive: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial_payment_selection)
 
         // 이전 액티비티에서 전달된 isTTSActive 값 받아오기 (기본값 true)
-        isTTSActive = intent.getBooleanExtra("isTTSActive", true)
+        isTTSActive = intent.getBooleanExtra("isTTSActive", false)
 
         // 현재 isTTSActive 값을 로그로 출력
         Log.d("TutorialPaymentSelection", "onCreate: isTTSActive = $isTTSActive")
@@ -34,7 +33,7 @@ class TutorialPaymentSelection : AppCompatActivity(), TextToSpeech.OnInitListene
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
         cardPaymentLayout.setOnClickListener {
             // ActualPracticePayment 액티비티로 이동
-            val intent = Intent(this, ActualPracticePaymentCard::class.java)
+            val intent = Intent(this, TutorialPaymentCard::class.java)
             intent.putExtra("isTTSActive", isTTSActive) // 다음 액티비티로 isTTSActive 값 전달
             startActivity(intent)
         }

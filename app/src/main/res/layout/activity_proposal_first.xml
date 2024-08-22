@@ -59,8 +59,7 @@
                 android:paddingBottom="46dp"
                 android:text="주문하기 버튼을 선택해 주세요"
                 android:textColor="#000"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textSize="25sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,17 +84,7 @@
                         android:paddingTop="8dp"
                         android:text="결제 전 포인트 적립"
                         android:textColor="#000"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:paddingTop="4dp"
-                        android:text="맥도날드 어플을 설치해\n 포인트를 적립하세요!"
-                        android:textColor="#000"
-                        android:textSize="12sp" />
+                        android:textSize="18sp" />
 
                     <ImageView
                         android:layout_width="70dp"
@@ -126,9 +115,7 @@
                         android:background="@color/yellow"
                         android:text="주문하기"
                         android:textColor="#000"
-                        android:textSize="27sp"
-
-                        android:textStyle="bold" />
+                        android:textSize="27sp"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -192,9 +179,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="30dp"
-            android:background="@drawable/english_expression_popup_round"
+            android:background="@drawable/popup_black_round"
             android:text="주문하시려면 터치하세요"
-            android:textStyle="bold"
             android:textSize="24sp"
             android:textColor="#000" />
     </LinearLayout>

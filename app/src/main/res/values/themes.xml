@@ -5,7 +5,16 @@
         <item name="colorPrimary">@color/blue</item>
     </style>
 
-    <style name="Theme.Kiumi" parent="Base.Theme.Kiumi" >
+    <style name="Theme.Kiumi" parent="Base.Theme.Kiumi">
         <item name="android:fontFamily">@font/fonts</item>
     </style>
+
+    <!-- splash Screen Theme -->
+    <style name="AppTheme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/blue</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo3</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.Kiumi</item>
+    </style>
+
 </resources>
