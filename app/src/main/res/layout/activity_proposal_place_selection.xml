@@ -152,7 +152,7 @@
             android:id="@+id/button_korean"
             android:layout_width="115dp"
             android:layout_height="40dp"
-            android:background="@drawable/button_background"
+            android:background="@drawable/button_background_selected"
             android:enabled="false"
             android:text="한국어"
             android:textStyle="bold"

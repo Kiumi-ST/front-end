@@ -366,7 +366,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <LinearLayout
@@ -414,7 +414,8 @@
                 android:textSize="8dp"
                 android:textColor="@color/black"
                 android:layout_marginVertical="8dp"
-                android:layout_marginLeft="10dp"/>
+                android:layout_gravity="center"
+                />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

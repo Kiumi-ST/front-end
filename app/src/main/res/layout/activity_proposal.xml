@@ -54,8 +54,7 @@
             android:paddingBottom="46dp"
             android:text="주문하기 버튼을 선택해 주세요"
             android:textColor="#000"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:textSize="25sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,17 +79,7 @@
                     android:paddingTop="8dp"
                     android:text="결제 전 포인트 적립"
                     android:textColor="#000"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingTop="4dp"
-                    android:text="맥도날드 어플을 설치해\n 포인트를 적립하세요!"
-                    android:textColor="#000"
-                    android:textSize="12sp" />
+                    android:textSize="17sp"/>
 
                 <ImageView
                     android:layout_width="70dp"
@@ -121,9 +110,7 @@
                     android:background="@color/yellow"
                     android:text="주문하기"
                     android:textColor="#000"
-                    android:textSize="27sp"
-
-                    android:textStyle="bold" />
+                    android:textSize="27sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -166,7 +153,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="⦁ 매장마다 해피 스낵 할인 제품 및 제품별 판매 시간이 다릅니다.
+                    android:text="⦁ 매장마다 해피 스낵 할인 제품 및 제품별 판매\n시간이 다릅니다.
 카카오 선물하기, 모바일 상품권 사용 가능합니다.\n⦁ 무료 쿠폰 사용은 카운터에서 문의해주세요."
                     android:textColor="#000"
                     android:textSize="10sp" />

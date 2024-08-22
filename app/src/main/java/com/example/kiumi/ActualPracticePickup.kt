@@ -38,7 +38,7 @@ class ActualPracticePickup : PopupActivity() {
         previousActivity = intent.getStringExtra("previous_activity")
 
 
-        // 5초 후에 다음 액티비티로 이동
+        // 2.5초 후에 다음 액티비티로 이동
         handler.postDelayed(navigateRunnable, 2500)
 
         // 첫 번째 ImageView의 애니메이션 설정

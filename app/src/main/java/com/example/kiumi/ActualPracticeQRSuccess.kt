@@ -81,5 +81,4 @@ class ActualPracticeQRSuccess : PopupActivity() {
         }
         firebaseAnalytics.logEvent("screen_view_duration", params)
     }
-
 }

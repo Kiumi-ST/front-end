@@ -32,7 +32,7 @@
         android:text="메뉴가 주문 내역에 \n추가되었습니다"
         android:textColor="@android:color/black"
         android:textSize="24dp"
-        android:fontFamily="@font/jamsil_bold"
+        android:fontFamily="@font/jamsil_regul"
         android:gravity="center"
         android:layout_centerHorizontal="true" />
 

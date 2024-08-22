@@ -26,7 +26,7 @@ class ProposalPaymentMobileGiftScan : PopupActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_actual_practice_payment_mobile_gift_scan)
+        setContentView(R.layout.activity_proposal_payment_mobile_gift_scan)
 
         // Obtain the FirebaseAnalytics instance
         firebaseAnalytics = Firebase.analytics

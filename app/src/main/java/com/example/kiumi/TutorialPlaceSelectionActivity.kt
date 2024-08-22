@@ -82,6 +82,14 @@ class TutorialPlaceSelectionActivity : AppCompatActivity(), TextToSpeech.OnInitL
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        // 다른 액티비티로 넘어갈 때 TTS 멈춤
+        if (::tts.isInitialized && tts.isSpeaking) {
+            tts.stop()
+        }
+    }
+
     override fun onDestroy() {
         if (::tts.isInitialized) {
             tts.stop()
