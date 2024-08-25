@@ -90,4 +90,8 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:33.1.2")) // Import the Firebase BoM
     implementation("com.google.firebase:firebase-analytics")
+
+    // Splash
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
 }

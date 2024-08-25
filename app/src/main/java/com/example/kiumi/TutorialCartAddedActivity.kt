@@ -23,7 +23,8 @@ class TutorialCartAddedActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(1500) // 1.5초 대기
             val intent = Intent(this@TutorialCartAddedActivity, TutorialMainActivity::class.java)
-            intent.putExtra("isTTSActive", isTTSActive) // 다음 액티비티로 isTTSActive 값 전달
+            intent.putExtra("isTTSActive", isTTSActive)  // 기존 TTS 활성화 상태 전달
+            intent.putExtra("isTTSActiveForMainActivity", false)  // 이 값을 TutorialMainActivity로 전달
             startActivity(intent)
             finish() // 현재 액티비티 종료
         }

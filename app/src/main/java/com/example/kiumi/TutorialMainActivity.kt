@@ -259,68 +259,6 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-    fun showDrinkSelectionPopup(menuItem: MenuItem) {
-        val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
-        var quantity = 1
-        val quantityText: TextView = findViewById(R.id.quantity)
-
-        popupSingleBurger.visibility = View.VISIBLE
-        popupSingleBurger.bringToFront()
-
-        // 수량 변경 버튼
-        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
-            if (quantity > 1) {
-                quantity--
-                quantityText.text = quantity.toString()
-            }
-        }
-        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
-            quantity++
-            quantityText.text = quantity.toString()
-        }
-
-        // 단품 장바구니 추가
-        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
-            val intent = Intent(
-                this@TutorialMainActivity,
-                TutorialMainActivity::class.java
-            )
-            startActivity(intent)
-
-        }
-    }
-
-    fun showSideSelectionPopup(menuItem: MenuItem) {
-        val popupSingleBurger: RelativeLayout = findViewById(R.id.popup_single_burger)
-        var quantity = 1
-        val quantityText: TextView = findViewById(R.id.quantity)
-
-        popupSingleBurger.visibility = View.VISIBLE
-        popupSingleBurger.bringToFront()
-
-        // 수량 변경 버튼
-        findViewById<Button>(R.id.button_decrease_quantity).setOnClickListener {
-            if (quantity > 1) {
-                quantity--
-                quantityText.text = quantity.toString()
-            }
-        }
-        findViewById<Button>(R.id.button_increase_quantity).setOnClickListener {
-            quantity++
-            quantityText.text = quantity.toString()
-        }
-
-        // 단품 장바구니 추가
-        findViewById<Button>(R.id.button_add_to_cart).setOnClickListener {
-            val intent = Intent(
-                this@TutorialMainActivity,
-                TutorialMainActivity::class.java
-            )
-            startActivity(intent)
-
-        }
-    }
-
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             val result = tts.setLanguage(Locale.KOREAN)

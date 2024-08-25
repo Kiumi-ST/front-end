@@ -272,7 +272,7 @@
                             android:id="@+id/button_large_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="+₩200 179 Kcal"
+                            android:text="179 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
                             android:textSize="12sp"/>
@@ -309,41 +309,42 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginStart="10dp">
+            android:layout_gravity="center"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/gotohome"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
-                android:layout_weight="1"
-                android:text="처음으로"
-                android:textSize="12dp"
-                android:gravity="center"
-                android:background="@drawable/button_background_gray"
-                android:textColor="@color/black"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_gray"
+                android:gravity="center"
+                android:paddingTop="0dp"
                 android:paddingBottom="0dp"
-                android:paddingTop="0dp" />
+                android:text="처음으로"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
 
             <TextView
                 android:id="@+id/help"
                 android:layout_width="0dp"
                 android:layout_height="22dp"
-                android:layout_weight="1"
-                android:text="도움 기능"
-                android:textSize="12dp"
-                android:gravity="center"
-                android:drawableLeft="@drawable/help_icon"
-                android:background="@drawable/button_background_gray"
-                android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:paddingBottom="0dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_background_gray"
+                android:drawableLeft="@drawable/help_icon"
+                android:gravity="center"
                 android:paddingTop="0dp"
-                android:textColor="@color/black"/>
+                android:paddingBottom="0dp"
+                android:text="도움 기능"
+                android:textColor="@color/black"
+                android:textSize="12dp" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>
