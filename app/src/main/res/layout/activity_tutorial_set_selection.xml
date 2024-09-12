@@ -29,7 +29,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="창녕 갈릭 버거"
+                android:text="크리스피 치킨버거"
                 android:textSize="20sp"
                 android:textColor="#000"
                 android:paddingStart="8dp" />
@@ -60,7 +60,7 @@
                         android:layout_width="3dp"
                         android:layout_height="35dp"
                         android:layout_marginRight="3dp"
-                        android:background="#FFC107" />
+                        android:background="@color/orange" />
 
                     <ImageView
                         android:layout_width="13dp"
@@ -131,7 +131,7 @@
                             android:id="@+id/button_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="창녕 갈릭 버거 - 세트"
+                            android:text="크리스피 치킨버거 - 세트"
                             android:textColor="#000"
                             android:textSize="12sp"/>
 
@@ -139,7 +139,7 @@
                             android:id="@+id/button_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩8600 674 Kcal"
+                            android:text="₩6600 674 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
                             android:textSize="12sp"/>
@@ -165,7 +165,7 @@
                             android:id="@+id/button_large_set_text_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="창녕 갈릭 버거 - 라지세트"
+                            android:text="크리스피 치킨버거 - 라지세트"
                             android:textColor="#000"
                             android:textSize="12sp"/>
 
@@ -173,7 +173,7 @@
                             android:id="@+id/button_large_set_text_price_calories"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₩9300 674 Kcal"
+                            android:text="₩7300 674 Kcal"
                             android:textColor="#000"
                             android:gravity="center"
                             android:textSize="12sp"/>

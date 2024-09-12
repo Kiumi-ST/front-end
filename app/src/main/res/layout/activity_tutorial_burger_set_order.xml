@@ -55,7 +55,7 @@
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="창녕 갈릭 버거 - 세트"
+                    android:text="크리스피 치킨버거 - 세트"
                     android:textSize="28sp"
                     android:textColor="#000"
                     android:paddingStart="8dp" />
@@ -64,7 +64,7 @@
                     android:id="@+id/title2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₩8600 1149 Kcal"
+                    android:text="₩6600 1149 Kcal"
                     android:textSize="28sp"
                     android:textColor="#000"
                     android:paddingStart="8dp" />
@@ -127,7 +127,7 @@
                             android:id="@+id/burger_info"
                             android:layout_width="90dp"
                             android:layout_height="wrap_content"
-                            android:text="창녕 갈릭 버거\n674 Kcal"
+                            android:text="크리스피 치킨버거\n674 Kcal"
                             android:textSize="12sp"
                             android:textColor="#000"
                             android:gravity="left"
@@ -327,7 +327,7 @@
                 android:layout_height="30dp"
                 android:text="장바구니 추가"
                 android:layout_gravity="center"
-                android:background="@color/yellow"
+                android:background="@color/orange"
                 android:textColor="#000"
                 android:layout_marginLeft="10dp"/>
         </LinearLayout>

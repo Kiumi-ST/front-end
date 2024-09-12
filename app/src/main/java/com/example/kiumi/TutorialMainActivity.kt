@@ -171,14 +171,16 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         // TextView 참조 가져오기
         val priceTextView: TextView = findViewById(R.id.price)
+        val notificationTextView: TextView = findViewById(R.id.notification_badge)
 
         if (burgerSetClicked) {
             orderHistoryTextView.setBackgroundResource(R.drawable.blinking_border_animation)
             val orderHistoryAnimation = orderHistoryTextView.background as AnimationDrawable
             orderHistoryAnimation.start()
 
-            // burgerSetClicked가 true이면 텍스트를 ₩8600으로 변경
-            priceTextView.text = "₩8600"
+            // burgerSetClicked가 true이면 텍스트를 ₩6600으로 변경
+            priceTextView.text = "₩6600"
+            notificationTextView.text = "1"
         } else {
             orderHistoryTextView.setBackgroundResource(R.drawable.button_background_gray)
 

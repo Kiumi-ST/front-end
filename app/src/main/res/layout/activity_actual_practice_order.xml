@@ -137,7 +137,7 @@
                             android:layout_height="30dp"
                             android:gravity="center"
                             android:text="주문 완료"
-                            android:background="@color/yellow"
+                            android:background="@color/orange"
                             android:textColor="@color/black"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"/>
@@ -207,7 +207,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:background="@color/yellow"
+                            android:background="@color/orange"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:padding="10dp">

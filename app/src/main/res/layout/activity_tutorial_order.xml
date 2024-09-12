@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="창녕 갈릭 버거 - 세트"
+                    android:text="크리스피 치킨버거 - 세트"
                     android:textSize="10dp"
                     android:textColor="@android:color/black" />
 
@@ -122,7 +122,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="₩8600"
+                android:text="₩6600"
                 android:textSize="16sp"
                 android:layout_marginStart="8dp"
                 android:textColor="@android:color/black" />
@@ -162,7 +162,7 @@
                     android:id="@+id/sumif"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
-                    android:text="₩8600"
+                    android:text="₩6600"
                     android:textColor="@color/black"
                     android:gravity="right"
                     android:layout_marginTop="3dp"
@@ -186,7 +186,7 @@
                     android:id="@+id/sumall"
                     android:layout_width="160dp"
                     android:layout_height="30dp"
-                    android:text="₩8600"
+                    android:text="₩6600"
                     android:textSize="16dp"
                     android:fontFamily="@font/jamsil_bold"
                     android:textColor="@color/black"
@@ -298,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:background="@color/yellow"
+                            android:background="@color/orange"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:padding="10dp">

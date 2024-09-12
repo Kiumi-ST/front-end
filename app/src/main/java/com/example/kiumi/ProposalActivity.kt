@@ -32,6 +32,9 @@ class ProposalActivity : PopupActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
+        ProposalCartManager.clearCart()
+        ProposalPointManager.resetPoint()
+
         // 카메라 권한 확인
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
@@ -74,6 +77,13 @@ class ProposalActivity : PopupActivity() {
 
         // 도움 버튼 클릭 시
         findViewById<Button>(R.id.button_help).setOnClickListener {
+        }
+
+        // 포인트 적립
+        findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            PointManager.setPointEarned(true)
+            val intent = Intent(this, ActualPracticeQRSuccess::class.java)
+            startActivity(intent)
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록

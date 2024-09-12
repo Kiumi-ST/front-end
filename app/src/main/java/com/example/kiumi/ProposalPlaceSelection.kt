@@ -32,6 +32,7 @@ class ProposalPlaceSelection : PopupActivity() {
         previousActivity = intent.getStringExtra("previous_activity")
 
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            ProposalPointManager.setPointEarned(true)
             val intent = Intent(
                 this@ProposalPlaceSelection,
                 ProposalQRSuccess::class.java

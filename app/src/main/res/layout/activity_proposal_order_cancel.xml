@@ -62,7 +62,7 @@
                 android:id="@+id/button_yes"
                 android:layout_width="160dp"
                 android:layout_height="40dp"
-                android:background="@color/yellow"
+                android:background="@color/orange"
                 android:text="확인"
                 android:textColor="#000" />
         </LinearLayout>
