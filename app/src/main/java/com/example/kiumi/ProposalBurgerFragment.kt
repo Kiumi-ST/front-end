@@ -26,9 +26,9 @@ class ProposalBurgerFragment : Fragment() {
 
     private lateinit var adapter: ProposalMenuAdapter
     val menuItems = listOf(
-        ProposalMenuItem("창녕 갈릭 버거", "₩6,600", R.drawable.changneung_gallic_burger, true),
-        ProposalMenuItem("트리플 치즈버거", "₩5,600", R.drawable.triple_cheese_burger, false),
-        ProposalMenuItem("불고기 버거", "₩2,200", R.drawable.bulgogi_burger, false),
+        ProposalMenuItem("크리스피 치킨버거", "₩6,600", R.drawable.changneung_gallic_burger, true),
+        ProposalMenuItem("더블업 치즈버거", "₩5,600", R.drawable.double_up_cheeseburger, false),
+        ProposalMenuItem("불고기 비프버거", "₩2,200", R.drawable.bulgogi_beef_burger, false),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

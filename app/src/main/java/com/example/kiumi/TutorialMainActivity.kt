@@ -162,7 +162,7 @@ class TutorialMainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         // TTS가 활성화된 상태이면서 MainActivity에서 TTS를 사용하지 않으려면 조건을 추가
         val isTTSActiveForMainActivity = intent.getBooleanExtra("isTTSActiveForMainActivity", true)
         if (fragment is BurgerTutorialFragment && isTTSActive && isTTSActiveForMainActivity) {
-            speakText("창녕 갈릭 버거를 클릭해주세요")
+            speakText("크리스피 치킨 버거를 클릭해주세요")
         }
     }
 

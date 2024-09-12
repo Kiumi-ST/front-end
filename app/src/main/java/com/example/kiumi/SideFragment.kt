@@ -42,10 +42,16 @@ class SideFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         val menuItems = listOf(
+//            MenuItem("츄러스", "₩1,500", "145 Kcal", R.drawable.churros, false),
+//            MenuItem("츄러스 & 선데이 - 콤보", "₩3,000", " ", R.drawable.churros_sundae_combo, true),
+//            MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
+//            MenuItem("맥너겟® - 6조각", "₩3,000", "256 Kcal", R.drawable.mcnuggets, false),
+//            MenuItem("후렌치 후라이 - 미디엄", "₩1,500", "332 Kcal", R.drawable.french_fries_medium, false),
+//            MenuItem("코울슬로", "₩1,900", "179 Kcal", R.drawable.coleslaw, true)
             MenuItem("츄러스", "₩1,500", "145 Kcal", R.drawable.churros, false),
-            MenuItem("츄러스 & 선데이 - 콤보", "₩3,000", " ", R.drawable.churros_sundae_combo, true),
-            MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
-            MenuItem("맥너겟® - 6조각", "₩3,000", "256 Kcal", R.drawable.mcnuggets, false),
+            MenuItem("아이스크림 츄러스", "₩3,000", " ", R.drawable.icecream_churro, true),
+            MenuItem("비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.beef_wrap, false),
+            MenuItem("치킨 너겟 - 6조각", "₩3,000", "256 Kcal", R.drawable.chicken_nuggets, false),
             MenuItem("후렌치 후라이 - 미디엄", "₩1,500", "332 Kcal", R.drawable.french_fries_medium, false),
             MenuItem("코울슬로", "₩1,900", "179 Kcal", R.drawable.coleslaw, true)
         )
