@@ -56,7 +56,7 @@
         android:textSize="10dp"
         android:textColor="#000000"
         android:background="@drawable/button_background"
-        android:backgroundTint="@color/yellow"
+        android:backgroundTint="@color/orange"
         android:id="@+id/button_decrease" />
     <TextView
         android:id="@+id/item_count"
@@ -74,7 +74,7 @@
         android:textSize="10dp"
         android:textColor="#000000"
         android:background="@drawable/button_background"
-        android:backgroundTint="@color/yellow"
+        android:backgroundTint="@color/orange"
         android:id="@+id/button_increase" />
 
     <TextView

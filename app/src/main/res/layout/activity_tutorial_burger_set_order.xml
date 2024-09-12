@@ -327,7 +327,7 @@
                 android:layout_height="30dp"
                 android:text="장바구니 추가"
                 android:layout_gravity="center"
-                android:background="@color/yellow"
+                android:background="@color/orange"
                 android:textColor="#000"
                 android:layout_marginLeft="10dp"/>
         </LinearLayout>

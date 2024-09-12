@@ -298,7 +298,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:background="@color/yellow"
+                            android:background="@color/orange"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:padding="10dp">

@@ -225,7 +225,7 @@
             android:id="@+id/button_points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/light_yellow"
+            android:background="@color/light_orange"
             android:gravity="center"
 
             android:orientation="vertical"

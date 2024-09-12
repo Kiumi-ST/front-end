@@ -201,7 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:layout_marginLeft="10dp"
-            android:background="@color/yellow"
+            android:background="@color/orange"
             android:text="사용하기"
             android:textColor="#000000"
             android:textSize="15sp" />
