@@ -23,10 +23,10 @@ class OrderSummaryDialogTutorialFragment : DialogFragment(), TextToSpeech.OnInit
     private var isTTSActive: Boolean = false
 
     val menuItems = listOf(
-        MenuItem("후렌치 후라이 - 미디엄", " ", "332 Kcal", R.drawable.french_fries_medium, false),
-        MenuItem("케이준 비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.cajun_beef_snack_wrap, false),
-        MenuItem("츄러스 & 선데이 - 콤보", "₩3,000", " ", R.drawable.churros_sundae_combo, true),
-        MenuItem("트리플 치즈버거", "₩5,600", "619 Kcal", R.drawable.triple_cheese_burger, false),
+        MenuItem("후렌치 후라이 - 미디엄", "₩1,500", "332 Kcal", R.drawable.french_fries_medium, false),
+        MenuItem("비프 스낵랩", "₩2,200", "292 Kcal", R.drawable.beef_wrap, false),
+        MenuItem("아이스크림 츄러스", "₩3,000", " ", R.drawable.icecream_churro, true),
+        MenuItem("더블업 치즈버거", "₩5,600", "619 Kcal", R.drawable.double_up_cheeseburger, false),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -26,9 +26,12 @@ class BurgerTutorialFragment : Fragment() {
 
     private lateinit var adapter: MenuTutorialAdapter
     val menuItems = listOf(
-        MenuItem("창녕 갈릭 버거", "₩6,600", "674 Kcal", R.drawable.changneung_gallic_burger, true),
-        MenuItem("트리플 치즈버거", "₩5,600", "619 Kcal", R.drawable.triple_cheese_burger, false),
-        MenuItem("불고기 버거", "₩2,200", "430 Kcal", R.drawable.bulgogi_burger, false),
+        //        MenuItem("창녕 갈릭 버거", "₩6,600", "674 Kcal", R.drawable.changneung_gallic_burger, true),
+//        MenuItem("트리플 치즈버거", "₩5,600", "619 Kcal", R.drawable.triple_cheese_burger, false),
+//        MenuItem("불고기 버거", "₩2,200", "430 Kcal", R.drawable.bulgogi_burger, false),
+        MenuItem("크리스피 치킨버거", "₩6,600", "674 Kcal", R.drawable.changneung_gallic_burger, true),
+        MenuItem("더블업 치즈버거", "₩5,600", "619 Kcal", R.drawable.double_up_cheeseburger, false),
+        MenuItem("불고기 비프버거", "₩2,200", "430 Kcal", R.drawable.bulgogi_beef_burger, false),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
