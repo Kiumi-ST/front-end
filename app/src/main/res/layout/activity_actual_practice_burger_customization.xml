@@ -421,7 +421,7 @@
                         android:layout_weight="1"
                         android:text="변경 저장"
                         android:textColor="#000"
-                        android:background="@color/yellow"
+                        android:background="@color/orange"
                         android:layout_marginHorizontal="10dp" />
 
                 </LinearLayout>

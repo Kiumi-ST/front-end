@@ -10,8 +10,8 @@
     <!-- 로고 -->
     <ImageView
         android:id="@+id/imageViewLogo"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_mcdonalds_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +23,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="모바일 상품권 바코드를\n스캔해 주세요"
         android:textAlignment="center"
         android:textSize="30sp"
