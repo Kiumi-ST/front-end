@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitClient {
 
     // Spring boot 서버 연동
-    private const val SPRING_BOOT_BASE_URL = "http://192.168.103.199:8080/" // http://(본인 노트북 IPv4 주소):8080/
+    private const val SPRING_BOOT_BASE_URL = "http://192.168.0.8:8080/" // http://(본인 노트북 IPv4 주소):8080/
 
     val springBootRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl(SPRING_BOOT_BASE_URL)
@@ -18,7 +18,7 @@ object RetrofitClient {
     val springBootApiService: SpringBootApiService = springBootRetrofit.create(SpringBootApiService::class.java)
 
     // Flask 서버 연동
-    private const val FLASK_BASE_URL = "http://192.168.103.199:8000/"
+    private const val FLASK_BASE_URL = "http://192.168.0.8:8000/"
 
     val flaskRetrofit: Retrofit = Retrofit.Builder()
         .baseUrl(FLASK_BASE_URL)

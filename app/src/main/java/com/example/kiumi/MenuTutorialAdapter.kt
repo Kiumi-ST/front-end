@@ -32,7 +32,7 @@ class MenuTutorialAdapter(
                     val isBurgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
 
                     // "창녕 갈릭 버거"이고 burger_set_clicked가 false일 때만 클릭 이벤트 처리
-                    if (menuItem.name == "창녕 갈릭 버거" && !isBurgerSetClicked) {
+                    if (menuItem.name == "크리스피 치킨버거" && !isBurgerSetClicked) {
                         onItemClick(menuItem)
                     }
                 }
@@ -56,7 +56,7 @@ class MenuTutorialAdapter(
         // SharedPreferences에서 상태를 확인하여 배경 설정
         val isBurgerSetClicked = preferences.getBoolean("burger_set_clicked", false)
 
-        if (menuItem.name == "창녕 갈릭 버거") {
+        if (menuItem.name == "크리스피 치킨버거") {
             if (isBurgerSetClicked) {
                 holder.itemView.setBackgroundResource(R.drawable.item_background)
             } else {

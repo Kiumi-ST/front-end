@@ -42,11 +42,16 @@ class ProposalSideFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         val menuItems = listOf(
+//            ProposalMenuItem("츄러스", "₩1,500", R.drawable.churros, false),
+//            ProposalMenuItem("츄러스 & 선데이 - 콤보", "₩3,000", R.drawable.churros_sundae_combo, true),
+//            ProposalMenuItem("케이준 비프 스낵랩", "₩2,200", R.drawable.cajun_beef_snack_wrap, false),
+//            ProposalMenuItem("맥너겟® - 6조각", "₩3,000", R.drawable.mcnuggets, false),
+
             ProposalMenuItem("츄러스", "₩1,500", R.drawable.churros, false),
-            ProposalMenuItem("츄러스 & 선데이 - 콤보", "₩3,000", R.drawable.churros_sundae_combo, true),
-            ProposalMenuItem("케이준 비프 스낵랩", "₩2,200", R.drawable.cajun_beef_snack_wrap, false),
-            ProposalMenuItem("맥너겟® - 6조각", "₩3,000", R.drawable.mcnuggets, false),
-            )
+            ProposalMenuItem("아이스크림 츄러스", "₩3,000", R.drawable.icecream_churro, true),
+            ProposalMenuItem("비프 스낵랩", "₩2,200", R.drawable.beef_wrap, false),
+            ProposalMenuItem("치킨 너겟 - 6조각", "₩3,000", R.drawable.chicken_nuggets, false)
+        )
 
         val adapter = ProposalMenuAdapter(menuItems) { menuItem ->
             (activity as? ProposalMainActivity)?.showSingleItemPopup(menuItem)
