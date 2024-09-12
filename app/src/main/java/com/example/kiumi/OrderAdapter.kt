@@ -1,11 +1,13 @@
 package com.example.kiumi
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class OrderAdapter(
@@ -75,6 +77,15 @@ class OrderAdapter(
             holder.price.text = "₩${itemPrice * orderItem.quantity}"
             CartManager.updateItemQuantity(orderItem, orderItem.quantity)
             notifyItemChanged(position)
+        }
+
+        holder.buttonSet.setOnClickListener {
+            val intent = Intent(holder.itemView.context, ActualPracticeNutritionInfoActivity::class.java).apply {
+                putExtra("ITEM_NAME", menuItem.name)
+                putExtra("ITEM_IMAGERESID", menuItem.imageResourceId)
+                putExtra("previous_activity", "실전 연습_주문 내역")
+            }
+            holder.itemView.context.startActivity(intent)
         }
 
         holder.cancelButton.setOnClickListener {
