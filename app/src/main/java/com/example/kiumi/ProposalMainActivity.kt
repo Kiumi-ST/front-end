@@ -77,8 +77,9 @@ class ProposalMainActivity : PopupActivity() {
         selectMenu(home, homeText, homeIndicator)
         replaceFragment(ProposalHomeFragment())
 
-        // QR 코드 버튼 초기화
+        // QR 코드 버튼
         findViewById<LinearLayout>(R.id.button_points).setOnClickListener {
+            ProposalPointManager.setPointEarned(true)
             val intent = Intent(this@ProposalMainActivity, ProposalQRSuccess::class.java)
                 .apply { putExtra("previous_activity", "개선안_메인") }
             startActivity(intent)

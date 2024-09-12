@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +31,10 @@ class ProposalPaymentSelection : PopupActivity() {
         // 이전 액티비티 이름을 인텐트로부터 받아오기
         previousActivity = intent.getStringExtra("previous_activity")
 
+        if (ProposalPointManager.isPointEarned()){
+            findViewById<TextView>(R.id.textViewSubtitle).text = ""
+        }
+
         // 카드 결제에 클릭 리스너 추가
         val cardPaymentLayout: LinearLayout = findViewById(R.id.linearLayoutCardPayment)
         cardPaymentLayout.setOnClickListener {
@@ -50,11 +54,7 @@ class ProposalPaymentSelection : PopupActivity() {
         // 이전 단계 버튼에 클릭 리스너 추가
         val buttonPreviousStep: Button = findViewById(R.id.buttonPreviousStep)
         buttonPreviousStep.setOnClickListener {
-            // 이전 단계 액티비티로 이동 (변경 필요)
-            // val intent = Intent(this, PreviousActivity::class.java).apply { putExtra("previous_activity", "개선안_결제 방법") }
-            // startActivity(intent)
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "이전 단계로 이동", Toast.LENGTH_SHORT).show()
+            finish()
         }
 
         // 처음으로 버튼에 클릭 리스너 추가
@@ -68,11 +68,6 @@ class ProposalPaymentSelection : PopupActivity() {
         // 도움 기능 버튼에 클릭 리스너 추가
         val buttonHelp: LinearLayout = findViewById(R.id.linearLayoutHelp)
         buttonHelp.setOnClickListener {
-            // 도움 기능 액티비티로 이동 (변경 필요)
-            // val intent = Intent(this, HelpActivity::class.java).apply { putExtra("previous_activity", "개선안_결제 방법") }
-            // startActivity(intent)
-            // 현재는 단순히 토스트 메시지로 대체
-            Toast.makeText(this, "도움 기능으로 이동", Toast.LENGTH_SHORT).show()
         }
 
         // 뒤로 가기를 onBackPressedDispatcher를 통해 등록
