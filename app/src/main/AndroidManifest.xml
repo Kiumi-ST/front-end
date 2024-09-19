@@ -24,7 +24,7 @@
         tools:targetApi="31" >
 
         <activity
-            android:name=".MainActivity"
+            android:name=".feature.home.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
@@ -33,142 +33,142 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TutorialThankYou"
+            android:name=".feature.tutorial.TutorialThankYou"
             android:exported="false" />
         <activity
-            android:name=".TutorialPickup"
+            android:name=".feature.tutorial.TutorialPickup"
             android:exported="false" />
         <activity
-            android:name=".TutorialPaymentCard"
+            android:name=".feature.tutorial.TutorialPaymentCard"
             android:exported="false" />
 
         <service
-            android:name=".PhotoCaptureService"
+            android:name=".feature.common.PhotoCaptureService"
             android:exported="false" />
 
         <activity
-            android:name=".ProposalBurgerCustomizationActivity"
+            android:name=".feature.proposal.ProposalBurgerCustomizationActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalLanguageActivity"
+            android:name=".feature.proposal.ProposalLanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalNutritionInfoActivity"
+            android:name=".feature.proposal.ProposalNutritionInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalOrderCancelActivity"
+            android:name=".feature.proposal.ProposalOrderCancelActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalPaymentCard"
+            android:name=".feature.proposal.ProposalPaymentCard"
             android:exported="false" />
         <activity
-            android:name=".ProposalPaymentMobileGift"
+            android:name=".feature.proposal.ProposalPaymentMobileGift"
             android:exported="false" />
         <activity
-            android:name=".ProposalPaymentMobileGiftComplete"
+            android:name=".feature.proposal.ProposalPaymentMobileGiftComplete"
             android:exported="false" />
         <activity
-            android:name=".ProposalPaymentMobileGiftScan"
+            android:name=".feature.proposal.ProposalPaymentMobileGiftScan"
             android:exported="false" />
         <activity
-            android:name=".ProposalPickup"
+            android:name=".feature.proposal.ProposalPickup"
             android:exported="false" />
         <activity
-            android:name=".ProposalThankYou"
+            android:name=".feature.proposal.ProposalThankYou"
             android:exported="false" />
         <activity
-            android:name=".TutorialCartAddedActivity"
+            android:name=".feature.tutorial.TutorialCartAddedActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalCartAddedActivity"
+            android:name=".feature.proposal.ProposalCartAddedActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeLanguageActivity"
+            android:name=".feature.actualpractice.ActualPracticeLanguageActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeBurgerCustomizationActivity"
+            android:name=".feature.actualpractice.ActualPracticeBurgerCustomizationActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeNutritionInfoActivity"
+            android:name=".feature.actualpractice.ActualPracticeNutritionInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeOrderCancelActivity"
+            android:name=".feature.actualpractice.ActualPracticeOrderCancelActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalOrderActivity"
+            android:name=".feature.proposal.ProposalOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalBurgerSetOrderActivity"
+            android:name=".feature.proposal.ProposalBurgerSetOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalDrinkSelectionActivity"
+            android:name=".feature.proposal.ProposalDrinkSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalSideMenuSelectionActivity"
+            android:name=".feature.proposal.ProposalSideMenuSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalSetSelectionActivity"
+            android:name=".feature.proposal.ProposalSetSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialPaymentSelection"
+            android:name=".feature.tutorial.TutorialPaymentSelection"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".TutorialCartAddedActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".TutorialBurgerSetOrderActivity"
+            android:name=".feature.tutorial.TutorialBurgerSetOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialSideMenuSelectionActivity"
+            android:name=".feature.tutorial.TutorialSideMenuSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialOrderActivity"
+            android:name=".feature.tutorial.TutorialOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialDrinkSelectionActiviy"
+            android:name=".feature.tutorial.TutorialDrinkSelectionActiviy"
             android:exported="false" />
         <activity
-            android:name=".TutorialSetSelectionActivity"
+            android:name=".feature.tutorial.TutorialSetSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialMainActivity"
+            android:name=".feature.tutorial.TutorialMainActivity"
             android:exported="false" />
         <activity
-            android:name=".TutorialPlaceSelectionActivity"
+            android:name=".feature.tutorial.TutorialPlaceSelectionActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".InstructionActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".ProposalMainActivity"
+            android:name=".feature.proposal.ProposalMainActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeBurgerSetOrderActivity"
+            android:name=".feature.actualpractice.ActualPracticeBurgerSetOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeDrinkSelectionActivity"
+            android:name=".feature.actualpractice.ActualPracticeDrinkSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeSideMenuSelectionActivity"
+            android:name=".feature.actualpractice.ActualPracticeSideMenuSelectionActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeOrderActivity"
+            android:name=".feature.actualpractice.ActualPracticeOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalPaymentSelection"
+            android:name=".feature.proposal.ProposalPaymentSelection"
             android:exported="false" />
         <activity
-            android:name=".ProposalQRSuccess"
+            android:name=".feature.proposal.ProposalQRSuccess"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeCartAddedActivity"
+            android:name=".feature.actualpractice.ActualPracticeCartAddedActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeMainActivity"
+            android:name=".feature.actualpractice.ActualPracticeMainActivity"
             android:exported="false" />
         <activity
-            android:name=".ProposalPlaceSelection"
+            android:name=".feature.proposal.ProposalPlaceSelection"
             android:exported="false" />
         <activity
-            android:name=".ProposalFirstActivity"
+            android:name=".feature.proposal.ProposalFirstActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".InprovementFirstActivity" -->
         <!-- android:exported="false" /> -->
@@ -176,68 +176,68 @@
         <!-- android:name=".ImprovementActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".ActualPracticeThankYou"
+            android:name=".feature.actualpractice.ActualPracticeThankYou"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePickup"
+            android:name=".feature.actualpractice.ActualPracticePickup"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePaymentMobileGiftComplete"
+            android:name=".feature.actualpractice.ActualPracticePaymentMobileGiftComplete"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePaymentMobileGift"
+            android:name=".feature.actualpractice.ActualPracticePaymentMobileGift"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePaymentMobileGiftScan"
+            android:name=".feature.actualpractice.ActualPracticePaymentMobileGiftScan"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePaymentCard"
+            android:name=".feature.actualpractice.ActualPracticePaymentCard"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticePaymentSelection"
+            android:name=".feature.actualpractice.ActualPracticePaymentSelection"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeQRSuccess"
+            android:name=".feature.actualpractice.ActualPracticeQRSuccess"
             android:exported="false" />
         <activity
-            android:name=".SurveyCompareActivity"
+            android:name=".feature.proposal.SurveyCompareActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".feature.home.MainActivity" />
         <activity
-            android:name=".EnglishPracticeActivity"
+            android:name=".feature.home.EnglishPracticeActivity"
             android:exported="false" />
         <activity
-            android:name=".ActualPracticeSetSelectionActivity"
+            android:name=".feature.actualpractice.ActualPracticeSetSelectionActivity"
             android:exported="false"
-            android:parentActivityName=".ActualPracticeActivity" />
+            android:parentActivityName=".feature.actualpractice.ActualPracticeActivity" />
         <activity
-            android:name=".ActualPracticePlaceSelectionActivity"
+            android:name=".feature.actualpractice.ActualPracticePlaceSelectionActivity"
             android:exported="false"
-            android:parentActivityName=".ActualPracticeActivity" />
+            android:parentActivityName=".feature.actualpractice.ActualPracticeActivity" />
         <activity
-            android:name=".ActualPracticeActivity"
+            android:name=".feature.actualpractice.ActualPracticeActivity"
             android:exported="false"
-            android:parentActivityName=".PracticeSelectionActivity" />
+            android:parentActivityName=".feature.home.PracticeSelectionActivity" />
         <activity
-            android:name=".ProposalActivity"
+            android:name=".feature.proposal.ProposalActivity"
             android:exported="false"
-            android:parentActivityName=".PracticeSelectionActivity" />
+            android:parentActivityName=".feature.home.PracticeSelectionActivity" />
         <activity
-            android:name=".TutorialActivity"
+            android:name=".feature.tutorial.TutorialActivity"
             android:exported="false"
-            android:parentActivityName=".PracticeSelectionActivity" />
+            android:parentActivityName=".feature.home.PracticeSelectionActivity" />
         <activity
-            android:name=".SurveyActivity"
+            android:name=".feature.home.SurveyActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".feature.home.MainActivity" />
         <activity
-            android:name=".PracticeSelectionActivity"
+            android:name=".feature.home.PracticeSelectionActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".feature.home.MainActivity" />
         <activity
-            android:name=".HelpActivity"
+            android:name=".feature.home.HelpActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".feature.home.MainActivity" />
     </application>
 
 </manifest>

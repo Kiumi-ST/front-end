@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SideFragment">
+    tools:context=".fragment.SideFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
