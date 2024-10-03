@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.kiumi"
+    namespace = "com.test.kiumi"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.kiumi"
+        applicationId = "com.test.kiumi"
         minSdk = 25
         targetSdk = 34
         versionCode = 1

@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:390459592108:android:5295ce4dcf52f246697e09",
         "android_client_info": {
-          "package_name": "com.example.kiumi"
+          "package_name": "com.test.kiumi"
         }
       },
       "oauth_client": [],
